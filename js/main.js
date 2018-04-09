@@ -1,10 +1,10 @@
 import { store, storeActions } from './store/GameStore.js'
-import { Champs } from './classes/champs.js'
+import { Champions } from './classes/index.js'
 
 // class demo
 
-const champ = new Champs()
-console.log(champ.test())
+const champion = new Champions()
+console.log(champion.test())
 
 // Store demo
 

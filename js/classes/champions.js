@@ -1,4 +1,4 @@
-class Champs {
+export default class Champs {
     constructor() {
         this.state = {
             test: 'Hello'
@@ -9,5 +9,3 @@ class Champs {
         return this.state
     }
 }
-
-export { Champs }
