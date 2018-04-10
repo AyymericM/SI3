@@ -28,7 +28,7 @@ export default class Player extends Game {
             this.checkColision()
         }, 50)
     }
-    // ok
+
     spawnPlayer() {
         const player = document.createElement('div')
         player.classList.add('perso')
@@ -36,7 +36,6 @@ export default class Player extends Game {
         this.setPlayerPos()
     }
     
-    // TODO: movements relative to bottom
     setPlayerPos(player = document.querySelector('.perso')) {
         player.style.bottom = this.state.posY + 'px'
         player.style.left = this.state.posX + 'px'
@@ -65,6 +64,7 @@ export default class Player extends Game {
         return document.querySelector(`#b${this.state.bulletNumber}`)
     }
     
+    // TODO: get that working
     getAccuracy() {
         return (Math.floor(Math.random() * 10) * this.state.champ.atAccuracy) - 5
     }
