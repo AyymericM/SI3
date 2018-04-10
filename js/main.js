@@ -17,6 +17,14 @@ const player1DOM = document.querySelector('#p1')
 const player2DOM = document.querySelector('#p2')
 const platform = document.querySelector('.platform')
 
+/**** COMMANDES
+
+Joueur 1 : Q-D, saut avec Z, attaque avec G
+Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
+
+
+**********/
+
 
 window.addEventListener('keypress',(e)=>{press(e)})
 function press(e){
