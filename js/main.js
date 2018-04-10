@@ -10,22 +10,16 @@ const platform = document.querySelector('.platform')
 let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
 
 window.addEventListener('keypress', (e) => {
-    console.log(e.keyCode);
-    
     if (player.state.keys[e.keyCode]) {
         e.preventDefault()
     } else {
         if (e.keyCode === 122) {
             player.state.keys[122] = true
-            console.log(player.state.posY);
-            
             if (player.state.posY === 0) {
-                console.log('ok');
-                
                 player.state.jump = setInterval(()=>{
-                    player.state.posY+=12
+                    player.state.posY += 12
                     player.setPlayerPos()
-                },10)
+                }, 10)
                 setTimeout(()=>{
                     clearInterval(player.state.jump)
                     let maxY = player.state.posY
@@ -88,7 +82,7 @@ window.addEventListener('keydown', (e) => {
             playerDOM.style.transform = 'scaleX(1)'
             player.state.moveRight = setInterval(()=>{
                 player.state.posX +=5
-                if (player.state.posX > (platform.offsetLeft+platform.offsetWidth) && onPlatform) {
+                if (player.state.posX > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
                         player.state.posY-=12
                         if (player.state.posY<0) {
