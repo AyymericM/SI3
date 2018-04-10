@@ -99,6 +99,7 @@ export default class Player {
         if (this.state.posX > (els.hitbox.offsetLeft-els.player.offsetWidth) && this.state.posX < (els.hitbox.offsetLeft+els.hitbox.offsetWidth)) {
           if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
             this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
+            this.state.onPlatform = true
             clearInterval(this.state.unjump)
           }
         }
@@ -148,8 +149,9 @@ export default class Player {
           hitbox: document.querySelector('.platformHitBox'),
           player: document.querySelector('.perso')
         }
-        if (this.state.posX<(els.hitbox.offsetLeft-els.player.offsetWidth)||this.state.posX>(els.hitbox.offsetLeft + els.hitbox.offsetWidth)) {
+        if ((this.state.posX<(els.hitbox.offsetLeft-els.player.offsetWidth)||this.state.posX>(els.hitbox.offsetLeft + els.hitbox.offsetWidth))&&this.state.onPlatform) {
           this.state.posY = 0
+          this.state.onPlatform = false
           this.setPlayerPos()
         }
     }
