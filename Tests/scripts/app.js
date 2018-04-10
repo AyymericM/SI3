@@ -115,7 +115,7 @@ window.addEventListener(
         player1.style.transform = 'scaleX(1)'
         moveRight1 = setInterval(()=>{
           posX1 +=5
-          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && onPlatform1) {
+          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
             let descent = setInterval(()=>{
               posY1-=12
               if (posY1<0) {
