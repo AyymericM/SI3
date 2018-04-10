@@ -8,7 +8,7 @@ export default class Player extends Game {
     constructor(Game) {
         super(Game)
     }
-    
+
     // TODO: Player stats and stuff (spawn ok)
     init() {
         this.state.posX = parseInt(window.innerWidth / 4)
@@ -35,13 +35,13 @@ export default class Player extends Game {
         root.appendChild(player)
         this.setPlayerPos()
     }
-    
+
     // TODO: movements relative to bottom
     setPlayerPos(player = document.querySelector('.perso')) {
         player.style.bottom = this.state.posY + 'px'
         player.style.left = this.state.posX + 'px'
     }
-    
+
     getNewBullet() {
         const newBullet = document.createElement('div')
         if (this.state.bulletNumber%7==0 && this.state.bulletNumber!=0) {
@@ -50,7 +50,7 @@ export default class Player extends Game {
         else {
             newBullet.classList.add('bullet')
         }
-        
+
         newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
         newBullet.setAttribute('data-dmg', this.state.champ.atDmg)
         newBullet.setAttribute('data-dir', this.state.dir)
@@ -64,7 +64,7 @@ export default class Player extends Game {
         root.appendChild(newBullet)
         return document.querySelector(`#b${this.state.bulletNumber}`)
     }
-    
+
     getAccuracy() {
         return (Math.floor(Math.random() * 10) * this.state.champ.atAccuracy) - 5
     }
@@ -74,14 +74,14 @@ export default class Player extends Game {
         let posYBullet = parseInt(element.offsetTop)
         let bdir = parseInt(element.dataset.dir)
         let accuracy = this.getAccuracy()
-        
+
         let timer = setInterval(() => {
             if (bdir === 1) {
-                posXBullet += 10 
+                posXBullet += 10
             } else {
                 posXBullet -= 10
             }
-            
+
             if (posXBullet > window.innerWidth - element.offsetWidth || posXBullet < 0) {
                 root.removeChild(element)
                 let index = this.state.bullets.indexOf(element);
@@ -95,7 +95,7 @@ export default class Player extends Game {
             }
         }, 10)
     }
-    
+
     shoot(player) {
         if (this.state.canShoot) {
             const newBulletDOM = this.getNewBullet()
@@ -110,7 +110,7 @@ export default class Player extends Game {
             }, 1000 * this.state.champ.atSpeed)
         }
     }
-    
+
     checkPlatformY(){
         let els = {
             hitbox: document.querySelector('.platformHitBox'),
@@ -124,28 +124,29 @@ export default class Player extends Game {
             }
         }
     }
-    
+
     jumpAscend(){
         this.state.inAir = true
         this.state.jump = setInterval(()=>{
             this.state.posY += this.state.jumpHeight/10
+            this.state.onPlatform = false
             this.setPlayerPos()
         }, 10)
     }
-    
+
     jumpDescend(){
         this.state.unjump = setInterval(()=>{
-            this.checkPlatformY()
             this.state.posY -=this.state.jumpHeight/10
+            this.checkPlatformY()
             if (this.state.posY < 0) {
                 this.state.posY = 0
                 clearInterval(this.state.unjump)
             }
             this.state.inAir = false
             this.setPlayerPos()
-        })
+        },10)
     }
-    
+
     jump(){
         if (!this.state.inAir) {
             this.jumpAscend()
@@ -155,27 +156,28 @@ export default class Player extends Game {
             },200)
         }
     }
-    
+
     flipLeft(element){
         element.style.transform = 'scaleX(-1)'
     }
-    
+
     flipRight(element){
         element.style.transform = 'scaleX(1)'
     }
-    
+
     checkPlatformX(){
         let els = {
             hitbox: document.querySelector('.platformHitBox'),
             player: document.querySelector('.perso')
         }
         if ((this.state.posX<(els.hitbox.offsetLeft-els.player.offsetWidth)||this.state.posX>(els.hitbox.offsetLeft + els.hitbox.offsetWidth))&&this.state.onPlatform) {
-            this.state.posY = 0
-            this.state.onPlatform = false
-            this.setPlayerPos()
+            if (this.state.posY == els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop ) {
+              this.jumpDescend()
+              this.state.onPlatform = false
+            }
         }
     }
-    
+
     checkEnds(element){
         if (this.state.posX < 0) {
             this.state.posX = 0
@@ -184,7 +186,7 @@ export default class Player extends Game {
             this.state.posX=root.clientWidth-document.querySelector('.perso').offsetWidth
         }
     }
-    
+
     moveLeft() {
         this.state.dir = 2
         this.flipLeft(document.querySelector('.perso'))
@@ -195,7 +197,7 @@ export default class Player extends Game {
             this.setPlayerPos()
         },10)
     }
-    
+
     moveRight(){
         this.state.dir = 1
         this.flipRight(document.querySelector('.perso'))
@@ -208,12 +210,12 @@ export default class Player extends Game {
     }
 
     checkColision() {
-        for (let i = 0; i < this.state.bullets.length; i++) {           
+        for (let i = 0; i < this.state.bullets.length; i++) {
             let player = document.querySelector('.perso')
             let dmg = parseInt(this.state.bullets[i].dataset.dmg)
             let rightSide = parseInt(player.style.left) + player.offsetWidth
             let bulletPos = this.state.bullets[i].style.left
-            
+
             if ((parseInt(bulletPos) < (parseInt(player.style.left) + player.style.offsetWidth))
                 && (parseInt(bulletPos) > parseInt(player.style.left))) {
                 this.setDamage(dmg)
@@ -223,7 +225,7 @@ export default class Player extends Game {
 
     setDamage(dmg) {
         //console.log('hit');
-        
+
         this.state.champ.pv - dmg
         if (this.state.champ.pv <= 0) {
             // TODO: game over

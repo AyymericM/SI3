@@ -9,6 +9,7 @@ export default class MagicBall {
           currentPosY: undefined,
           nextPosX: 0,
           nextPosY: 0,
+          speed: 200,
           spawnTime: 5000 + Math.floor(Math.random()*5000)
         }
     }
@@ -54,13 +55,20 @@ export default class MagicBall {
         this.state.currentPosY = nextPosY
     }
 
+    getDistance(){
+        return Math.sqrt(Math.pow((this.state.nextPosX - this.state.currentPosX),2)+Math.pow((this.state.nextPosY - this.state.currentPosY),2))
+    }
+
     moveBall(){
+        let ball = document.querySelector('.magicBall')
         if (this.state.currentPosX === undefined && this.state.currentPosY === undefined) {
             this.state.currentPosX = this.state.initPosX
             this.state.currentPosY = this.state.initPosY
         }
         setInterval(()=>{
           this.generateNextPos()
+          let time = this.getDistance()/this.state.speed
+          ball.style.transition = `all ${time}s ease-in-out`
           this.positionBall(this.state.nextPosX,this.state.nextPosY)
           this.setCurrentPos(this.state.nextPosX,this.state.nextPosY)
         },2000)
