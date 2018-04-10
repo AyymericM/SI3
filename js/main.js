@@ -10,14 +10,11 @@ const platform = document.querySelector('.platform')
 let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
 
 window.addEventListener('keypress', (e) => {
-
     if (player.state.keys[e.keyCode]) {
         e.preventDefault()
     } else {
         if (e.keyCode === 122) {
             player.state.keys[122] = true
-            console.log(player.state.posY);
-
             if (player.state.posY === 0) {
                 player.state.jump = setInterval(()=>{
                     player.state.posY += 12
