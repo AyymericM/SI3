@@ -50,7 +50,7 @@ export default class Player {
         if (this.state.dir === 2) {
             newBullet.style.transform = 'scaleX(-1)'
         }
-        document.querySelector('.game').appendChild(newBullet)
+        root.appendChild(newBullet)
         return document.querySelector(`#b${this.state.bulletNumber}`)
     }
 
@@ -61,7 +61,7 @@ export default class Player {
                 posXBullet += 10
                 if (posXBullet > window.innerWidth - element.offsetWidth) {
                     clearInterval(timer)
-                    document.querySelector('.game').removeChild(element)
+                    root.removeChild(element)
                 } else {
                     element.style.left = posXBullet + 'px'
                 }
@@ -72,7 +72,7 @@ export default class Player {
                 posXBullet -= 10
                 if (posXBullet < 0) {
                     clearInterval(timer)
-                    document.querySelector('.game').removeChild(element)
+                    root.removeChild(element)
                 } else {
                     element.style.left = posXBullet + 'px'
                 }
@@ -90,13 +90,13 @@ export default class Player {
         this.state.bulletNumber++
     }
 
-    checkPlatform(){
+    checkPlatformY(){
       let els = {
         hitbox: document.querySelector('.platformHitBox'),
         player: document.querySelector('.perso')
       }
         console.log(els)
-        if (this.state.posX > (els.hitbox.offsetLeft-els.player.offsetWidth) && this.state.posX < (els.hitbox.offsetLeft+els.hitbox.offsetWidth+els.player.offsetWidth)) {
+        if (this.state.posX > (els.hitbox.offsetLeft-els.player.offsetWidth) && this.state.posX < (els.hitbox.offsetLeft+els.hitbox.offsetWidth)) {
           if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
             this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
             clearInterval(this.state.unjump)
@@ -114,7 +114,7 @@ export default class Player {
 
     jumpDescend(){
         this.state.unjump = setInterval(()=>{
-            this.checkPlatform()
+            this.checkPlatformY()
             this.state.posY -=this.state.jumpHeight/10
             if (this.state.posY < 0) {
               this.state.posY = 0
@@ -126,16 +126,62 @@ export default class Player {
     }
 
     jump(){
-      if (!this.state.inAir) {
-        this.jumpAscend()
-        setTimeout(()=>{
-            clearInterval(this.state.jump)
-            this.jumpDescend()
-          },200)
-      }
+        if (!this.state.inAir) {
+          this.jumpAscend()
+          setTimeout(()=>{
+              clearInterval(this.state.jump)
+              this.jumpDescend()
+            },200)
+        }
     }
 
-    move() {
+    flipLeft(element){
+        element.style.transform = 'scaleX(-1)'
+    }
 
+    flipRight(element){
+        element.style.transform = 'scaleX(1)'
+    }
+
+    checkPlatformX(){
+        let els = {
+          hitbox: document.querySelector('.platformHitBox'),
+          player: document.querySelector('.perso')
+        }
+        if (this.state.posX<(els.hitbox.offsetLeft-els.player.offsetWidth)||this.state.posX>(els.hitbox.offsetLeft + els.hitbox.offsetWidth)) {
+          this.state.posY = 0
+          this.setPlayerPos()
+        }
+    }
+
+    checkEnds(element){
+        if (this.state.posX < 0) {
+            this.state.posX = 0
+        }
+        if (this.state.posX>root.clientWidth-document.querySelector('.perso').offsetWidth) {
+            this.state.posX=root.clientWidth-document.querySelector('.perso').offsetWidth
+        }
+    }
+
+    moveLeft() {
+        this.state.dir = 2
+        this.flipLeft(document.querySelector('.perso'))
+        this.state.moveLeft = setInterval(()=>{
+            this.state.posX -=5
+            this.checkEnds()
+            this.checkPlatformX()
+            this.setPlayerPos()
+        },10)
+    }
+
+    moveRight(){
+      this.state.dir = 1
+      this.flipRight(document.querySelector('.perso'))
+      this.state.moveRight = setInterval(()=>{
+          this.state.posX +=5
+          this.checkEnds()
+          this.checkPlatformX()
+          this.setPlayerPos()
+      },10)
     }
 }

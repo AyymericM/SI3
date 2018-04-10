@@ -18,31 +18,7 @@ window.addEventListener('keypress', (e) => {
         if (e.keyCode === 122) {
             player.state.keys[122] = true
             player.jump()
-            // if (!player.state.inAir) {
-            //     player.state.jump = setInterval(()=>{
-            //         player.state.inAir = true
-            //         player.state.posY += 12
-            //         player.setPlayerPos()
-            //     }, 10)
-            //     setTimeout(()=>{
-            //         clearInterval(player.state.jump)
-            //         let maxY = player.state.posY
-            //         player.state.unjump = setInterval(()=>{
-            //             player.state.posY-=12
-            //             if (player.state.posX > (platform.offsetLeft-playerDOM.offsetWidth) && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
-            //                 if (maxY > posYPlatform && player.state.posY < posYPlatform) {
-            //                     player.state.posY = posYPlatform
-            //                     player.state.onPlatform = true
-            //                 }
-            //             }
-            //             player.setPlayerPos()
-            //         },10)
-            //         setTimeout(()=>{
-            //             clearInterval(player.state.unjump)
-            //             player.state.inAir = false
-            //         },250)
-            //     },250)
-            // }
+
         }
         if (e.keyCode === 103) {
             player.state.keys[103] = true
@@ -58,56 +34,11 @@ window.addEventListener('keydown', (e) => {
     } else {
         if (e.keyCode==81) {
             player.state.keys[81]=true
-            player.state.dir = 2
-            playerDOM.style.transform = 'scaleX(-1)'
-            player.state.moveLeft = setInterval(()=>{
-                player.state.posX -=5
-                if (player.state.posX < 0) {
-                    player.state.posX = 0
-                }
-                if (player.state.posX < (platform.offsetLeft-playerDOM.offsetWidth) && player.state.onPlatform) {
-                    let descent = setInterval(()=>{
-                        player.state.posY-=12
-                        if (player.state.posY<0) {
-                            player.state.posY=0
-                            player.state.onPlatform = false
-                        }
-                        player.setPlayerPos()
-                        if (!player.state.onPlatform) {
-                          clearInterval(descent)
-                        }
-                    },10)
-                }
-                player.setPlayerPos()
-            },10)
+            player.moveLeft()
         }
         if (e.keyCode == 68) {
             player.state.keys[68] = true
-            player.state.dir = 1
-            playerDOM.style.transform = 'scaleX(1)'
-            player.state.moveRight = setInterval(()=>{
-                player.state.posX +=5
-                if (player.state.posX > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
-                    let descent = setInterval(()=>{
-                        player.state.posY-=12
-                        if (player.state.posY<0) {
-                            player.state.posY=0
-                            player.state.onPlatform = false
-                        }
-                        player.setPlayerPos()
-                        if (!player.state.onPlatform) {
-                          clearInterval(descent)
-                        }
-                    },10)
-                }
-                // if (player.state.posX>document.querySelector('.game').clientWidth-playerDOM.offsetWidth) {
-                //     player.state.posX=document.querySelector('.game').clientWidth-playerDOM.offsetWidth
-                // }
-                player.setPlayerPos()
-            },10)
-            // if (!player.state.onPlatform) {
-            //   clearInterval(descent)
-            // }
+            player.moveRight()
         }
 
     }
