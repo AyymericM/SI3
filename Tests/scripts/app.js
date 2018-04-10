@@ -1,8 +1,9 @@
 let player1 = document.querySelector('.perso')
+let player2 = document.querySelector('.perso2')
 let platform = document.querySelector('.platform')
-let posX1, posY1, dir = 1, i=0, bullets = new Array, keys = {}, moveLeft, moveRight, jump, unjump, oldKey
+let posX1, posY1, posX2, posY2, dir = 1, dir2=2, i=0, bullets = new Array, keys = {}, moveLeft1, moveLeft2, moveRight1, moveRight2, jump, unjump, oldKey
 let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
-let onPlatform = false
+let onPlatform1 = false, onPlatform2 = false
 
 init()
 
@@ -26,10 +27,10 @@ window.addEventListener(
             let maxY = posY1
             unjump = setInterval(()=>{
               posY1-=12
-              if (posX1>platform.offsetLeft && posX1<(platform.offsetLeft+platform.offsetWidth)) {
+              if (posX1>(platform.offsetLeft-player1.offsetWidth) && posX1<(platform.offsetLeft+platform.offsetWidth)) {
                 if (maxY > posYPlatform && posY1<posYPlatform) {
                   posY1=posYPlatform
-                  onPlatform = true
+                  onPlatform1 = true
                 }
               }
               posPlayer(player1)
@@ -39,12 +40,6 @@ window.addEventListener(
             },250)
           },250)
         }
-
-
-        // player1.classList.add('jumping')
-        // setTimeout(()=>{
-        //   player1.classList.remove('jumping')
-        // },500)
       }
       if (e.keyCode==103) {
         keys[103]=true
@@ -57,6 +52,7 @@ window.addEventListener(
 window.addEventListener(
   'keydown',
   function(e){
+    console.log(e.keyCode);
     if ((e.keyCode != 90) &&(e.keyCode!=71) && (keys[e.keyCode] || keys[oldKey] || keys[122])) {
       e.preventDefault()
     }
@@ -65,20 +61,20 @@ window.addEventListener(
         keys[81]=true
         dir = 2
         player1.style.transform = 'scaleX(-1)'
-        moveLeft = setInterval(()=>{
+        moveLeft1 = setInterval(()=>{
           posX1 -=5
           if (posX1 < 0) {
             posX1 = 0
           }
-          if (posX1 < (platform.offsetLeft-player1.offsetWidth) && onPlatform) {
+          if (posX1 < (platform.offsetLeft-player1.offsetWidth) && onPlatform1) {
             let descent = setInterval(()=>{
               posY1-=12
               if (posY1<0) {
                 posY1=0
-                onPlatform = false
+                onPlatform1 = false
               }
               posPlayer(player1)
-              if (!onPlatform) {
+              if (!onPlatform1) {
                 clearInterval(descent)
               }
             },10)
@@ -87,21 +83,47 @@ window.addEventListener(
           posPlayer(player1)
       },10)
       }
+      if (e.keyCode==37) {
+        keys[37]=true
+        dir2 = 2
+        player2.style.transform = 'scaleX(-1)'
+        moveLeft2 = setInterval(()=>{
+          posX2 -=5
+          console.log(posX2)
+          if (posX2 < 0) {
+            posX2 = 0
+          }
+          if (posX2 < (platform.offsetLeft-player2.offsetWidth) && onPlatform2) {
+            let descent = setInterval(()=>{
+              posY2-=12
+              if (posY2<0) {
+                posY2=0
+                onPlatform2 = false
+              }
+              posPlayer2(player2)
+              if (!onPlatform2) {
+                clearInterval(descent)
+              }
+            },10)
+          }
+            posPlayer2(player2)
+        },10)
+      }
       if (e.keyCode==68) {
         keys[68]=true
         dir = 1
         player1.style.transform = 'scaleX(1)'
-        moveRight = setInterval(()=>{
+        moveRight1 = setInterval(()=>{
           posX1 +=5
-          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && onPlatform) {
+          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && onPlatform1) {
             let descent = setInterval(()=>{
               posY1-=12
               if (posY1<0) {
                 posY1=0
-                onPlatform = false
+                onPlatform1 = false
               }
               posPlayer(player1)
-              if (!onPlatform) {
+              if (!onPlatform1) {
                 clearInterval(descent)
               }
             },10)
@@ -110,6 +132,31 @@ window.addEventListener(
             posX1=document.querySelector('.game').clientWidth-player1.offsetWidth
           }
           posPlayer(player1)
+      },10)
+      }
+      if (e.keyCode==39) {
+        keys[39]=true
+        dir2 = 1
+        player2.style.transform = 'scaleX(1)'
+        moveRight2 = setInterval(()=>{
+          posX2 +=5
+          if (posX2 > (platform.offsetLeft+platform.offsetWidth) && onPlatform2) {
+            let descent = setInterval(()=>{
+              posY2-=12
+              if (posY2<0) {
+                posY2=0
+                onPlatform2 = false
+              }
+              posPlayer2(player2)
+              if (!onPlatform2) {
+                clearInterval(descent)
+              }
+            },10)
+          }
+          if (posX2>document.querySelector('.game').clientWidth-player2.offsetWidth) {
+            posX2=document.querySelector('.game').clientWidth-player2.offsetWidth
+          }
+          posPlayer2(player2)
       },10)
       }
 
@@ -124,10 +171,16 @@ window.addEventListener('keyup', (e) => {
   console.log(e.keyCode)
   keys[e.keyCode] = false
   if (keys[81]==false) {
-    clearInterval(moveLeft)
+    clearInterval(moveLeft1)
   }
   if (keys[68]==false) {
-    clearInterval(moveRight)
+    clearInterval(moveRight1)
+  }
+  if (keys[37]==false) {
+    clearInterval(moveLeft2)
+  }
+  if (keys[39]==false) {
+    clearInterval(moveRight2)
   }
   if (keys[90]==false) {
     keys[122]=false
@@ -190,10 +243,17 @@ function bulletMove(dir, element){
 
 function init(){
   posX1 = parseInt(player1.offsetLeft)
+  posX2 = parseInt(player2.offsetLeft)
   posY1 = parseInt(player1.parentNode.offsetHeight) - parseInt(player1.offsetTop) - parseInt(player1.offsetHeight) - 3
+  posY2 = parseInt(player2.parentNode.offsetHeight) - parseInt(player2.offsetTop) - parseInt(player2.offsetHeight) - 3
 }
 
 function posPlayer(player){
   player.style.bottom = posY1 + 'px'
   player.style.left = posX1 + 'px'
+}
+
+function posPlayer2(player){
+  player.style.bottom = posY2 + 'px'
+  player.style.left = posX2 + 'px'
 }
