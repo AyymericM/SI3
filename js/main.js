@@ -11,17 +11,17 @@ let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
 
 window.addEventListener('keypress', (e) => {
     console.log(e.keyCode);
-    
+
     if (player.state.keys[e.keyCode]) {
         e.preventDefault()
     } else {
         if (e.keyCode === 122) {
             player.state.keys[122] = true
             console.log(player.state.posY);
-            
+
             if (player.state.posY === 0) {
                 console.log('ok');
-                
+
                 player.state.jump = setInterval(()=>{
                     player.state.posY+=12
                     player.setPlayerPos()
@@ -107,7 +107,7 @@ window.addEventListener('keydown', (e) => {
                 player.setPlayerPos()
             },10)
         }
-        
+
     }
     player.state.oldKey = e.keyCode
 })
@@ -124,7 +124,7 @@ window.addEventListener('keyup', (e) => {
     }
     if (player.state.keys[90] === false) {
         player.state.keys[122] = false
-        
+
     }
     if (player.state.keys[71] === false) {
         player.state.keys[103] = false
