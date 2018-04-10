@@ -15,21 +15,22 @@ export default class Player {
             jump: undefined,
             unjump: undefined,
             oldKey: undefined,
-            onPlatform: false
+            onPlatform: false,
+            inAir: false
         }
     }
-    
+
     init(){
         this.state.posX = parseInt(playerDOM.offsetLeft)
-        this.state.posY = parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetTop) - parseInt(playerDOM.offsetHeight) - 2
+        this.state.posY = parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetTop) - parseInt(playerDOM.offsetHeight)
     }
-    
+
     setPlayerPos(){
         playerDOM.style.bottom = this.state.posY + 'px'
         playerDOM.style.left = this.state.posX + 'px'
-    }  
-    
-    getNewBullet() {        
+    }
+
+    getNewBullet() {
         const newBullet = document.createElement('div')
         newBullet.classList.add('bullet')
         newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
@@ -39,7 +40,7 @@ export default class Player {
         document.querySelector('.game').appendChild(newBullet)
         return document.querySelector(`#b${this.state.bulletNumber}`)
     }
-    
+
     setBulletMovement(element) {
         let posXBullet = parseInt(element.offsetLeft)
         if (this.state.dir === 1) {
@@ -65,7 +66,7 @@ export default class Player {
             }, 10)
         }
     }
-    
+
     shoot(player) {
         const newBulletDOM = this.getNewBullet()
         this.state.bullets.push(newBulletDOM)

@@ -15,8 +15,9 @@ window.addEventListener('keypress', (e) => {
     } else {
         if (e.keyCode === 122) {
             player.state.keys[122] = true
-            if (player.state.posY === 0) {
+            if (!player.state.inAir) {
                 player.state.jump = setInterval(()=>{
+                    player.state.inAir = true
                     player.state.posY += 12
                     player.setPlayerPos()
                 }, 10)
@@ -25,7 +26,7 @@ window.addEventListener('keypress', (e) => {
                     let maxY = player.state.posY
                     player.state.unjump = setInterval(()=>{
                         player.state.posY-=12
-                        if (player.state.posX > platform.offsetLeft && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
+                        if (player.state.posX > (platform.offsetLeft-playerDOM.offsetWidth) && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
                             if (maxY > posYPlatform && player.state.posY < posYPlatform) {
                                 player.state.posY = posYPlatform
                                 player.state.onPlatform = true
@@ -35,6 +36,7 @@ window.addEventListener('keypress', (e) => {
                     },10)
                     setTimeout(()=>{
                         clearInterval(player.state.unjump)
+                        player.state.inAir = false
                     },250)
                 },250)
             }
@@ -60,11 +62,11 @@ window.addEventListener('keydown', (e) => {
                 if (player.state.posX < 0) {
                     player.state.posX = 0
                 }
-                if (player.state.posX < platform.offsetLeft && player.state.onPlatform) {
+                if (player.state.posX < (platform.offsetLeft-playerDOM.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
                         player.state.posY-=12
-                        if (player.state.posY<0) {
-                            player.state.posY=0
+                        if (player.state.posY<parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetHeight)) {
+                            player.state.posY=parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetHeight)
                             player.state.onPlatform = false
                         }
                         player.setPlayerPos(playerDOM)
@@ -85,8 +87,8 @@ window.addEventListener('keydown', (e) => {
                 if (player.state.posX > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
                         player.state.posY-=12
-                        if (player.state.posY<0) {
-                            player.state.posY=0
+                        if (player.state.posY<parseInt(playerDOM.parentNode.offsetHeight)- parseInt(playerDOM.offsetHeight)) {
+                            player.state.posY=parseInt(playerDOM.parentNode.offsetHeight)- parseInt(playerDOM.offsetHeight)
                             player.state.onPlatform = false
                         }
                         player.setPlayerPos()

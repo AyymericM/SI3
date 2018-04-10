@@ -3,7 +3,7 @@ let player2 = document.querySelector('.perso2')
 let platform = document.querySelector('.platform')
 let posX1, posY1, posX2, posY2, dir = 1, dir2=2, i=0, bullets = new Array, keys = {}, moveLeft1, moveLeft2, moveRight1, moveRight2, jump, unjump, oldKey
 let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
-let onPlatform1 = false, onPlatform2 = false
+let onPlatform1 = false, onPlatform2 = false, inAir = false
 
 init()
 
@@ -17,8 +17,9 @@ window.addEventListener(
     else {
       if (e.keyCode == 122) {
         keys[122]= true
-        if (posY1==0) {
+        if (!inAir) {
           jump = setInterval(()=>{
+            inAir = true
             posY1+=12
             posPlayer(player1)
           },10)
@@ -37,6 +38,7 @@ window.addEventListener(
             },10)
             setTimeout(()=>{
               clearInterval(unjump)
+              inAir = false
             },250)
           },250)
         }
@@ -69,8 +71,8 @@ window.addEventListener(
           if (posX1 < (platform.offsetLeft-player1.offsetWidth) && onPlatform1) {
             let descent = setInterval(()=>{
               posY1-=12
-              if (posY1<0) {
-                posY1=0
+              if (posY1<3) {
+                posY1=3
                 onPlatform1 = false
               }
               posPlayer(player1)
@@ -115,11 +117,11 @@ window.addEventListener(
         player1.style.transform = 'scaleX(1)'
         moveRight1 = setInterval(()=>{
           posX1 +=5
-          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
+          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && onPlatform1) {
             let descent = setInterval(()=>{
               posY1-=12
-              if (posY1<0) {
-                posY1=0
+              if (posY1<3) {
+                posY1=3
                 onPlatform1 = false
               }
               posPlayer(player1)
@@ -244,8 +246,8 @@ function bulletMove(dir, element){
 function init(){
   posX1 = parseInt(player1.offsetLeft)
   posX2 = parseInt(player2.offsetLeft)
-  posY1 = parseInt(player1.parentNode.offsetHeight) - parseInt(player1.offsetTop) - parseInt(player1.offsetHeight) - 3
-  posY2 = parseInt(player2.parentNode.offsetHeight) - parseInt(player2.offsetTop) - parseInt(player2.offsetHeight) - 3
+  posY1 = parseInt(player1.parentNode.offsetHeight) - parseInt(player1.offsetTop) - parseInt(player1.offsetHeight)
+  posY2 = parseInt(player2.parentNode.offsetHeight) - parseInt(player2.offsetTop) - parseInt(player2.offsetHeight)
 }
 
 function posPlayer(player){
