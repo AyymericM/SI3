@@ -7,7 +7,6 @@ player.init()
 
 const playerDOM = document.querySelector('.perso')
 const platform = document.querySelector('.platform')
-let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
 
 window.addEventListener('keypress', (e) => {
     if (player.state.keys[e.keyCode]) {
@@ -15,31 +14,32 @@ window.addEventListener('keypress', (e) => {
     } else {
         if (e.keyCode === 122) {
             player.state.keys[122] = true
-            if (!player.state.inAir) {
-                player.state.jump = setInterval(()=>{
-                    player.state.inAir = true
-                    player.state.posY += 12
-                    player.setPlayerPos()
-                }, 10)
-                setTimeout(()=>{
-                    clearInterval(player.state.jump)
-                    let maxY = player.state.posY
-                    player.state.unjump = setInterval(()=>{
-                        player.state.posY-=12
-                        if (player.state.posX > (platform.offsetLeft-playerDOM.offsetWidth) && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
-                            if (maxY > posYPlatform && player.state.posY < posYPlatform) {
-                                player.state.posY = posYPlatform
-                                player.state.onPlatform = true
-                            }
-                        }
-                        player.setPlayerPos()
-                    },10)
-                    setTimeout(()=>{
-                        clearInterval(player.state.unjump)
-                        player.state.inAir = false
-                    },250)
-                },250)
-            }
+            player.jump()
+            // if (!player.state.inAir) {
+            //     player.state.jump = setInterval(()=>{
+            //         player.state.inAir = true
+            //         player.state.posY += 12
+            //         player.setPlayerPos()
+            //     }, 10)
+            //     setTimeout(()=>{
+            //         clearInterval(player.state.jump)
+            //         let maxY = player.state.posY
+            //         player.state.unjump = setInterval(()=>{
+            //             player.state.posY-=12
+            //             if (player.state.posX > (platform.offsetLeft-playerDOM.offsetWidth) && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
+            //                 if (maxY > posYPlatform && player.state.posY < posYPlatform) {
+            //                     player.state.posY = posYPlatform
+            //                     player.state.onPlatform = true
+            //                 }
+            //             }
+            //             player.setPlayerPos()
+            //         },10)
+            //         setTimeout(()=>{
+            //             clearInterval(player.state.unjump)
+            //             player.state.inAir = false
+            //         },250)
+            //     },250)
+            // }
         }
         if (e.keyCode === 103) {
             player.state.keys[103] = true

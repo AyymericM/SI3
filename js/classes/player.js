@@ -1,5 +1,6 @@
 import { ChampStats } from '../store/ChampStore.js'
 let playerDOM = document.querySelector('.perso')
+let platformDOM = document.querySelector('.platform')
 
 export default class Player {
     constructor() {
@@ -8,6 +9,7 @@ export default class Player {
             posX: 1,
             posY: 1,
             dir: 1,
+            jumpHeight: 200,
             bulletNumber: 0,
             bullets: new Array,
             moveRight: undefined,
@@ -22,7 +24,7 @@ export default class Player {
 
     init(){
         this.state.posX = parseInt(playerDOM.offsetLeft)
-        this.state.posY = 0 
+        this.state.posY = 0
     }
 
     setPlayerPos(){
@@ -75,5 +77,45 @@ export default class Player {
         this.state.bullets[this.state.bulletNumber].style.left = parseInt(player.offsetLeft) + 'px'
         this.setBulletMovement(this.state.bullets[this.state.bulletNumber])
         this.state.bulletNumber++
+    }
+
+    checkPlatform(){
+        if (this.state.posX > (platformDOM.offsetLeft-playerDOM.offsetWidth) && this.state.posX < (platformDOM.offsetLeft+platformDOM.offsetWidth+playerDOM.offsetWidth)) {
+          if (this.state.posY < platformDOM.parentNode.offsetHeight - platformDOM.offsetTop) {
+            this.state.posY = platformDOM.parentNode.offsetHeight - platformDOM.offsetTop
+            clearInterval(this.state.unjump)
+          }
+        }
+    }
+
+    jumpAscend(){
+        this.state.inAir = true
+        this.state.jump = setInterval(()=>{
+            this.state.posY += this.state.jumpHeight/10
+            this.setPlayerPos()
+        },10)
+    }
+
+    jumpDescend(){
+        this.state.unjump = setInterval(()=>{
+            this.checkPlatform()
+            this.state.posY -=this.state.jumpHeight/10
+            if (this.state.posY < 0) {
+              this.state.posY = 0
+              clearInterval(this.state.unjump)
+            }
+            this.state.inAir = false
+            this.setPlayerPos()
+        })
+    }
+
+    jump(){
+      if (!this.state.inAir) {
+        this.jumpAscend()
+        setTimeout(()=>{
+            clearInterval(this.state.jump)
+            this.jumpDescend()
+          },200)
+      }
     }
 }
