@@ -22,7 +22,7 @@ export default class Player {
 
     init(){
         this.state.posX = parseInt(playerDOM.offsetLeft)
-        this.state.posY = parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetTop) - parseInt(playerDOM.offsetHeight)
+        this.state.posY = 0 
     }
 
     setPlayerPos(){

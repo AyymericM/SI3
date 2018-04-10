@@ -71,8 +71,8 @@ window.addEventListener(
           if (posX1 < (platform.offsetLeft-player1.offsetWidth) && onPlatform1) {
             let descent = setInterval(()=>{
               posY1-=12
-              if (posY1<3) {
-                posY1=3
+              if (posY1<0) {
+                posY1=0
                 onPlatform1 = false
               }
               posPlayer(player1)
@@ -120,8 +120,8 @@ window.addEventListener(
           if (posX1 > (platform.offsetLeft+platform.offsetWidth) && onPlatform1) {
             let descent = setInterval(()=>{
               posY1-=12
-              if (posY1<3) {
-                posY1=3
+              if (posY1<0) {
+                posY1=0
                 onPlatform1 = false
               }
               posPlayer(player1)
@@ -246,7 +246,7 @@ function bulletMove(dir, element){
 function init(){
   posX1 = parseInt(player1.offsetLeft)
   posX2 = parseInt(player2.offsetLeft)
-  posY1 = parseInt(player1.parentNode.offsetHeight) - parseInt(player1.offsetTop) - parseInt(player1.offsetHeight)
+  posY1 = 0
   posY2 = parseInt(player2.parentNode.offsetHeight) - parseInt(player2.offsetTop) - parseInt(player2.offsetHeight)
 }
 

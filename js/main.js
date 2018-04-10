@@ -65,15 +65,15 @@ window.addEventListener('keydown', (e) => {
                 if (player.state.posX < (platform.offsetLeft-playerDOM.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
                         player.state.posY-=12
-                        if (player.state.posY<parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetHeight)) {
-                            player.state.posY=parseInt(playerDOM.parentNode.offsetHeight) - parseInt(playerDOM.offsetHeight)
+                        if (player.state.posY<0) {
+                            player.state.posY=0
                             player.state.onPlatform = false
                         }
-                        player.setPlayerPos(playerDOM)
+                        player.setPlayerPos()
+                        if (!player.state.onPlatform) {
+                          clearInterval(descent)
+                        }
                     },10)
-                    setTimeout(()=>{
-                        clearInterval(descent)
-                    },250)
                 }
                 player.setPlayerPos()
             },10)
@@ -87,21 +87,24 @@ window.addEventListener('keydown', (e) => {
                 if (player.state.posX > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
                         player.state.posY-=12
-                        if (player.state.posY<parseInt(playerDOM.parentNode.offsetHeight)- parseInt(playerDOM.offsetHeight)) {
-                            player.state.posY=parseInt(playerDOM.parentNode.offsetHeight)- parseInt(playerDOM.offsetHeight)
+                        if (player.state.posY<0) {
+                            player.state.posY=0
                             player.state.onPlatform = false
                         }
                         player.setPlayerPos()
+                        if (!player.state.onPlatform) {
+                          clearInterval(descent)
+                        }
                     },10)
-                    setTimeout(()=>{
-                        clearInterval(descent)
-                    },250)
                 }
                 if (player.state.posX>document.querySelector('.game').clientWidth-playerDOM.offsetWidth) {
                     player.state.posX=document.querySelector('.game').clientWidth-playerDOM.offsetWidth
                 }
                 player.setPlayerPos()
             },10)
+            if (!player.state.onPlatform) {
+              clearInterval(descent)
+            }
         }
 
     }
