@@ -70,7 +70,7 @@ window.addEventListener(
           if (posX1 < 0) {
             posX1 = 0
           }
-          if (posX1 < platform.offsetLeft && onPlatform) {
+          if (posX1 < (platform.offsetLeft-player1.offsetWidth) && onPlatform) {
             let descent = setInterval(()=>{
               posY1-=12
               if (posY1<0) {
@@ -78,10 +78,11 @@ window.addEventListener(
                 onPlatform = false
               }
               posPlayer(player1)
+              if (!onPlatform) {
+                clearInterval(descent)
+              }
             },10)
-            setTimeout(()=>{
-              clearInterval(descent)
-            },250)
+
           }
           posPlayer(player1)
       },10)
@@ -100,10 +101,10 @@ window.addEventListener(
                 onPlatform = false
               }
               posPlayer(player1)
+              if (!onPlatform) {
+                clearInterval(descent)
+              }
             },10)
-            setTimeout(()=>{
-              clearInterval(descent)
-            },250)
           }
           if (posX1>document.querySelector('.game').clientWidth-player1.offsetWidth) {
             posX1=document.querySelector('.game').clientWidth-player1.offsetWidth
