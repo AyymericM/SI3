@@ -1,6 +1,10 @@
 import { ChampStats } from '../store/ChampStore.js'
+<<<<<<< HEAD
 let playerDOM = document.querySelector('.perso')
 let platformDOM = document.querySelector('.platform')
+=======
+const root = document.getElementById('root')
+>>>>>>> d9d73d5e64aaf971fb83f093f5c5d4e4c736a2db
 
 export default class Player {
     constructor() {
@@ -22,14 +26,31 @@ export default class Player {
         }
     }
 
+<<<<<<< HEAD
     init(){
         this.state.posX = parseInt(playerDOM.offsetLeft)
         this.state.posY = 0
+=======
+    // TODO: Player stats and stuff (spawn ok)
+    init() {
+        this.state.posX = parseInt(window.innerWidth / 4)
+        this.state.posY = 130
+        this.spawnPlayer()
+>>>>>>> d9d73d5e64aaf971fb83f093f5c5d4e4c736a2db
     }
 
-    setPlayerPos(){
-        playerDOM.style.bottom = this.state.posY + 'px'
-        playerDOM.style.left = this.state.posX + 'px'
+    // ok
+    spawnPlayer() {
+        const player = document.createElement('div')
+        player.classList.add('perso')
+        root.appendChild(player)
+        this.setPlayerPos()
+    }
+
+    // TODO: movements relative to bottom
+    setPlayerPos(player = document.querySelector('.perso')) {
+        player.style.bottom = this.state.posY + 'px'
+        player.style.left = this.state.posX + 'px'
     }
 
     getNewBullet() {
@@ -79,6 +100,7 @@ export default class Player {
         this.state.bulletNumber++
     }
 
+<<<<<<< HEAD
     checkPlatform(){
         if (this.state.posX > (platformDOM.offsetLeft-playerDOM.offsetWidth) && this.state.posX < (platformDOM.offsetLeft+platformDOM.offsetWidth+playerDOM.offsetWidth)) {
           if (this.state.posY < platformDOM.parentNode.offsetHeight - platformDOM.offsetTop) {
@@ -117,5 +139,9 @@ export default class Player {
             this.jumpDescend()
           },200)
       }
+=======
+    move() {
+
+>>>>>>> d9d73d5e64aaf971fb83f093f5c5d4e4c736a2db
     }
 }

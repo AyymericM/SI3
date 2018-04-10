@@ -1,9 +1,9 @@
-import { Player } from './classes/index.js';
+import { Player, Game } from './classes/index.js';
 
 // Player movement and shooting
 
 const player = new Player()
-player.init()
+const game = new Game()
 
 const playerDOM = document.querySelector('.perso')
 const platform = document.querySelector('.platform')
@@ -53,6 +53,7 @@ window.addEventListener('keydown', (e) => {
     if ((e.keyCode != 90) && (e.keyCode!=71) && (player.state.keys[e.keyCode] || player.state.keys[player.state.oldKey] || player.state.keys[122])) {
         e.preventDefault()
     } else {
+        const playerDOM = document.querySelector('.perso')
         if (e.keyCode==81) {
             player.state.keys[81]=true
             player.state.dir = 2
