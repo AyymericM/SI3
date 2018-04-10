@@ -1,12 +1,15 @@
 import { Player } from './classes/index.js';
 import { Game } from './classes/index.js'
-
+import { MagicBall } from './classes/index.js'
 // Player movement and shooting
 
 const player = new Player()
 const game = new Game()
+const magicBall = new MagicBall()
+
 player.init()
 game.init()
+magicBall.init()
 
 const playerDOM = document.querySelector('.perso')
 const platform = document.querySelector('.platform')

@@ -45,7 +45,13 @@ export default class Player {
 
     getNewBullet() {
         const newBullet = document.createElement('div')
-        newBullet.classList.add('bullet')
+        if (this.state.bulletNumber%7==0 && this.state.bulletNumber!=0) {
+          newBullet.classList.add('special')
+        }
+        else {
+          newBullet.classList.add('bullet')
+        }
+
         newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
         if (this.state.dir === 2) {
             newBullet.style.transform = 'scaleX(-1)'
