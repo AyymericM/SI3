@@ -1,10 +1,7 @@
 import { ChampStats } from '../store/ChampStore.js'
-<<<<<<< HEAD
-let playerDOM = document.querySelector('.perso')
-let platformDOM = document.querySelector('.platform')
-=======
+
 const root = document.getElementById('root')
->>>>>>> d9d73d5e64aaf971fb83f093f5c5d4e4c736a2db
+
 
 export default class Player {
     constructor() {
@@ -26,19 +23,12 @@ export default class Player {
         }
     }
 
-<<<<<<< HEAD
-    init(){
-        this.state.posX = parseInt(playerDOM.offsetLeft)
-        this.state.posY = 0
-=======
     // TODO: Player stats and stuff (spawn ok)
     init() {
         this.state.posX = parseInt(window.innerWidth / 4)
-        this.state.posY = 130
+        this.state.posY = 0
         this.spawnPlayer()
->>>>>>> d9d73d5e64aaf971fb83f093f5c5d4e4c736a2db
     }
-
     // ok
     spawnPlayer() {
         const player = document.createElement('div')
@@ -100,11 +90,15 @@ export default class Player {
         this.state.bulletNumber++
     }
 
-<<<<<<< HEAD
     checkPlatform(){
-        if (this.state.posX > (platformDOM.offsetLeft-playerDOM.offsetWidth) && this.state.posX < (platformDOM.offsetLeft+platformDOM.offsetWidth+playerDOM.offsetWidth)) {
-          if (this.state.posY < platformDOM.parentNode.offsetHeight - platformDOM.offsetTop) {
-            this.state.posY = platformDOM.parentNode.offsetHeight - platformDOM.offsetTop
+      let els = {
+        hitbox: document.querySelector('.platformHitBox'),
+        player: document.querySelector('.perso')
+      }
+        console.log(els)
+        if (this.state.posX > (els.hitbox.offsetLeft-els.player.offsetWidth) && this.state.posX < (els.hitbox.offsetLeft+els.hitbox.offsetWidth+els.player.offsetWidth)) {
+          if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
+            this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
             clearInterval(this.state.unjump)
           }
         }
@@ -139,9 +133,9 @@ export default class Player {
             this.jumpDescend()
           },200)
       }
-=======
+    }
+
     move() {
 
->>>>>>> d9d73d5e64aaf971fb83f093f5c5d4e4c736a2db
     }
 }

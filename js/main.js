@@ -1,9 +1,12 @@
-import { Player, Game } from './classes/index.js';
+import { Player } from './classes/index.js';
+import { Game } from './classes/index.js'
 
 // Player movement and shooting
 
 const player = new Player()
 const game = new Game()
+player.init()
+game.init()
 
 const playerDOM = document.querySelector('.perso')
 const platform = document.querySelector('.platform')
@@ -53,7 +56,6 @@ window.addEventListener('keydown', (e) => {
     if ((e.keyCode != 90) && (e.keyCode!=71) && (player.state.keys[e.keyCode] || player.state.keys[player.state.oldKey] || player.state.keys[122])) {
         e.preventDefault()
     } else {
-        const playerDOM = document.querySelector('.perso')
         if (e.keyCode==81) {
             player.state.keys[81]=true
             player.state.dir = 2
@@ -98,14 +100,14 @@ window.addEventListener('keydown', (e) => {
                         }
                     },10)
                 }
-                if (player.state.posX>document.querySelector('.game').clientWidth-playerDOM.offsetWidth) {
-                    player.state.posX=document.querySelector('.game').clientWidth-playerDOM.offsetWidth
-                }
+                // if (player.state.posX>document.querySelector('.game').clientWidth-playerDOM.offsetWidth) {
+                //     player.state.posX=document.querySelector('.game').clientWidth-playerDOM.offsetWidth
+                // }
                 player.setPlayerPos()
             },10)
-            if (!player.state.onPlatform) {
-              clearInterval(descent)
-            }
+            // if (!player.state.onPlatform) {
+            //   clearInterval(descent)
+            // }
         }
 
     }
