@@ -1,6 +1,28 @@
+import { ChampStats } from '../store/ChampStore.js'
 const root = document.getElementById('root')
 
 export default class Game {
+    constructor() {
+        this.state = {
+            keys: {},
+            posX: 1,
+            posY: 1,
+            dir: 1,
+            jumpHeight: 200,
+            bulletNumber: 0,
+            bullets: new Array,
+            canShoot: true,
+            moveRight: undefined,
+            moveLeft: undefined,
+            jump: undefined,
+            unjump: undefined,
+            oldKey: undefined,
+            onPlatform: false,
+            inAir: false,
+            champ: undefined
+        }
+    }
+
     init() {
         this.createPlatform()
     }
@@ -15,5 +37,13 @@ export default class Game {
         root.appendChild(platform)
         root.appendChild(hitbox)
         root.appendChild(platformBody)
+    }
+
+    selectChamp(champ) {
+        this.state.champ = ChampStats[champ]
+    }
+
+    showSelectMenu() {
+        // TODO: Afficher le menu de départ
     }
 }

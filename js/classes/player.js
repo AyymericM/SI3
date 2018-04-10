@@ -1,33 +1,32 @@
 import { ChampStats } from '../store/ChampStore.js'
+import Game from './game.js'
 
 const root = document.getElementById('root')
+const game = new Game()
 
-
-export default class Player {
-    constructor() {
-        this.state = {
-            keys: {},
-            posX: 1,
-            posY: 1,
-            dir: 1,
-            jumpHeight: 200,
-            bulletNumber: 0,
-            bullets: new Array,
-            moveRight: undefined,
-            moveLeft: undefined,
-            jump: undefined,
-            unjump: undefined,
-            oldKey: undefined,
-            onPlatform: false,
-            inAir: false
-        }
+export default class Player extends Game {
+    constructor(Game) {
+        super(Game)
     }
-
+    
     // TODO: Player stats and stuff (spawn ok)
     init() {
         this.state.posX = parseInt(window.innerWidth / 4)
         this.state.posY = 0
+
+        // DEV CODE: A SUPPRIMER ET REMPLACER PAR LE CODE COMMENTÉ QUAND L'UI SERA FAITE
+        this.state.champ = ChampStats['tank']
         this.spawnPlayer()
+
+        // if (this.state.champ !== undefined) {
+        //     this.spawnPlayer()
+        // } else {
+        //     game.showSelectMenu()
+        // }
+
+        setInterval(() => {
+            this.checkColision()
+        }, 50)
     }
     // ok
     spawnPlayer() {
@@ -36,132 +35,147 @@ export default class Player {
         root.appendChild(player)
         this.setPlayerPos()
     }
-
+    
     // TODO: movements relative to bottom
     setPlayerPos(player = document.querySelector('.perso')) {
         player.style.bottom = this.state.posY + 'px'
         player.style.left = this.state.posX + 'px'
     }
-
+    
     getNewBullet() {
         const newBullet = document.createElement('div')
         if (this.state.bulletNumber%7==0 && this.state.bulletNumber!=0) {
-          newBullet.classList.add('special')
+            newBullet.classList.add('special')
         }
         else {
-          newBullet.classList.add('bullet')
+            newBullet.classList.add('bullet')
+        }
+        
+        newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
+        newBullet.setAttribute('data-dmg', this.state.champ.atDmg)
+        newBullet.setAttribute('data-dir', this.state.dir)
+
+        if (this.state.dir === 1) {
+            this.flipRight(newBullet)
+        } else {
+            this.flipLeft(newBullet)
         }
 
-        newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
-        if (this.state.dir === 2) {
-            newBullet.style.transform = 'scaleX(-1)'
-        }
         root.appendChild(newBullet)
         return document.querySelector(`#b${this.state.bulletNumber}`)
+    }
+    
+    getAccuracy() {
+        return (Math.floor(Math.random() * 10) * this.state.champ.atAccuracy) - 5
     }
 
     setBulletMovement(element) {
         let posXBullet = parseInt(element.offsetLeft)
-        if (this.state.dir === 1) {
-            let timer = setInterval(() => {
-                posXBullet += 10
-                if (posXBullet > window.innerWidth - element.offsetWidth) {
-                    clearInterval(timer)
-                    root.removeChild(element)
-                } else {
-                    element.style.left = posXBullet + 'px'
-                }
-            }, 10)
-        }
-        if (this.state.dir == 2) {
-            let timer = setInterval(() => {
+        let posYBullet = parseInt(element.offsetTop)
+        let bdir = parseInt(element.dataset.dir)
+        let accuracy = this.getAccuracy()
+        
+        let timer = setInterval(() => {
+            if (bdir === 1) {
+                posXBullet += 10 
+            } else {
                 posXBullet -= 10
-                if (posXBullet < 0) {
-                    clearInterval(timer)
-                    root.removeChild(element)
-                } else {
-                    element.style.left = posXBullet + 'px'
+            }
+            
+            if (posXBullet > window.innerWidth - element.offsetWidth || posXBullet < 0) {
+                root.removeChild(element)
+                let index = this.state.bullets.indexOf(element);
+                if (index > -1) {
+                    this.state.bullets.splice(index, 1);
                 }
-            }, 10)
-        }
+                clearInterval(timer)
+            } else {
+                element.style.left = posXBullet + 'px'
+                element.style.top = (posYBullet - 10) + 'px'
+            }
+        }, 10)
     }
-
+    
     shoot(player) {
-        const newBulletDOM = this.getNewBullet()
-        this.state.bullets.push(newBulletDOM)
-        const top = player.offsetHeight/6
-        this.state.bullets[this.state.bulletNumber].style.top = parseInt(player.offsetTop) + top  + 'px'
-        this.state.bullets[this.state.bulletNumber].style.left = parseInt(player.offsetLeft) + 'px'
-        this.setBulletMovement(this.state.bullets[this.state.bulletNumber])
-        this.state.bulletNumber++
-    }
-
-    checkPlatformY(){
-      let els = {
-        hitbox: document.querySelector('.platformHitBox'),
-        player: document.querySelector('.perso')
-      }
-        console.log(els)
-        if (this.state.posX > (els.hitbox.offsetLeft-els.player.offsetWidth) && this.state.posX < (els.hitbox.offsetLeft+els.hitbox.offsetWidth)) {
-          if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
-            this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
-            this.state.onPlatform = true
-            clearInterval(this.state.unjump)
-          }
+        if (this.state.canShoot) {
+            const newBulletDOM = this.getNewBullet()
+            newBulletDOM.style.top = parseInt(player.offsetTop) + (player.offsetHeight / 6)  + 'px'
+            newBulletDOM.style.left = parseInt(player.offsetLeft) + 'px'
+            this.state.bullets.push(newBulletDOM)
+            this.setBulletMovement(newBulletDOM)
+            this.state.bulletNumber++
+            this.state.canShoot = false
+            setTimeout(() => {
+                this.state.canShoot = true
+            }, 1000 * this.state.champ.atSpeed)
         }
     }
-
+    
+    checkPlatformY(){
+        let els = {
+            hitbox: document.querySelector('.platformHitBox'),
+            player: document.querySelector('.perso')
+        }
+        if (this.state.posX > (els.hitbox.offsetLeft-els.player.offsetWidth) && this.state.posX < (els.hitbox.offsetLeft+els.hitbox.offsetWidth)) {
+            if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
+                this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
+                this.state.onPlatform = true
+                clearInterval(this.state.unjump)
+            }
+        }
+    }
+    
     jumpAscend(){
         this.state.inAir = true
         this.state.jump = setInterval(()=>{
             this.state.posY += this.state.jumpHeight/10
             this.setPlayerPos()
-        },10)
+        }, 10)
     }
-
+    
     jumpDescend(){
         this.state.unjump = setInterval(()=>{
             this.checkPlatformY()
             this.state.posY -=this.state.jumpHeight/10
             if (this.state.posY < 0) {
-              this.state.posY = 0
-              clearInterval(this.state.unjump)
+                this.state.posY = 0
+                clearInterval(this.state.unjump)
             }
             this.state.inAir = false
             this.setPlayerPos()
         })
     }
-
+    
     jump(){
         if (!this.state.inAir) {
-          this.jumpAscend()
-          setTimeout(()=>{
-              clearInterval(this.state.jump)
-              this.jumpDescend()
+            this.jumpAscend()
+            setTimeout(()=>{
+                clearInterval(this.state.jump)
+                this.jumpDescend()
             },200)
         }
     }
-
+    
     flipLeft(element){
         element.style.transform = 'scaleX(-1)'
     }
-
+    
     flipRight(element){
         element.style.transform = 'scaleX(1)'
     }
-
+    
     checkPlatformX(){
         let els = {
-          hitbox: document.querySelector('.platformHitBox'),
-          player: document.querySelector('.perso')
+            hitbox: document.querySelector('.platformHitBox'),
+            player: document.querySelector('.perso')
         }
         if ((this.state.posX<(els.hitbox.offsetLeft-els.player.offsetWidth)||this.state.posX>(els.hitbox.offsetLeft + els.hitbox.offsetWidth))&&this.state.onPlatform) {
-          this.state.posY = 0
-          this.state.onPlatform = false
-          this.setPlayerPos()
+            this.state.posY = 0
+            this.state.onPlatform = false
+            this.setPlayerPos()
         }
     }
-
+    
     checkEnds(element){
         if (this.state.posX < 0) {
             this.state.posX = 0
@@ -170,7 +184,7 @@ export default class Player {
             this.state.posX=root.clientWidth-document.querySelector('.perso').offsetWidth
         }
     }
-
+    
     moveLeft() {
         this.state.dir = 2
         this.flipLeft(document.querySelector('.perso'))
@@ -181,15 +195,39 @@ export default class Player {
             this.setPlayerPos()
         },10)
     }
-
+    
     moveRight(){
-      this.state.dir = 1
-      this.flipRight(document.querySelector('.perso'))
-      this.state.moveRight = setInterval(()=>{
-          this.state.posX +=5
-          this.checkEnds()
-          this.checkPlatformX()
-          this.setPlayerPos()
-      },10)
+        this.state.dir = 1
+        this.flipRight(document.querySelector('.perso'))
+        this.state.moveRight = setInterval(()=>{
+            this.state.posX +=5
+            this.checkEnds()
+            this.checkPlatformX()
+            this.setPlayerPos()
+        },10)
+    }
+
+    checkColision() {
+        for (let i = 0; i < this.state.bullets.length; i++) {           
+            let player = document.querySelector('.perso')
+            let dmg = parseInt(this.state.bullets[i].dataset.dmg)
+            let rightSide = parseInt(player.style.left) + player.offsetWidth
+            let bulletPos = this.state.bullets[i].style.left
+            
+            if ((parseInt(bulletPos) < (parseInt(player.style.left) + player.style.offsetWidth))
+                && (parseInt(bulletPos) > parseInt(player.style.left))) {
+                this.setDamage(dmg)
+            }
+        }
+    }
+
+    setDamage(dmg) {
+        //console.log('hit');
+        
+        this.state.champ.pv - dmg
+        if (this.state.champ.pv <= 0) {
+            // TODO: game over
+            // ex: game.gameOver()
+        }
     }
 }
