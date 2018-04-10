@@ -64,7 +64,7 @@ window.addEventListener('keydown', (e) => {
                 }
                 if (player.state.posX < (platform.offsetLeft-playerDOM.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
-                        player.state.posY-=12
+                        player.state.posY-=2
                         if (player.state.posY<0) {
                             player.state.posY=0
                             player.state.onPlatform = false
@@ -86,7 +86,7 @@ window.addEventListener('keydown', (e) => {
                 player.state.posX +=5
                 if (player.state.posX > (platform.offsetLeft+platform.offsetWidth) && player.state.onPlatform) {
                     let descent = setInterval(()=>{
-                        player.state.posY-=12
+                        player.state.posY-=2
                         if (player.state.posY<0) {
                             player.state.posY=0
                             player.state.onPlatform = false
