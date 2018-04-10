@@ -1,18 +1,24 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
 .perso{
   height: 200px;
   width: 100px;
-  background: url(../img/Ken-hdstance.gif);
+  background: url(../images/Ken-hdstance.gif);
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
   bottom: 0;
   left: 40%;
+}
+
+.perso2{
+  height: 200px;
+  width: 100px;
+  background: url(../images/Ken-hdstance.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: 60%;
+  transform: scaleX(-1);
 }
 
 .game{
@@ -24,7 +30,7 @@ html, body {
 
 .bullet{
   position: absolute;
-  background: url(../img/fireball.gif);
+  background: url(../images/fireball.gif);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100px;
