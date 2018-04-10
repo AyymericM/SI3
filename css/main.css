@@ -36,11 +36,9 @@ html, body {
   width: 100px;
 }
 
-
-.platform {
+.platform, .platformBody {
   width: 660px;
   height: 168px;
-  background-image: url(../img/sprites/ufo.png);
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -48,10 +46,19 @@ html, body {
   bottom: 390px;
 }
 
+.platform {
+  background-image: url(../img/sprites/ufo.png);
+  z-index: 400;
+}
+
+.platformBody {
+  background-image: url(../img/sprites/ufo_forgrnd.png);
+  z-index: 1200;
+}
+
 .platformHitBox {
   width: 660px;
   height: 2px;
-  background: black;
   position: absolute;
   left: 32vw;
   bottom: 435px;
