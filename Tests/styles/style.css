@@ -25,12 +25,11 @@
   width: 100px;
 }
 
-.jumping{
-  animation: jump .5s ease-in-out;
-}
-
-@keyframes jump {
-  0%{bottom: 0}
-  50%{bottom: 200px}
-  100%{bottom: 0}
+.platform{
+  width: 400px;
+  height: 2px;
+  background: black;
+  position: absolute;
+  left: 300px;
+  top: 300px;
 }

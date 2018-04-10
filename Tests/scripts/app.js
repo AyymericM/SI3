@@ -1,5 +1,8 @@
 let player1 = document.querySelector('.perso')
+let platform = document.querySelector('.platform')
 let posX1, posY1, dir = 1, i=0, bullets = new Array, keys = {}, moveLeft, moveRight, jump, unjump, oldKey
+let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
+let onPlatform = false
 
 init()
 
@@ -15,13 +18,20 @@ window.addEventListener(
         keys[122]= true
         if (posY1==0) {
           jump = setInterval(()=>{
-            posY1+=8
+            posY1+=12
             posPlayer(player1)
           },10)
           setTimeout(()=>{
             clearInterval(jump)
+            let maxY = posY1
             unjump = setInterval(()=>{
-              posY1-=8
+              posY1-=12
+              if (posX1>platform.offsetLeft && posX1<(platform.offsetLeft+platform.offsetWidth)) {
+                if (maxY > posYPlatform && posY1<posYPlatform) {
+                  posY1=posYPlatform
+                  onPlatform = true
+                }
+              }
               posPlayer(player1)
             },10)
             setTimeout(()=>{
@@ -60,6 +70,19 @@ window.addEventListener(
           if (posX1 < 0) {
             posX1 = 0
           }
+          if (posX1 < platform.offsetLeft && onPlatform) {
+            let descent = setInterval(()=>{
+              posY1-=12
+              if (posY1<0) {
+                posY1=0
+                onPlatform = false
+              }
+              posPlayer(player1)
+            },10)
+            setTimeout(()=>{
+              clearInterval(descent)
+            },250)
+          }
           posPlayer(player1)
       },10)
       }
@@ -69,6 +92,19 @@ window.addEventListener(
         player1.style.transform = 'scaleX(1)'
         moveRight = setInterval(()=>{
           posX1 +=5
+          if (posX1 > (platform.offsetLeft+platform.offsetWidth) && onPlatform) {
+            let descent = setInterval(()=>{
+              posY1-=12
+              if (posY1<0) {
+                posY1=0
+                onPlatform = false
+              }
+              posPlayer(player1)
+            },10)
+            setTimeout(()=>{
+              clearInterval(descent)
+            },250)
+          }
           if (posX1>document.querySelector('.game').clientWidth-player1.offsetWidth) {
             posX1=document.querySelector('.game').clientWidth-player1.offsetWidth
           }
