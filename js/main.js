@@ -1,58 +1,57 @@
-import { Player } from './classes/index.js';
+import { Player, Game } from './classes/index.js';
 
 // Player movement and shooting
 
 const player = new Player()
-player.init()
+const game = new Game()
 
-const playerDOM = document.querySelector('.perso')
-const platform = document.querySelector('.platform')
-let posYPlatform = platform.parentNode.offsetHeight - platform.offsetTop
+player.init()
+game.init()
 
 window.addEventListener('keypress', (e) => {
-    if (player.state.keys[e.keyCode]) {
-        e.preventDefault()
-    } else {
-        if (e.keyCode === 122) {
-            player.state.keys[122] = true
-            if (!player.state.inAir) {
-                player.state.jump = setInterval(()=>{
-                    player.state.inAir = true
-                    player.state.posY += 12
-                    player.setPlayerPos()
-                }, 10)
-                setTimeout(()=>{
-                    clearInterval(player.state.jump)
-                    let maxY = player.state.posY
-                    player.state.unjump = setInterval(()=>{
-                        player.state.posY-=12
-                        if (player.state.posX > (platform.offsetLeft-playerDOM.offsetWidth) && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
-                            if (maxY > posYPlatform && player.state.posY < posYPlatform) {
-                                player.state.posY = posYPlatform
-                                player.state.onPlatform = true
-                            }
-                        }
-                        player.setPlayerPos()
-                    },10)
-                    setTimeout(()=>{
-                        clearInterval(player.state.unjump)
-                        player.state.inAir = false
-                    },250)
-                },250)
-            }
-        }
-        if (e.keyCode === 103) {
-            player.state.keys[103] = true
-            player.shoot(playerDOM)
-        }
-    }
-},false
-)
+    // if (player.state.keys[e.keyCode]) {
+    //     e.preventDefault()
+    // } else {
+    //     if (e.keyCode === 122) {
+    //         player.state.keys[122] = true
+    //         if (!player.state.inAir) {
+    //             player.state.jump = setInterval(()=>{
+    //                 player.state.inAir = true
+    //                 player.state.posY += 12
+    //                 player.setPlayerPos()
+    //             }, 10)
+    //             setTimeout(()=>{
+    //                 clearInterval(player.state.jump)
+    //                 let maxY = player.state.posY
+    //                 player.state.unjump = setInterval(()=>{
+    //                     player.state.posY-=12
+    //                     if (player.state.posX > (platform.offsetLeft-playerDOM.offsetWidth) && player.state.posX < (platform.offsetLeft+platform.offsetWidth)) {
+    //                         if (maxY > posYPlatform && player.state.posY < posYPlatform) {
+    //                             player.state.posY = posYPlatform
+    //                             player.state.onPlatform = true
+    //                         }
+    //                     }
+    //                     player.setPlayerPos()
+    //                 },10)
+    //                 setTimeout(()=>{
+    //                     clearInterval(player.state.unjump)
+    //                     player.state.inAir = false
+    //                 },250)
+    //             },250)
+    //         }
+    //     }
+    //     if (e.keyCode === 103) {
+    //         player.state.keys[103] = true
+    //         player.shoot(playerDOM)
+    //     }
+    // }
+})
 
 window.addEventListener('keydown', (e) => {
     if ((e.keyCode != 90) && (e.keyCode!=71) && (player.state.keys[e.keyCode] || player.state.keys[player.state.oldKey] || player.state.keys[122])) {
         e.preventDefault()
     } else {
+        const playerDOM = document.querySelector('.perso')
         if (e.keyCode==81) {
             player.state.keys[81]=true
             player.state.dir = 2

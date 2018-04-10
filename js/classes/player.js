@@ -1,5 +1,5 @@
 import { ChampStats } from '../store/ChampStore.js'
-let playerDOM = document.querySelector('.perso')
+const root = document.getElementById('root')
 
 export default class Player {
     constructor() {
@@ -20,14 +20,25 @@ export default class Player {
         }
     }
 
-    init(){
-        this.state.posX = parseInt(playerDOM.offsetLeft)
-        this.state.posY = 0 
+    // TODO: Player stats and stuff (spawn ok)
+    init() {
+        this.state.posX = parseInt(window.innerWidth / 4)
+        this.state.posY = 130
+        this.spawnPlayer()
     }
 
-    setPlayerPos(){
-        playerDOM.style.bottom = this.state.posY + 'px'
-        playerDOM.style.left = this.state.posX + 'px'
+    // ok
+    spawnPlayer() {
+        const player = document.createElement('div')
+        player.classList.add('perso')
+        root.appendChild(player)
+        this.setPlayerPos()
+    }
+
+    // TODO: movements relative to bottom
+    setPlayerPos(player = document.querySelector('.perso')) {
+        player.style.bottom = this.state.posY + 'px'
+        player.style.left = this.state.posX + 'px'
     }
 
     getNewBullet() {
@@ -75,5 +86,9 @@ export default class Player {
         this.state.bullets[this.state.bulletNumber].style.left = parseInt(player.offsetLeft) + 'px'
         this.setBulletMovement(this.state.bullets[this.state.bulletNumber])
         this.state.bulletNumber++
+    }
+
+    move() {
+
     }
 }
