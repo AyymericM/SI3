@@ -19,7 +19,12 @@ export default class Game {
             oldKey: undefined,
             onPlatform: false,
             inAir: false,
-            champ: undefined
+            champ: undefined,
+            id:0,
+            isJumping: false,
+            isShooting: false,
+            isMovingRight: false,
+            isMovingLeft: false
         }
     }
 

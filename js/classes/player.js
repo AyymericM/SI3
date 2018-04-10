@@ -10,9 +10,10 @@ export default class Player extends Game {
     }
 
     // TODO: Player stats and stuff (spawn ok)
-    init() {
+    init(number) {
         this.state.posX = parseInt(window.innerWidth / 4)
         this.state.posY = 0
+        this.state.id = number
 
         // DEV CODE: A SUPPRIMER ET REMPLACER PAR LE CODE COMMENTÉ QUAND L'UI SERA FAITE
         this.state.champ = ChampStats['tank']
@@ -32,6 +33,7 @@ export default class Player extends Game {
     spawnPlayer() {
         const player = document.createElement('div')
         player.classList.add('perso')
+        player.setAttribute('id',`p${this.state.id}`)
         root.appendChild(player)
         this.setPlayerPos()
     }
@@ -119,6 +121,7 @@ export default class Player extends Game {
             if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
                 this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
                 this.state.onPlatform = true
+                this.state.inAir = false
                 clearInterval(this.state.unjump)
             }
         }
@@ -139,9 +142,10 @@ export default class Player extends Game {
             this.checkPlatformY()
             if (this.state.posY < 0) {
                 this.state.posY = 0
+                this.state.inAir = false
                 clearInterval(this.state.unjump)
             }
-            this.state.inAir = false
+
             this.setPlayerPos()
         },10)
     }
@@ -188,24 +192,24 @@ export default class Player extends Game {
 
     moveLeft() {
         this.state.dir = 2
-        this.flipLeft(document.querySelector('.perso'))
-        this.state.moveLeft = setInterval(()=>{
-            this.state.posX -=5
-            this.checkEnds()
-            this.checkPlatformX()
-            this.setPlayerPos()
-        },10)
+        this.flipLeft(document.querySelector(`#p${this.state.id}`))
+
+        this.state.posX -=10
+        this.checkEnds()
+        this.checkPlatformX()
+        this.setPlayerPos()
+
     }
 
     moveRight(){
         this.state.dir = 1
-        this.flipRight(document.querySelector('.perso'))
-        this.state.moveRight = setInterval(()=>{
-            this.state.posX +=5
-            this.checkEnds()
-            this.checkPlatformX()
-            this.setPlayerPos()
-        },10)
+        this.flipRight(document.querySelector(`#p${this.state.id}`))
+
+        this.state.posX +=10
+        this.checkEnds()
+        this.checkPlatformX()
+        this.setPlayerPos()
+
     }
 
     checkColision() {
