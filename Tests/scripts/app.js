@@ -1,5 +1,5 @@
 let player1 = document.querySelector('.perso')
-let posX1, posY1, dir = 1, i=0, bullets = new Array, keys = {}, moveLeft, moveRight, jump, oldKey
+let posX1, posY1, dir = 1, i=0, bullets = new Array, keys = {}, moveLeft, moveRight, jump, unjump, oldKey
 
 init()
 
@@ -12,10 +12,29 @@ window.addEventListener(
     }
     else {
       if (e.keyCode == 122) {
-        player1.classList.add('jumping')
-        setTimeout(()=>{
-          player1.classList.remove('jumping')
-        },500)
+        keys[122]= true
+        if (posY1==0) {
+          jump = setInterval(()=>{
+            posY1+=8
+            posPlayer(player1)
+          },10)
+          setTimeout(()=>{
+            clearInterval(jump)
+            unjump = setInterval(()=>{
+              posY1-=8
+              posPlayer(player1)
+            },10)
+            setTimeout(()=>{
+              clearInterval(unjump)
+            },250)
+          },250)
+        }
+
+
+        // player1.classList.add('jumping')
+        // setTimeout(()=>{
+        //   player1.classList.remove('jumping')
+        // },500)
       }
       if (e.keyCode==103) {
         keys[103]=true
@@ -75,6 +94,7 @@ window.addEventListener('keyup', (e) => {
   }
   if (keys[90]==false) {
     keys[122]=false
+
   }
   if (keys[71]==false) {
     keys[103]=false
