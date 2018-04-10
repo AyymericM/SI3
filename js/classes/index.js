@@ -1,1 +1,1 @@
-export { default as Champions } from './champions.js'
+export { default as Player } from './player.js'
