@@ -8,8 +8,14 @@ const player2 = new Player()
 const game = new Game()
 const magicBall = new MagicBall()
 
-player1.init(1)
-player2.init(2)
+player1.init({
+  id: 1,
+  hero: 'tank'
+})
+player2.init({
+  id: 2,
+  hero: 'flash'
+})
 game.init()
 magicBall.init()
 

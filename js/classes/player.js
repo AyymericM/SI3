@@ -10,13 +10,13 @@ export default class Player extends Game {
     }
 
     // TODO: Player stats and stuff (spawn ok)
-    init(number) {
+    init(conf) {
         this.state.posX = parseInt(window.innerWidth / 4)
         this.state.posY = 0
-        this.state.id = number
+        this.state.id = conf.id
 
         // DEV CODE: A SUPPRIMER ET REMPLACER PAR LE CODE COMMENTÉ QUAND L'UI SERA FAITE
-        this.state.champ = ChampStats['tank']
+        this.state.champ = ChampStats[conf.hero]
         this.spawnPlayer()
 
         // if (this.state.champ !== undefined) {
@@ -199,18 +199,17 @@ export default class Player extends Game {
         this.state.dir = 2
         this.flipLeft(document.querySelector(`#p${this.state.id}`))
 
-        this.state.posX -=10
+        this.state.posX -= 10 * this.state.champ.mvSpeed
         this.checkEnds()
         this.checkPlatformX()
         this.setPlayerPos()
-
     }
 
     moveRight(){
         this.state.dir = 1
         this.flipRight(document.querySelector(`#p${this.state.id}`))
 
-        this.state.posX +=10
+        this.state.posX += 10 * this.state.champ.mvSpeed
         this.checkEnds()
         this.checkPlatformX()
         this.setPlayerPos()

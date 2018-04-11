@@ -1,18 +1,18 @@
 const ChampStats = {
     "tank": {
-        mvSpeed: 100,
+        mvSpeed: 0.70,
         mvJump: 1,
         pv: 300,
         atDmg: 50,
         atAccuracy: 0.6,
         atSpeed: 0.65,
         special: {
-            mvSpeed: 130,
+            mvSpeed: 1.30,
             atSpeed: 0.4
         }
     },
     "flash": {
-        mvSpeed: 300,
+        mvSpeed: 2.00,
         mvJump: 1,
         pv: 50,
         atDmg: 15,
@@ -23,7 +23,7 @@ const ChampStats = {
         }
     },
     "sniper": {
-        mvSpeed: 150,
+        mvSpeed: 1.60,
         mvJump: 1,
         pv: 150,
         atDmg: 40,
@@ -34,7 +34,7 @@ const ChampStats = {
         }
     },
     "soldier": {
-        mvSpeed: 150,
+        mvSpeed: 1.40,
         mvJump: 1,
         pv: 200,
         atDmg: 25,
