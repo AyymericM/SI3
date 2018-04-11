@@ -45,7 +45,6 @@ function press(e){
   if (e.keyCode === keys[os()].press.FIRE2 /* ! */) {
     player2.state.isShooting = true
   }
-  console.log(e.keyCode)
 }
 
 window.addEventListener('keydown',(e)=>{hold(e)})
@@ -62,8 +61,8 @@ function hold(e){
   if (e.keyCode === keys[os()].down.LEFT2 /* fleche droite */){
     player2.state.isMovingLeft = true
   }
-
 }
+
 window.addEventListener('keyup',(e)=>{release(e)})
 function release(e){
   if (e.keyCode === keys[os()].up.RIGHT1 /* d */){
