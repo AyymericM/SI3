@@ -1,4 +1,4 @@
-import { Player, Game, MagicBall, Sound, Artificial } from './classes/index.js';
+import { Player, Game, MagicBall, Sound, Ui, Artificial } from './classes/index.js';
 import { keys, os } from './store/GameStore.js'
 // Player movement and shooting
 
@@ -7,6 +7,17 @@ const player2 = new Player()
 const game = new Game()
 const magicBall = new MagicBall()
 const artificial = new Artificial()
+const sound = new Sound()
+const ui = new Ui()
+
+document.getElementById('btnMute').addEventListener('click', function() {
+  sound.muteSound()
+  if (sound.options.muted) {
+    this.innerText = "Activer le son"
+  } else {
+    this.innerText = "Couper le son"
+  }
+})
 
 player1.init({
   id: 1,
@@ -24,6 +35,7 @@ artificial.init({
 
 game.init()
 magicBall.init()
+ui.init()
 
 const player1DOM = document.querySelector('#p1')
 const player2DOM = document.querySelector('#p2')
@@ -41,7 +53,6 @@ Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
 
 window.addEventListener('keypress',(e)=>{press(e)})
 function press(e){
-  console.log(e.keyCode)
   if (e.keyCode === keys[os()].press.JUMP1  /* z */ && !player1.state.inAir) {
     player1.state.isJumping = true
   }
@@ -80,7 +91,6 @@ function hold(e){
 
 window.addEventListener('keyup',(e)=>{release(e)})
 function release(e){
-  console.log(e.keyCode)
   if (e.keyCode === keys[os()].up.RIGHT1 /* d */){
     player1.state.isMovingRight = false
   }

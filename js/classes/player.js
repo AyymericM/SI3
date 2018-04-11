@@ -2,6 +2,7 @@ import { ChampStats } from '../store/ChampStore.js'
 import Sound from './sounds.js'
 import Game from './game.js'
 import MagicBall from './magicBall.js'
+import Ui from './ui.js'
 
 
 const root = document.getElementById('root')
@@ -9,6 +10,7 @@ const game = new Game()
 const sound = new Sound()
 let triggerInterval = null
 const ball = new MagicBall()
+const ui = new Ui()
 
 export default class Player extends Game {
     constructor(Game) {
@@ -24,14 +26,16 @@ export default class Player extends Game {
         // DEV CODE: A SUPPRIMER ET REMPLACER PAR LE CODE COMMENTÉ QUAND L'UI SERA FAITE
         this.state.champ = ChampStats[conf.hero]
         this.spawnPlayer()
-
         // if (this.state.champ !== undefined) {
-        //     this.spawnPlayer()
-        // } else {
-        //     game.showSelectMenu()
-        // }
-
-        setInterval(() => this.checkColision(), 10)
+            //     this.spawnPlayer()
+            // } else {
+                //     game.showSelectMenu()
+                // }
+                
+        setInterval(() => {
+            this.checkColision()
+        }, 10)
+        ui.displayInfos(conf.id)
     }
 
     spawnPlayer() {
@@ -315,9 +319,10 @@ export default class Player extends Game {
         if (newPV > 0) {
             el.setAttribute('data-pv', newPV)
         } else {
+            el.setAttribute('data-pv', 0)
+            el.classList = `perso ${el.dataset.champ}-dead`
             this.gameOver()
         }
-
     }
 
     useMagicBall(){
