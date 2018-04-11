@@ -16,7 +16,7 @@ export default class Player extends Game {
         this.state.posX = parseInt(window.innerWidth / 4)
         this.state.posY = 0
         this.state.id = conf.id
-
+        this.state.name = conf.hero
         // DEV CODE: A SUPPRIMER ET REMPLACER PAR LE CODE COMMENTÉ QUAND L'UI SERA FAITE
         this.state.champ = ChampStats[conf.hero]
         this.spawnPlayer()
@@ -35,7 +35,7 @@ export default class Player extends Game {
     spawnPlayer() {
         const player = document.createElement('div')
         player.classList.add('perso')
-        player.classList.add('tank-static')
+        player.classList.add(`${this.state.name}-static`)
         player.setAttribute('id',`p${this.state.id}`)
         root.appendChild(player)
         this.setPlayerPos()
@@ -104,15 +104,15 @@ export default class Player extends Game {
     shoot(player) {
         if (this.state.canShoot) {
             let player = document.querySelector(`#p${this.state.id}`)
-            if (player.classList.contains('tank-move')) {
-              player.classList.remove('tank-move')
+            if (player.classList.contains(`${this.state.name}-move`)) {
+              player.classList.remove(`${this.state.name}-move`)
             }
-            if (player.classList.contains('tank-static')) {
-              player.classList.remove('tank-static')
+            if (player.classList.contains(`${this.state.name}-static`)) {
+              player.classList.remove(`${this.state.name}-static`)
             }
-            player.classList.add('tank-shoot')
+            player.classList.add(`${this.state.name}-shoot`)
             setTimeout(()=>{
-              player.classList.remove('tank-shoot')
+              player.classList.remove(`${this.state.name}-shoot`)
             },500)
             const newBulletDOM = this.getNewBullet()
             newBulletDOM.style.top = parseInt(player.offsetTop) + (player.offsetHeight / 6)  + 'px'
@@ -173,15 +173,15 @@ export default class Player extends Game {
     jump(){
         if (!this.state.inAir) {
             let player = document.querySelector(`#p${this.state.id}`)
-            if (player.classList.contains('tank-move')) {
-              player.classList.remove('tank-move')
+            if (player.classList.contains(`${this.state.name}-move`)) {
+              player.classList.remove(`${this.state.name}-move`)
             }
-            if (player.classList.contains('tank-static')) {
-              player.classList.remove('tank-static')
+            if (player.classList.contains(`${this.state.name}-static`)) {
+              player.classList.remove(`${this.state.name}-static`)
             }
-            player.classList.add('tank-jump')
+            player.classList.add(`${this.state.name}-jump`)
             setTimeout(()=>{
-              player.classList.remove('tank-jump')
+              player.classList.remove(`${this.state.name}-jump`)
             },500)
             this.jumpAscend()
             sound.jump()
@@ -224,11 +224,11 @@ export default class Player extends Game {
 
     moveLeft() {
         let player = document.querySelector(`#p${this.state.id}`)
-        let staticChar = document.querySelector(`.tank-static`)
+        let staticChar = document.querySelector(`.${this.state.name}-static`)
         if (staticChar != null) {
-          player.classList.remove('tank-static')
+          player.classList.remove(`${this.state.name}-static`)
         }
-        player.classList.add('tank-move')
+        player.classList.add(`${this.state.name}-move`)
         this.state.dir = 2
         this.flipLeft(player)
 
@@ -240,11 +240,11 @@ export default class Player extends Game {
 
     moveRight(){
         let player = document.querySelector(`#p${this.state.id}`)
-        let staticChar = document.querySelector(`.tank-static`)
+        let staticChar = document.querySelector(`.${this.state.name}-static`)
         if (staticChar != null) {
-          player.classList.remove('tank-static')
+          player.classList.remove(`${this.state.name}-static`)
         }
-        player.classList.add('tank-move')
+        player.classList.add(`${this.state.name}-move`)
         this.state.dir = 1
         this.flipRight(document.querySelector(`#p${this.state.id}`))
 
@@ -257,11 +257,11 @@ export default class Player extends Game {
 
     static(){
         let player = document.querySelector(`#p${this.state.id}`)
-        let movingChar = document.querySelector(`.tank-move`)
+        let movingChar = document.querySelector(`.${this.state.name}-move`)
         if (movingChar != null) {
-          player.classList.remove('tank-move')
+          player.classList.remove(`${this.state.name}-move`)
         }
-        player.classList.add('tank-static')
+        player.classList.add(`${this.state.name}-static`)
     }
 
     checkColision() {

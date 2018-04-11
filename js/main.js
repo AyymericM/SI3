@@ -13,7 +13,7 @@ player1.init({
 })
 player2.init({
   id: 2,
-  hero: 'flash'
+  hero: 'tank'
 })
 game.init()
 magicBall.init()
