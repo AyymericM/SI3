@@ -26,6 +26,17 @@ export default class Game {
             isMovingRight: false,
             isMovingLeft: false
         }
+
+        this.ball = {
+          initPosX: Math.floor(Math.random()*root.offsetWidth),
+          initPosY: Math.floor(Math.random()*root.offsetHeight),
+          currentPosX: undefined,
+          currentPosY: undefined,
+          nextPosX: 0,
+          nextPosY: 0,
+          speed: 200,
+          spawnTime: 5000 + Math.floor(Math.random()*5000)
+        }
     }
 
     init() {

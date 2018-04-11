@@ -121,7 +121,9 @@ export default class Player extends Game {
             if (this.state.posY < els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop) {
                 this.state.posY = els.hitbox.parentNode.offsetHeight - els.hitbox.offsetTop
                 this.state.onPlatform = true
-                this.state.inAir = false
+                setTimeout(()=>{
+                    this.state.inAir = false
+                  },200)
                 clearInterval(this.state.unjump)
             }
         }
@@ -137,12 +139,15 @@ export default class Player extends Game {
     }
 
     jumpDescend(){
+        this.state.inAir = true
         this.state.unjump = setInterval(()=>{
             this.state.posY -=this.state.jumpHeight/10
             this.checkPlatformY()
             if (this.state.posY < 0) {
                 this.state.posY = 0
-                this.state.inAir = false
+                setTimeout(()=>{
+                    this.state.inAir = false
+                  },200)
                 clearInterval(this.state.unjump)
             }
 
