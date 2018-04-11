@@ -310,7 +310,7 @@ export default class Player extends Game {
         if (newPV > 0) {
             el.setAttribute('data-pv', newPV)
         } else {
-            console.log('game over')
+            this.gameOver()
         }
 
     }
