@@ -107,7 +107,7 @@ tankhtml, body {
 }
 
 .flash-static{
-  animation: flashStatic .5s infinite;
+  animation: flashStatic 1s infinite;
 }
 
 .flash-move{
@@ -119,7 +119,7 @@ tankhtml, body {
 }
 
 .flash-jump{
-  animation: flashJump .5s forwards;
+  animation: flashJump .4s forwards;
 }
 
 .flash-dead{
@@ -199,15 +199,16 @@ tankhtml, body {
 
 @keyframes flashStatic {
   0%{background: url(../img/sprites/flash/Static/flash_static_0.png);background-size: contain;  background-repeat: no-repeat;}
-  33%{background: url(../img/sprites/flash/Static/flash_static_1.png);background-size: contain;  background-repeat: no-repeat;}
-  66%{background: url(../img/sprites/flash/Static/flash_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  25%{background: url(../img/sprites/flash/Static/flash_static_1.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Static/flash_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  75%{background: url(../img/sprites/flash/Static/flash_static_3.png);background-size: contain;  background-repeat: no-repeat;}
   100%{background: url(../img/sprites/flash/Static/flash_static_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes flashMove {
-  0%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
-  50%{background: url(../img/sprites/flash/Run/Right/flash_run_right_1.png);background-size: contain;  background-repeat: no-repeat;}
-  100%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  0%{background: url(../img/sprites/flash/Run/flash_run_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Run/flash_run_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Run/flash_run_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes flashShoot {
@@ -217,9 +218,13 @@ tankhtml, body {
 }
 
 @keyframes flashJump {
-  0%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
-  50%{background: url(../img/sprites/flash/Jump/flash_jump.png);background-size: contain;  background-repeat: no-repeat;}
-  100%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  0%{background: url(../img/sprites/flash/Jump/flash_jump_0.png);background-size: contain;  background-repeat: no-repeat;}
+  17%{background: url(../img/sprites/flash/Jump/flash_jump_1.png);background-size: contain;  background-repeat: no-repeat;}
+  34%{background: url(../img/sprites/flash/Jump/flash_jump_2.png);background-size: contain;  background-repeat: no-repeat;}
+  51%{background: url(../img/sprites/flash/Jump/flash_jump_3.png);background-size: contain;  background-repeat: no-repeat;}
+  68%{background: url(../img/sprites/flash/Jump/flash_jump_4.png);background-size: contain;  background-repeat: no-repeat;}
+  85%{background: url(../img/sprites/flash/Jump/flash_jump_5.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Jump/flash_jump_6.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes flashDead {
