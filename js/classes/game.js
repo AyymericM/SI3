@@ -6,6 +6,7 @@ const sound = new Sound()
 export default class Game {
     constructor() {
         this.state = {
+            name: undefined,
             keys: {},
             posX: 1,
             posY: 1,

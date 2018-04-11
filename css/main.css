@@ -1,4 +1,4 @@
-html, body {
+tankhtml, body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -102,6 +102,70 @@ html, body {
   animation: tankJump .5s forwards;
 }
 
+.tank-dead{
+  animation: tankDead .5s forwards;
+}
+
+.flash-static{
+  animation: flashStatic .5s infinite;
+}
+
+.flash-move{
+  animation: flashMove .5s infinite;
+}
+
+.flash-shoot{
+  animation: flashShoot .5s forwards;
+}
+
+.flash-jump{
+  animation: flashJump .5s forwards;
+}
+
+.flash-dead{
+  animation: flashDead .5s forwards;
+}
+
+.soldier-static{
+  animation: soldierStatic .5s infinite;
+}
+
+.soldier-move{
+  animation: soldierMove .5s infinite;
+}
+
+.soldier-shoot{
+  animation: soldierShoot .5s forwards;
+}
+
+.soldier-jump{
+  animation: soldierJump .5s forwards;
+}
+
+.soldier-dead{
+  animation: soldierDead .5s forwards;
+}
+
+.sniper-static{
+  animation: sniperStatic .5s infinite;
+}
+
+.sniper-move{
+  animation: sniperMove .5s infinite;
+}
+
+.sniper-shoot{
+  animation: sniperShoot .5s forwards;
+}
+
+.sniper-jump{
+  animation: sniperJump .5s forwards;
+}
+
+.sniper-dead{
+  animation: sniperDead .5s forwards;
+}
+
 @keyframes tankStatic {
   0%{background: url(../img/sprites/tank/Static/tank_static_0.png);background-size: contain;  background-repeat: no-repeat;}
   33%{background: url(../img/sprites/tank/Static/tank_static_1.png);background-size: contain;  background-repeat: no-repeat;}
@@ -125,4 +189,103 @@ html, body {
   0%{background: url(../img/sprites/tank/Run/Right/tank_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
   50%{background: url(../img/sprites/tank/Jump/tank_jump.png);background-size: contain;  background-repeat: no-repeat;}
   100%{background: url(../img/sprites/tank/Run/Right/tank_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes tankDead {
+  0%{background: url(../img/sprites/tank/Dead/tank_dead_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/tank/Dead/tank_dead_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/tank/Dead/tank_dead_2.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes flashStatic {
+  0%{background: url(../img/sprites/flash/Static/flash_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+  33%{background: url(../img/sprites/flash/Static/flash_static_1.png);background-size: contain;  background-repeat: no-repeat;}
+  66%{background: url(../img/sprites/flash/Static/flash_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Static/flash_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes flashMove {
+  0%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Run/Right/flash_run_right_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes flashShoot {
+  0%{background: url(../img/sprites/flash/Shoot/Right/flash_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Shoot/Right/flash_shoot_right_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Shoot/Right/flash_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes flashJump {
+  0%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Jump/flash_jump.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Run/Right/flash_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes flashDead {
+  0%{background: url(../img/sprites/flash/Dead/flash_dead_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Dead/flash_dead_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Dead/flash_dead_2.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes soldierStatic {
+  0%{background: url(../img/sprites/soldier/Static/soldier_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+  33%{background: url(../img/sprites/soldier/Static/soldier_static_1.png);background-size: contain;  background-repeat: no-repeat;}
+  66%{background: url(../img/sprites/soldier/Static/soldier_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Static/soldier_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes soldierMove {
+  0%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes soldierShoot {
+  0%{background: url(../img/sprites/soldier/Shoot/Right/soldier_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Shoot/Right/soldier_shoot_right_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Shoot/Right/soldier_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes soldierJump {
+  0%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Jump/soldier_jump.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes soldierDead {
+  0%{background: url(../img/sprites/soldier/Dead/soldier_dead_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Dead/soldier_dead_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Dead/soldier_dead_2.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes sniperStatic {
+  0%{background: url(../img/sprites/sniper/Static/sniper_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+  33%{background: url(../img/sprites/sniper/Static/sniper_static_1.png);background-size: contain;  background-repeat: no-repeat;}
+  66%{background: url(../img/sprites/sniper/Static/sniper_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/sniper/Static/sniper_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes sniperMove {
+  0%{background: url(../img/sprites/sniper/Run/sniper_run_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/sniper/Run/sniper_run_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/sniper/Run/sniper_run_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes sniperShoot {
+  0%{background: url(../img/sprites/sniper/Shoot/sniper_shoot_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/sniper/Shoot/sniper_shoot_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/sniper/Shoot/sniper_shoot_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes sniperJump {
+  0%{background: url(../img/sprites/sniper/Run/sniper_run_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/sniper/Jump/sniper_jump_0.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/sniper/Run/sniper_run_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes sniperDead {
+  0%{background: url(../img/sprites/sniper/Dead/sniper_dead_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/sniper/Dead/sniper_dead_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/sniper/Dead/sniper_dead_2.png);background-size: contain;  background-repeat: no-repeat;}
 }
