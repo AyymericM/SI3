@@ -3,6 +3,7 @@ const keys = {
         press: {
             JUMP1: 122,
             FIRE1: 103,
+            BALL1: 104,
             JUMP2: 58,
             FIRE2: 61,
         },
@@ -18,6 +19,7 @@ const keys = {
             LEFT2: 37,
             RIGHT2: 39,
             JUMP1: 90,
+            BALL1: 72,
             FIRE1: 71,
             JUMP2: 186,
             FIRE2: 187
@@ -27,6 +29,8 @@ const keys = {
         press: {
             JUMP1: 122,
             FIRE1: 103,
+            BALL1:104,
+            BALL2: 59,
             JUMP2: 58,
             FIRE2: 33,
         },
@@ -43,6 +47,8 @@ const keys = {
             RIGHT2: 39,
             JUMP1: 90,
             FIRE1: 71,
+            BALL1: 72,
+            BALL2: 190,
             JUMP2: 191,
             FIRE2: 223
         }

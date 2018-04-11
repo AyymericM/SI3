@@ -289,7 +289,7 @@ export default class Player extends Game {
                     document.getElementById(bullet.id).setAttribute('data-hit', 1)
                 }
             }
-            
+
             if (parseInt(bullet.style.left) > parseInt(player2.style.left)
             && parseInt(bullet.style.left) < rightSideP2
             && bullet.offsetTop > player2.offsetTop
@@ -306,7 +306,7 @@ export default class Player extends Game {
     setDamage(el, dmg) {
         let newPV = parseInt(el.dataset.pv)
         newPV -= dmg
-        
+
         if (newPV > 0) {
             el.setAttribute('data-pv', newPV)
         } else {
@@ -314,4 +314,49 @@ export default class Player extends Game {
         }
 
     }
+
+    useMagicBall(){
+        let player = document.querySelector(`#p${this.state.id}`)
+        let otherPlayer
+        if (this.state.id === 1) {
+            otherPlayer = document.querySelector(`#p2`)
+        }
+        else {
+            otherPlayer = document.querySelector(`#p1`)
+        }
+        let ball = document.querySelector('.magicBall')
+        if (ball != null) {
+          let eventRand = Math.floor(Math.random()*3)
+          if (eventRand === 0) {
+              /***** SWITCH DES PV ****/
+              let temp = player.dataset.pv
+              player.setAttribute('data-pv',otherPlayer.dataset.pv)
+              otherPlayer.setAttribute('data-pv',temp)
+          }
+          else if (eventRand === 1) {
+            /***** JOUEUR A 100% PV ****/
+            player.setAttribute('data-pv',this.state.champ.pv)
+
+          }
+          else {
+            /**** JOUEUR A 20% PV *******/
+            this.setDamage(player,0.8*this.state.champ.pv)
+          }
+
+          this.removeBall()
+        }
+
+    }
+
+    removeBall(){
+        let ball = document.querySelector('.magicBall')
+        if (ball != null) {
+          root.removeChild(ball)
+          console.log('removed ball');
+          this.ball.ownedByP1 = false
+          this.ball.ownedByP2 = false
+        }
+
+    }
+
 }

@@ -28,7 +28,8 @@ export default class Game {
             isJumping: false,
             isShooting: false,
             isMovingRight: false,
-            isMovingLeft: false
+            isMovingLeft: false,
+            usingBall: false
         }
 
         this.ball = {

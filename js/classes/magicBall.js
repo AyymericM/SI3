@@ -36,9 +36,9 @@ export default class MagicBall extends Game{
           if (els.ball.offsetLeft > els.player1.offsetLeft && els.ball.offsetLeft < (els.player1.offsetLeft + els.player1.offsetHeight) && els.ball.offsetTop > els.player1.offsetTop && els.ball.offsetTop < (els.player1.offsetTop + els.player1.offsetHeight)) {
               clearInterval(this.ball.moving)
               console.log(els.ball.style.transition)
-              if (!els.ball.style.transition) {
-                els.ball.style.transition = `all 0.5s ease-in-out`
-              }
+
+              els.ball.style.transition = `all 0.5s ease-in-out`
+
               this.positionBall(root.offsetWidth/8,root.offsetHeight/4)
               this.ball.ownedByP1 = true
               this.ball.ownedByP2 = false
@@ -53,7 +53,7 @@ export default class MagicBall extends Game{
                   this.positionBall(root.offsetWidth-(root.offsetWidth/8),root.offsetHeight/4)
                   this.ball.ownedByP2 = true
                   this.ball.ownedByP1 = false
-              } 
+              }
           }
 
       }

@@ -127,15 +127,15 @@ tankhtml, body {
 }
 
 .soldier-static{
-  animation: soldierStatic .5s infinite;
+  animation: soldierStatic 1s infinite;
 }
 
 .soldier-move{
-  animation: soldierMove .5s infinite;
+  animation: soldierMove .7s infinite;
 }
 
 .soldier-shoot{
-  animation: soldierShoot .5s forwards;
+  animation: soldierShoot .7s forwards;
 }
 
 .soldier-jump{
@@ -212,9 +212,9 @@ tankhtml, body {
 }
 
 @keyframes flashShoot {
-  0%{background: url(../img/sprites/flash/Shoot/Right/flash_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
-  50%{background: url(../img/sprites/flash/Shoot/Right/flash_shoot_right_1.png);background-size: contain;  background-repeat: no-repeat;}
-  100%{background: url(../img/sprites/flash/Shoot/Right/flash_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  0%{background: url(../img/sprites/flash/Shoot/flash_shoot_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Shoot/flash_shoot_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Shoot/flash_shoot_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes flashJump {
@@ -235,27 +235,26 @@ tankhtml, body {
 
 @keyframes soldierStatic {
   0%{background: url(../img/sprites/soldier/Static/soldier_static_0.png);background-size: contain;  background-repeat: no-repeat;}
-  33%{background: url(../img/sprites/soldier/Static/soldier_static_1.png);background-size: contain;  background-repeat: no-repeat;}
-  66%{background: url(../img/sprites/soldier/Static/soldier_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Static/soldier_static_1.png);background-size: contain;  background-repeat: no-repeat;}
   100%{background: url(../img/sprites/soldier/Static/soldier_static_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes soldierMove {
-  0%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
-  50%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_1.png);background-size: contain;  background-repeat: no-repeat;}
-  100%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  0%{background: url(../img/sprites/soldier/Run/soldier_run_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Run/soldier_run_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Run/soldier_run_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes soldierShoot {
-  0%{background: url(../img/sprites/soldier/Shoot/Right/soldier_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
-  50%{background: url(../img/sprites/soldier/Shoot/Right/soldier_shoot_right_1.png);background-size: contain;  background-repeat: no-repeat;}
-  100%{background: url(../img/sprites/soldier/Shoot/Right/soldier_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  0%{background: url(../img/sprites/soldier/Shoot/soldier_shoot_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/soldier/Shoot/soldier_shoot_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Shoot/soldier_shoot_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes soldierJump {
-  0%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  0%{background: url(../img/sprites/soldier/Run/soldier_run_0.png);background-size: contain;  background-repeat: no-repeat;}
   50%{background: url(../img/sprites/soldier/Jump/soldier_jump.png);background-size: contain;  background-repeat: no-repeat;}
-  100%{background: url(../img/sprites/soldier/Run/Right/soldier_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/soldier/Run/soldier_run_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes soldierDead {
