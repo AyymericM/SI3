@@ -24,8 +24,7 @@ export default class Game {
             isJumping: false,
             isShooting: false,
             isMovingRight: false,
-            isMovingLeft: false,
-            hasBall: false
+            isMovingLeft: false
         }
 
         this.ball = {
@@ -37,7 +36,9 @@ export default class Game {
           nextPosY: 0,
           speed: 200,
           spawnTime: 5000 + Math.floor(Math.random()*5000),
-          moving: undefined
+          moving: undefined,
+          ownedByP1: false,
+          ownedByP2: false
         }
     }
 

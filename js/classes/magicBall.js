@@ -28,17 +28,32 @@ export default class MagicBall extends Game{
     checkPlayer(){
       let els = {
           ball: document.querySelector('.magicBall'),
-          player1: document.querySelector('#p1')
+          player1: document.querySelector('#p1'),
+          player2: document.querySelector('#p2')
       }
       if (els.ball != null) {
           if (els.ball.offsetLeft > els.player1.offsetLeft && els.ball.offsetLeft < (els.player1.offsetLeft + els.player1.offsetHeight) && els.ball.offsetTop > els.player1.offsetTop && els.ball.offsetTop < (els.player1.offsetTop + els.player1.offsetHeight)) {
               clearInterval(this.ball.moving)
-              if (els.ball.style.transition === null||undefined) {
-                ball.style.transition = `all 0.5s ease-in-out`
+              console.log(els.ball.style.transition)
+              if (!els.ball.style.transition) {
+                els.ball.style.transition = `all 0.5s ease-in-out`
               }
-              this.positionBall(50,50)
-              this.state.hasBall = true
+              this.positionBall(root.offsetWidth/8,root.offsetHeight/4)
+              this.ball.ownedByP1 = true
+              this.ball.ownedByP2 = false
           }
+          if (els.player2 != null) {
+              if (els.ball.offsetLeft > els.player2.offsetLeft && els.ball.offsetLeft < (els.player2.offsetLeft + els.player2.offsetHeight) && els.ball.offsetTop > els.player2.offsetTop && els.ball.offsetTop < (els.player2.offsetTop + els.player2.offsetHeight)) {
+                  clearInterval(this.ball.moving)
+                  if (!els.ball.style.transition) {
+                    els.ball.style.transition = `all 0.5s ease-in-out`
+                  }
+                  this.positionBall(root.offsetWidth-(root.offsetWidth/8),root.offsetHeight/4)
+                  this.ball.ownedByP2 = true
+                  this.ball.ownedByP1 = false
+              }
+          }
+
       }
 
     }
