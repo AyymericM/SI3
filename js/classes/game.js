@@ -1,5 +1,7 @@
+import Sound from './sounds.js'
 import { ChampStats } from '../store/ChampStore.js'
 const root = document.getElementById('root')
+const sound = new Sound()
 
 export default class Game {
     constructor() {
@@ -44,6 +46,7 @@ export default class Game {
 
     init() {
         this.createPlatform()
+        sound.playAmbiant()
     }
 
     createPlatform() {
@@ -64,5 +67,9 @@ export default class Game {
 
     showSelectMenu() {
         // TODO: Afficher le menu de départ
+    }
+
+    gameOver() {
+        sound.gameOver()
     }
 }
