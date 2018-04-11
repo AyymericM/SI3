@@ -28,9 +28,10 @@ player2.init({
   hero: 'flash'
 })
 artificial.init({
-  id: 3,
+  id: 'IA',
   hero: 'soldier'
 })
+artificial.launch()
 
 
 game.init()
@@ -39,6 +40,7 @@ ui.init()
 
 const player1DOM = document.querySelector('#p1')
 const player2DOM = document.querySelector('#p2')
+const artificialDOM = document.querySelector('#pIA')
 const platform = document.querySelector('.platform')
 
 /**** COMMANDES
@@ -123,7 +125,20 @@ function release(e){
   }
 }
 function gameLoop(){
-  artificial.launch()
+  let randomIA = Math.floor(Math.random()*10000)
+  if (randomIA < 200) {
+    artificial.shoot(artificialDOM)
+  }
+  if (randomIA > 9800) {
+    artificial.jump()
+  }
+  if (randomIA > 200 && randomIA<5000) {
+    artificial.moveLeft()
+  }
+  if (randomIA>5000 && randomIA<9800) {
+    artificial.moveRight()
+  }
+
   if (player1.state.isMovingRight){
     player1.moveRight()
   }
@@ -141,6 +156,9 @@ function gameLoop(){
   }
   if (!player2.state.isMovingLeft && !player2.state.isMovingRight) {
     player2.static()
+  }
+  if (!artificial.state.isMovingLeft && !artificial.state.isMovingRight) {
+    artificial.static()
   }
   if (player1.state.isJumping) {
     player1.jump()

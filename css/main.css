@@ -293,3 +293,7 @@ tankhtml, body {
   50%{background: url(../img/sprites/sniper/Dead/sniper_dead_1.png);background-size: contain;  background-repeat: no-repeat;}
   100%{background: url(../img/sprites/sniper/Dead/sniper_dead_2.png);background-size: contain;  background-repeat: no-repeat;}
 }
+
+#pIA{
+  width: 100px; 
+}

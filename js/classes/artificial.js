@@ -9,10 +9,20 @@ export default class Artificial extends Player {
     }
 
     launch() {
-      this.moveLeft()
-      console.log(this.checkEnds());
-      if (this.checkEnds()) {
-          this.moveRight()
-      }
+        setInterval(()=>{this.checkRealPlayer()},10)
+    }
+
+    checkRealPlayer(){
+        let realPlayer = document.querySelector('#p1')
+        let artificial = document.querySelector('#pIA')
+
+        if ((artificial.offsetLeft+artificial.offsetWidth) < realPlayer.offsetLeft) {
+            this.state.dir = 1
+            this.flipRight(artificial)
+        }
+        else if (artificial.offsetLeft > (realPlayer.offsetLeft + realPlayer.offsetWidth)) {
+            this.state.dir = 2
+            this.flipLeft(artificial)
+        }
     }
 }

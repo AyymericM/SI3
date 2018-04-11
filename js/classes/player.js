@@ -31,7 +31,7 @@ export default class Player extends Game {
             // } else {
                 //     game.showSelectMenu()
                 // }
-                
+
         setInterval(() => {
             this.checkColision()
         }, 10)
@@ -223,17 +223,13 @@ export default class Player extends Game {
         }
     }
 
-    checkEnds(element){
+    checkEnds(){
         if (this.state.posX < 0) {
             this.state.posX = 0
-            console.log('<0');
-            return true
         }
         if (this.state.posX>root.clientWidth-document.querySelector('.perso').offsetWidth) {
             this.state.posX=root.clientWidth-document.querySelector('.perso').offsetWidth
-            return true
         }
-        return false
     }
 
     moveLeft() {
@@ -248,7 +244,6 @@ export default class Player extends Game {
 
         this.state.posX -= 10 * this.state.champ.mvSpeed
         this.checkEnds()
-        console.log(this.checkEnds());
         this.checkPlatformX()
         this.setPlayerPos()
     }
