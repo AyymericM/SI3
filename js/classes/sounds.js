@@ -5,37 +5,58 @@ const powerUp = new Audio('./sounds/powerUp.mp3')
 const shoot = new Audio('./sounds/shoot.mp3')
 
 export default class Sound {
+    constructor() {
+        this.muted = false
+    }
+
+    muteSound() {
+        this.muted = !this.muted
+        this.stopAmbiant()
+    }
+
     playAmbiant() {
-        ambiant.addEventListener('ended', function() {
-            this.currentTime = 0;
-            this.play();
-        });
-        ambiant.play()
+        if (!this.muted) {
+            ambiant.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            });
+            ambiant.play()
+        }
     }
     
     stopAmbiant() {
-        ambiant.removeEventListener('ended', () => {})
-        ambiant.pause()
-        ambiant.currentTime = 0
+        if (!this.muted) {
+            ambiant.removeEventListener('ended', () => {})
+            ambiant.pause()
+            ambiant.currentTime = 0
+        }
     }
     
     gameOver() {
-        this.stopAmbiant()
-        gameOver.play()
+        if (!this.muted) {
+            this.stopAmbiant()
+            gameOver.play()
+        }
     }
     
     jump() {
-        jump.currentTime = 0
-        jump.play()
+        if (!this.muted) {
+            jump.currentTime = 0
+            jump.play()
+        }
     }
     
     powerUp() {
-        powerUp.currentTime = 0
-        powerUp.play()
+        if (!this.muted) {
+            powerUp.currentTime = 0
+            powerUp.play()
+        }
     }
     
     shoot() {
-        shoot.currentTime = 0
-        shoot.play()
+        if (!this.muted) {
+            shoot.currentTime = 0
+            shoot.play()
+        }
     }
 }

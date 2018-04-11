@@ -22,6 +22,7 @@ export default class Game {
             onPlatform: false,
             inAir: false,
             champ: undefined,
+            map: undefined,
             id:0,
             isJumping: false,
             isShooting: false,
@@ -63,6 +64,10 @@ export default class Game {
 
     selectChamp(champ) {
         this.state.champ = ChampStats[champ]
+    }
+
+    selectMap(map) {
+        this.state.map = map
     }
 
     showSelectMenu() {
