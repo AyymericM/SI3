@@ -1,8 +1,8 @@
-const ambiant = new Audio('../sounds/ambiant.wav')
-const gameOver = new Audio('../sounds/gameOver.mp3')
-const jump = new Audio('../sounds/jump.mp3')
-const powerUp = new Audio('../sounds/powerUp.mp3')
-const shoot = new Audio('../sounds/shoot.mp3')
+const ambiant = new Audio('./sounds/ambiant.wav')
+const gameOver = new Audio('./sounds/gameOver.mp3')
+const jump = new Audio('./sounds/jump.mp3')
+const powerUp = new Audio('./sounds/powerUp.mp3')
+const shoot = new Audio('./sounds/shoot.mp3')
 
 export default class Sound {
     playAmbiant() {
