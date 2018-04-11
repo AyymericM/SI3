@@ -1,7 +1,9 @@
 import Sound from './sounds.js'
+import Ui from './ui.js'
 import { ChampStats } from '../store/ChampStore.js'
 const root = document.getElementById('root')
 const sound = new Sound()
+const ui = new Ui()
 
 export default class Game {
     constructor() {
@@ -29,7 +31,8 @@ export default class Game {
             isShooting: false,
             isMovingRight: false,
             isMovingLeft: false,
-            usingBall: false
+            usingBall: false,
+            gameOver: false
         }
 
         this.ball = {
@@ -78,5 +81,11 @@ export default class Game {
 
     gameOver() {
         sound.gameOver()
+        ui.displayGameOver()
+        this.gameOver = true
+        this.isJumping = false
+        this.isShooting = false
+        this.isMovingRight = false
+        this.isMovingLeft = false
     }
 }

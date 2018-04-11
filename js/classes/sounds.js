@@ -6,16 +6,22 @@ const shoot = new Audio('./sounds/shoot.mp3')
 
 export default class Sound {
     constructor() {
-        this.muted = false
+        this.options= {
+            muted: false
+        }
     }
 
-    muteSound() {
-        this.muted = !this.muted
-        this.stopAmbiant()
+    muteSound() {        
+        this.options.muted = !this.options.muted
+        if (this.options.muted === true) {
+            this.stopAmbiant()
+        } else {
+            this.playAmbiant()
+        }
     }
 
-    playAmbiant() {
-        if (!this.muted) {
+    playAmbiant() {        
+        if (!this.options.muted) {
             ambiant.addEventListener('ended', function() {
                 this.currentTime = 0;
                 this.play();
@@ -25,36 +31,33 @@ export default class Sound {
     }
     
     stopAmbiant() {
-        if (!this.muted) {
-            ambiant.removeEventListener('ended', () => {})
-            ambiant.pause()
-            ambiant.currentTime = 0
-        }
+        ambiant.removeEventListener('ended', () => {})
+        ambiant.pause()
     }
     
     gameOver() {
-        if (!this.muted) {
+        if (!this.options.muted) {
             this.stopAmbiant()
             gameOver.play()
         }
     }
     
     jump() {
-        if (!this.muted) {
+        if (!this.options.muted) {
             jump.currentTime = 0
             jump.play()
         }
     }
     
     powerUp() {
-        if (!this.muted) {
+        if (!this.options.muted) {
             powerUp.currentTime = 0
             powerUp.play()
         }
     }
     
     shoot() {
-        if (!this.muted) {
+        if (!this.options.muted) {
             shoot.currentTime = 0
             shoot.play()
         }
