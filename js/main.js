@@ -1,4 +1,4 @@
-import { Player, Game, MagicBall, Sound } from './classes/index.js';
+import { Player, Game, MagicBall, Sound, Artificial } from './classes/index.js';
 import { keys, os } from './store/GameStore.js'
 // Player movement and shooting
 
@@ -6,6 +6,7 @@ const player1 = new Player()
 const player2 = new Player()
 const game = new Game()
 const magicBall = new MagicBall()
+const artificial = new Artificial()
 
 player1.init({
   id: 1,
@@ -15,6 +16,12 @@ player2.init({
   id: 2,
   hero: 'flash'
 })
+artificial.init({
+  id: 3,
+  hero: 'soldier'
+})
+
+
 game.init()
 magicBall.init()
 
@@ -106,6 +113,7 @@ function release(e){
   }
 }
 function gameLoop(){
+  artificial.launch()
   if (player1.state.isMovingRight){
     player1.moveRight()
   }

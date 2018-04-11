@@ -45,7 +45,7 @@ export default class Player extends Game {
         this.setPlayerPos()
     }
 
-    setPlayerPos(player = document.querySelector('.perso')) {
+    setPlayerPos(player = document.querySelector(`#p${this.state.id}`)) {
         player.style.bottom = this.state.posY + 'px'
         player.style.left = this.state.posX + 'px'
     }
@@ -222,10 +222,14 @@ export default class Player extends Game {
     checkEnds(element){
         if (this.state.posX < 0) {
             this.state.posX = 0
+            console.log('<0');
+            return true
         }
         if (this.state.posX>root.clientWidth-document.querySelector('.perso').offsetWidth) {
             this.state.posX=root.clientWidth-document.querySelector('.perso').offsetWidth
+            return true
         }
+        return false
     }
 
     moveLeft() {
@@ -240,6 +244,7 @@ export default class Player extends Game {
 
         this.state.posX -= 10 * this.state.champ.mvSpeed
         this.checkEnds()
+        console.log(this.checkEnds());
         this.checkPlatformX()
         this.setPlayerPos()
     }
