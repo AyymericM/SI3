@@ -84,7 +84,8 @@ function release(e){
   if (e.keyCode === 71  /* g */) {
     player1.state.isShooting = false
   }
-  if (e.keyCode === 191  /* : */) {
+  if (e.keyCode === 191 || 186  /* : */) {
+    
     player2.state.isJumping = false
   }
   if (e.keyCode === 223  /* ! */) {
