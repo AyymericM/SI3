@@ -12,9 +12,9 @@ const ui = new Ui()
 document.getElementById('btnMute').addEventListener('click', function() {
   sound.muteSound()
   if (sound.options.muted) {
-    this.innerText = "Activer le son"
+    this.innerText = "Activer la musique"
   } else {
-    this.innerText = "Couper le son"
+    this.innerText = "Couper la musique"
   }
 })
 
