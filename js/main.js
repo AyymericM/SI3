@@ -13,7 +13,7 @@ player1.init({
 })
 player2.init({
   id: 2,
-  hero: 'tank'
+  hero: 'sniper'
 })
 game.init()
 magicBall.init()
@@ -29,6 +29,7 @@ Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
 
 
 **********/
+
 
 
 window.addEventListener('keypress',(e)=>{press(e)})

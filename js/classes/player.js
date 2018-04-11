@@ -1,10 +1,13 @@
 import { ChampStats } from '../store/ChampStore.js'
 import Sound from './sounds.js'
 import Game from './game.js'
+import MagicBall from './magicBall.js'
+
 
 const root = document.getElementById('root')
 const game = new Game()
 const sound = new Sound()
+const ball = new MagicBall()
 
 export default class Player extends Game {
     constructor(Game) {
