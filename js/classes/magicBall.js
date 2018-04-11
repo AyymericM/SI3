@@ -1,6 +1,7 @@
-import Game from './game.js'
+import {Game, Sound} from './index.js'
 
 const root = document.getElementById('root')
+const sound = new Sound()
 
 export default class MagicBall extends Game{
     constructor(){
@@ -41,6 +42,7 @@ export default class MagicBall extends Game{
               this.positionBall(root.offsetWidth/8,root.offsetHeight/4)
               this.ball.ownedByP1 = true
               this.ball.ownedByP2 = false
+              sound.powerUp()
           }
           if (els.player2 != null) {
               if (els.ball.offsetLeft > els.player2.offsetLeft && els.ball.offsetLeft < (els.player2.offsetLeft + els.player2.offsetHeight) && els.ball.offsetTop > els.player2.offsetTop && els.ball.offsetTop < (els.player2.offsetTop + els.player2.offsetHeight)) {

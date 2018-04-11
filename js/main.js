@@ -1,4 +1,4 @@
-import { Player, Game, MagicBall } from './classes/index.js';
+import { Player, Game, MagicBall, Sound } from './classes/index.js';
 import { keys, os } from './store/GameStore.js'
 // Player movement and shooting
 

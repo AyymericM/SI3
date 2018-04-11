@@ -1,8 +1,10 @@
 import { ChampStats } from '../store/ChampStore.js'
+import Sound from './sounds.js'
 import Game from './game.js'
 
 const root = document.getElementById('root')
 const game = new Game()
+const sound = new Sound()
 
 export default class Player extends Game {
     constructor(Game) {
@@ -63,6 +65,7 @@ export default class Player extends Game {
         }
 
         root.appendChild(newBullet)
+        sound.shoot()
         return document.querySelector(`#b${this.state.bulletNumber}`)
     }
 
@@ -158,6 +161,7 @@ export default class Player extends Game {
     jump(){
         if (!this.state.inAir) {
             this.jumpAscend()
+            sound.jump()
             setTimeout(()=>{
                 clearInterval(this.state.jump)
                 this.jumpDescend()
