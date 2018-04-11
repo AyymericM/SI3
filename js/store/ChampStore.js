@@ -1,5 +1,6 @@
 const ChampStats = {
     "tank": {
+        name: "tank",
         mvSpeed: 0.70,
         mvJump: 1,
         pv: 300,
@@ -12,6 +13,7 @@ const ChampStats = {
         }
     },
     "flash": {
+        name: "flash",
         mvSpeed: 1.80,
         mvJump: 1,
         pv: 50,
@@ -23,6 +25,7 @@ const ChampStats = {
         }
     },
     "sniper": {
+        name: "sniper",
         mvSpeed: 1.60,
         mvJump: 1,
         pv: 150,
@@ -34,6 +37,7 @@ const ChampStats = {
         }
     },
     "soldier": {
+        name: "soldier",
         mvSpeed: 1.40,
         mvJump: 1,
         pv: 200,

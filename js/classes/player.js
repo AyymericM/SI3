@@ -5,6 +5,7 @@ import Game from './game.js'
 const root = document.getElementById('root')
 const game = new Game()
 const sound = new Sound()
+let triggerInterval = null
 
 export default class Player extends Game {
     constructor(Game) {
@@ -27,9 +28,7 @@ export default class Player extends Game {
         //     game.showSelectMenu()
         // }
 
-        setInterval(() => {
-            this.checkColision()
-        }, 50)
+        setInterval(() => this.checkColision(), 10)
     }
 
     spawnPlayer() {
@@ -37,6 +36,8 @@ export default class Player extends Game {
         player.classList.add('perso')
         player.classList.add('tank-static')
         player.setAttribute('id',`p${this.state.id}`)
+        player.setAttribute('data-champ', this.state.champ.name)
+        player.setAttribute('data-pv', this.state.champ.pv)
         root.appendChild(player)
         this.setPlayerPos()
     }
@@ -58,6 +59,8 @@ export default class Player extends Game {
         newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
         newBullet.setAttribute('data-dmg', this.state.champ.atDmg)
         newBullet.setAttribute('data-dir', this.state.dir)
+        newBullet.setAttribute('data-author', this.state.id)
+        newBullet.setAttribute('data-hit', 0)
 
         if (this.state.dir === 1) {
             this.flipRight(newBullet)
@@ -266,25 +269,48 @@ export default class Player extends Game {
 
     checkColision() {
         for (let i = 0; i < this.state.bullets.length; i++) {
-            let player = document.querySelector('.perso')
+            let player1 = document.querySelector('#p1')
+            let player2 = document.querySelector('#p2')
             let dmg = parseInt(this.state.bullets[i].dataset.dmg)
-            let rightSide = parseInt(player.style.left) + player.offsetWidth
-            let bulletPos = this.state.bullets[i].style.left
+            let rightSideP1 = parseInt(player1.style.left) + parseInt(player1.offsetWidth)
+            let rightSideP2 = parseInt(player2.style.left) + parseInt(player2.offsetWidth)
+            let bullet = this.state.bullets[i]
 
-            if ((parseInt(bulletPos) < (parseInt(player.style.left) + player.style.offsetWidth))
-                && (parseInt(bulletPos) > parseInt(player.style.left))) {
-                this.setDamage(dmg)
+            if (parseInt(bullet.style.left) > parseInt(player1.style.left)
+            && parseInt(bullet.style.left) < rightSideP1
+            && bullet.offsetTop > player1.offsetTop
+            && bullet.offsetTop < (player1.offsetTop + player1.offsetWidth)
+            && bullet.dataset.author == 2) {
+                if (bullet.dataset.hit == 0) {
+                    this.setDamage(player1, dmg)
+                    document.getElementById(bullet.id).setAttribute('data-hit', 1)
+                }
+            }
+            
+            if (parseInt(bullet.style.left) > parseInt(player2.style.left)
+            && parseInt(bullet.style.left) < rightSideP2
+            && bullet.offsetTop > player2.offsetTop
+            && bullet.offsetTop < (player2.offsetTop + player2.offsetWidth)
+            && bullet.dataset.author == 1) {
+                if (bullet.dataset.hit == 0) {
+                    this.setDamage(player2, dmg)
+                    document.getElementById(bullet.id).setAttribute('data-hit', 1)
+                }
             }
         }
     }
 
-    setDamage(dmg) {
-        //console.log('hit');
-
-        this.state.champ.pv - dmg
-        if (this.state.champ.pv <= 0) {
-            // TODO: game over
-            // ex: game.gameOver()
+    setDamage(el, dmg) {
+        console.log('hit');
+        
+        let newPV = parseInt(el.dataset.pv)
+        newPV -= dmg
+        
+        if (newPV > 0) {
+            el.setAttribute('data-pv', newPV)
+        } else {
+            console.log('game over')
         }
+
     }
 }
