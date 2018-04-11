@@ -6,8 +6,7 @@ html, body {
 
 .perso {
   height: 200px;
-  width: 100px;
-  background: url(../img/sprites/Ken-hdstance.gif);
+  width: 200px;
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -85,4 +84,45 @@ html, body {
   top: 0;
   left: 0;
   z-index: 99999;
+}
+
+.tank-static{
+  animation: tankStatic .5s infinite;
+}
+
+.tank-move{
+  animation: tankMove .5s infinite;
+}
+
+.tank-shoot{
+  animation: tankShoot .5s forwards;
+}
+
+.tank-jump{
+  animation: tankJump .5s forwards;
+}
+
+@keyframes tankStatic {
+  0%{background: url(../img/sprites/tank/Static/tank_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+  33%{background: url(../img/sprites/tank/Static/tank_static_1.png);background-size: contain;  background-repeat: no-repeat;}
+  66%{background: url(../img/sprites/tank/Static/tank_static_2.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/tank/Static/tank_static_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes tankMove {
+  0%{background: url(../img/sprites/tank/Run/Right/tank_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/tank/Run/Right/tank_run_right_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/tank/Run/Right/tank_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes tankShoot {
+  0%{background: url(../img/sprites/tank/Shoot/Right/tank_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/tank/Shoot/Right/tank_shoot_right_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/tank/Shoot/Right/tank_shoot_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes tankJump {
+  0%{background: url(../img/sprites/tank/Run/Right/tank_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/tank/Jump/tank_jump.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/tank/Run/Right/tank_run_right_0.png);background-size: contain;  background-repeat: no-repeat;}
 }

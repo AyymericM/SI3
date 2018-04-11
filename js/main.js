@@ -97,11 +97,17 @@ function gameLoop(){
   if (player1.state.isMovingLeft){
     player1.moveLeft()
   }
+  if (!player1.state.isMovingLeft && !player1.state.isMovingRight) {
+    player1.static()
+  }
   if (player2.state.isMovingRight){
     player2.moveRight()
   }
   if (player2.state.isMovingLeft){
     player2.moveLeft()
+  }
+  if (!player2.state.isMovingLeft && !player2.state.isMovingRight) {
+    player2.static()
   }
   if (player1.state.isJumping) {
     player1.jump()

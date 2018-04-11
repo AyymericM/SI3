@@ -33,6 +33,7 @@ export default class Player extends Game {
     spawnPlayer() {
         const player = document.createElement('div')
         player.classList.add('perso')
+        player.classList.add('tank-static')
         player.setAttribute('id',`p${this.state.id}`)
         root.appendChild(player)
         this.setPlayerPos()
@@ -99,6 +100,17 @@ export default class Player extends Game {
 
     shoot(player) {
         if (this.state.canShoot) {
+            let player = document.querySelector(`#p${this.state.id}`)
+            if (player.classList.contains('tank-move')) {
+              player.classList.remove('tank-move')
+            }
+            if (player.classList.contains('tank-static')) {
+              player.classList.remove('tank-static')
+            }
+            player.classList.add('tank-shoot')
+            setTimeout(()=>{
+              player.classList.remove('tank-shoot')
+            },500)
             const newBulletDOM = this.getNewBullet()
             newBulletDOM.style.top = parseInt(player.offsetTop) + (player.offsetHeight / 6)  + 'px'
             newBulletDOM.style.left = parseInt(player.offsetLeft) + 'px'
@@ -157,6 +169,17 @@ export default class Player extends Game {
 
     jump(){
         if (!this.state.inAir) {
+            let player = document.querySelector(`#p${this.state.id}`)
+            if (player.classList.contains('tank-move')) {
+              player.classList.remove('tank-move')
+            }
+            if (player.classList.contains('tank-static')) {
+              player.classList.remove('tank-static')
+            }
+            player.classList.add('tank-jump')
+            setTimeout(()=>{
+              player.classList.remove('tank-jump')
+            },500)
             this.jumpAscend()
             setTimeout(()=>{
                 clearInterval(this.state.jump)
@@ -196,8 +219,14 @@ export default class Player extends Game {
     }
 
     moveLeft() {
+        let player = document.querySelector(`#p${this.state.id}`)
+        let staticChar = document.querySelector(`.tank-static`)
+        if (staticChar != null) {
+          player.classList.remove('tank-static')
+        }
+        player.classList.add('tank-move')
         this.state.dir = 2
-        this.flipLeft(document.querySelector(`#p${this.state.id}`))
+        this.flipLeft(player)
 
         this.state.posX -= 10 * this.state.champ.mvSpeed
         this.checkEnds()
@@ -206,6 +235,12 @@ export default class Player extends Game {
     }
 
     moveRight(){
+        let player = document.querySelector(`#p${this.state.id}`)
+        let staticChar = document.querySelector(`.tank-static`)
+        if (staticChar != null) {
+          player.classList.remove('tank-static')
+        }
+        player.classList.add('tank-move')
         this.state.dir = 1
         this.flipRight(document.querySelector(`#p${this.state.id}`))
 
@@ -214,6 +249,15 @@ export default class Player extends Game {
         this.checkPlatformX()
         this.setPlayerPos()
 
+    }
+
+    static(){
+        let player = document.querySelector(`#p${this.state.id}`)
+        let movingChar = document.querySelector(`.tank-move`)
+        if (movingChar != null) {
+          player.classList.remove('tank-move')
+        }
+        player.classList.add('tank-static')
     }
 
     checkColision() {

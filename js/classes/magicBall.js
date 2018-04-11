@@ -51,7 +51,7 @@ export default class MagicBall extends Game{
                   this.positionBall(root.offsetWidth-(root.offsetWidth/8),root.offsetHeight/4)
                   this.ball.ownedByP2 = true
                   this.ball.ownedByP1 = false
-              }
+              } 
           }
 
       }

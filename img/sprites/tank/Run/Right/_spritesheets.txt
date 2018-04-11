@@ -1,0 +1,1 @@
+tank_run_right.png,446,705,2
