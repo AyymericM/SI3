@@ -38,7 +38,7 @@ html, body {
 
 .special{
   position: absolute;
-  background: url(../img/sprites/GregPuget.png);
+  background: url('../img/sprites/GregPuget.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -58,12 +58,12 @@ html, body {
 }
 
 .platform {
-  background-image: url(../img/sprites/ufo.png);
+  background-image: url('../img/sprites/ufo_base.png');
   z-index: 400;
 }
 
 .platformBody {
-  background-image: url(../img/sprites/ufo_forgrnd.png);
+  background-image: url('../img/sprites/ufo_forgrnd.png');
   z-index: 1200;
 }
 
