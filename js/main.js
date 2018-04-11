@@ -1,6 +1,5 @@
-import { Player } from './classes/index.js';
-import { Game } from './classes/index.js'
-import { MagicBall } from './classes/index.js'
+import { Player, Game, MagicBall } from './classes/index.js';
+import { keys, os } from './store/GameStore.js'
 // Player movement and shooting
 
 const player1 = new Player()
@@ -34,61 +33,61 @@ Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
 
 window.addEventListener('keypress',(e)=>{press(e)})
 function press(e){
-  if (e.keyCode === 122  /* z */ && !player1.state.inAir) {
+  if (e.keyCode === keys[os()].press.JUMP1  /* z */ && !player1.state.inAir) {
     player1.state.isJumping = true
   }
-  if (e.keyCode === 103  /* g */) {
+  if (e.keyCode === keys[os()].press.FIRE1  /* g */) {
     player1.state.isShooting = true
   }
-  if (e.keyCode === 58  /* : */ && !player2.state.inAir) {
+  if (e.keyCode === keys[os()].press.JUMP2 /* : */ && !player2.state.inAir) {
     player2.state.isJumping = true
   }
-  if (e.keyCode === 33  /* ! */) {
+  if (e.keyCode === keys[os()].press.FIRE2 /* ! */) {
     player2.state.isShooting = true
   }
+  console.log(e.keyCode)
 }
 
 window.addEventListener('keydown',(e)=>{hold(e)})
 function hold(e){
-  if (e.keyCode === 68 /* d */){
+  if (e.keyCode === keys[os()].down.RIGHT1 /* d */){
     player1.state.isMovingRight = true
   }
-  if (e.keyCode === 81 /* q */){
+  if (e.keyCode === keys[os()].down.LEFT1 /* q */){
     player1.state.isMovingLeft = true
   }
-  if (e.keyCode === 39 /* fleche gauche */){
+  if (e.keyCode === keys[os()].down.RIGHT2 /* fleche gauche */){
     player2.state.isMovingRight = true
   }
-  if (e.keyCode === 37 /* fleche droite */){
+  if (e.keyCode === keys[os()].down.LEFT2 /* fleche droite */){
     player2.state.isMovingLeft = true
   }
 
 }
 window.addEventListener('keyup',(e)=>{release(e)})
 function release(e){
-  if (e.keyCode === 68 /* d */){
+  if (e.keyCode === keys[os()].up.RIGHT1 /* d */){
     player1.state.isMovingRight = false
   }
-  if (e.keyCode === 81 /* q */){
+  if (e.keyCode === keys[os()].up.LEFT1 /* q */){
     player1.state.isMovingLeft = false
   }
-  if (e.keyCode === 39 /* fleche droite */){
+  if (e.keyCode === keys[os()].up.RIGHT2 /* fleche droite */){
     player2.state.isMovingRight = false
   }
-  if (e.keyCode === 37 /* fleche gauche */){
+  if (e.keyCode === keys[os()].up.LEFT2 /* fleche gauche */){
     player2.state.isMovingLeft = false
   }
-  if (e.keyCode === 90 /* z */) {
+  if (e.keyCode === keys[os()].up.JUMP1 /* z */) {
     player1.state.isJumping = false
   }
-  if (e.keyCode === 71  /* g */) {
+  if (e.keyCode === keys[os()].up.FIRE1  /* g */) {
     player1.state.isShooting = false
   }
-  if (e.keyCode === 191 || 186  /* : */) {
-    
+  if (e.keyCode === keys[os()].up.JUMP2  /* : */) {
     player2.state.isJumping = false
   }
-  if (e.keyCode === 223  /* ! */) {
+  if (e.keyCode === keys[os()].up.FIRE2  /* ! */) {
     player2.state.isShooting = false
   }
 }

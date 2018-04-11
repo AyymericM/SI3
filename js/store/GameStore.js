@@ -1,24 +1,61 @@
-let store = {
-    username: ""
-}
-
-const storeActions = {
-    saveStore: () => {
-        localStorage.setItem('gameData', JSON.stringify(store))
-    },
-    loadStore: () => {
-        if (localStorage.getItem('gameData')) {
-            store = JSON.parse(localStorage.getItem('gameData'))
+const keys = {
+    mac: {
+        press: {
+            JUMP1: 122,
+            FIRE1: 103,
+            JUMP2: 58,
+            FIRE2: 61,
+        },
+        down: {
+            LEFT1: 81,
+            RIGHT1: 68,
+            LEFT2: 37,
+            RIGHT2: 39,
+        },
+        up: {
+            LEFT1: 81,
+            RIGHT1: 68,
+            LEFT2: 37,
+            RIGHT2: 39,
+            JUMP1: 90,
+            FIRE1: 71,
+            JUMP2: 186,
+            FIRE2: 187
         }
     },
-    resetStore: () => {
-        if (localStorage.getItem('gameData')) {
-            localStorage.removeItem('gameData')
-        }
-        store = {
-            username: ""
+    win: {
+        press: {
+            JUMP1: 122,
+            FIRE1: 103,
+            JUMP2: 58,
+            FIRE2: 33,
+        },
+        down: {
+            LEFT1: 81,
+            RIGHT1: 68,
+            LEFT2: 37,
+            RIGHT2: 39,
+        },
+        up: {
+            LEFT1: 81,
+            RIGHT1: 68,
+            LEFT2: 37,
+            RIGHT2: 39,
+            JUMP1: 90,
+            FIRE1: 71,
+            JUMP2: 191,
+            FIRE2: 223
         }
     }
 }
 
-export { store, storeActions }
+
+function os() {
+    if (navigator.userAgent.toString().includes('Macintosh')) {
+        return 'mac'
+    } else {
+        return 'win'
+    }
+}
+
+export { keys, os }

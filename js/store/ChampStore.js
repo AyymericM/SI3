@@ -12,7 +12,7 @@ const ChampStats = {
         }
     },
     "flash": {
-        mvSpeed: 2.00,
+        mvSpeed: 1.80,
         mvJump: 1,
         pv: 50,
         atDmg: 15,
