@@ -11,8 +11,6 @@ export default class Sound {
             this.play();
         });
         ambiant.play()
-
-        setTimeout(this.gameOver(), 1000)
     }
     
     stopAmbiant() {
