@@ -9,7 +9,9 @@ export default class MagicBall extends Game{
 
     init(){
         this.spawnBall()
-
+        setInterval(()=>{
+          this.checkPlayer()
+        },10)
     }
 
     spawnBall(){
@@ -21,6 +23,24 @@ export default class MagicBall extends Game{
             root.appendChild(ball)
             this.moveBall()
           },this.ball.spawnTime)
+    }
+
+    checkPlayer(){
+      let els = {
+          ball: document.querySelector('.magicBall'),
+          player1: document.querySelector('#p1')
+      }
+      if (els.ball != null) {
+          if (els.ball.offsetLeft > els.player1.offsetLeft && els.ball.offsetLeft < (els.player1.offsetLeft + els.player1.offsetHeight) && els.ball.offsetTop > els.player1.offsetTop && els.ball.offsetTop < (els.player1.offsetTop + els.player1.offsetHeight)) {
+              clearInterval(this.ball.moving)
+              if (els.ball.style.transition === null||undefined) {
+                ball.style.transition = `all 0.5s ease-in-out`
+              }
+              this.positionBall(50,50)
+              this.state.hasBall = true
+          }
+      }
+
     }
 
     positionBall(posX,posY){
@@ -58,7 +78,7 @@ export default class MagicBall extends Game{
             this.ball.currentPosX = this.ball.initPosX
             this.ball.currentPosY = this.ball.initPosY
         }
-        setInterval(()=>{
+        this.ball.moving = setInterval(()=>{
           this.generateNextPos()
           let time = this.getDistance()/this.ball.speed
           ball.style.transition = `all ${time}s ease-in-out`
