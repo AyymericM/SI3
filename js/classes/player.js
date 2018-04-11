@@ -291,7 +291,7 @@ export default class Player extends Game {
             if (parseInt(bullet.style.left) > parseInt(player1.style.left)
             && parseInt(bullet.style.left) < rightSideP1
             && bullet.offsetTop > player1.offsetTop
-            && bullet.offsetTop < (player1.offsetTop + player1.offsetWidth)
+            && bullet.offsetTop < (player1.offsetTop + player1.offsetHeight)
             && bullet.dataset.author == 2) {
                 if (bullet.dataset.hit == 0) {
                     this.setDamage(player1, dmg)
@@ -302,7 +302,7 @@ export default class Player extends Game {
             if (parseInt(bullet.style.left) > parseInt(player2.style.left)
             && parseInt(bullet.style.left) < rightSideP2
             && bullet.offsetTop > player2.offsetTop
-            && bullet.offsetTop < (player2.offsetTop + player2.offsetWidth)
+            && bullet.offsetTop < (player2.offsetTop + player2.offsetHeight)
             && bullet.dataset.author == 1) {
                 if (bullet.dataset.hit == 0) {
                     this.setDamage(player2, dmg)
