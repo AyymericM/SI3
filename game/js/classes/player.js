@@ -299,7 +299,9 @@ export default class Player extends Game {
             && parseInt(bullet.style.left) < rightSideP1
             && bullet.offsetTop > player1.offsetTop
             && bullet.offsetTop < (player1.offsetTop + player1.offsetWidth)
-            && (bullet.dataset.author == 2 || 'IA')) {
+            && (bullet.dataset.author == 2 || bullet.dataset.author == 'IA')) {
+                console.log(bullet.dataset.author);
+                
                 if (bullet.dataset.hit == 0) {
                     this.setDamage(player1, dmg)
                     document.getElementById(bullet.id).setAttribute('data-hit', 1)
@@ -333,11 +335,6 @@ export default class Player extends Game {
                   }
               }
             }
-
-
-
-
-
         }
     }
 
