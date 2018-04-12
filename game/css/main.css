@@ -13,7 +13,6 @@ tankhtml, body {
   bottom: 0;
   left: 40%;
   z-index: 999;
-  /* border: 2px solid red; */
 }
 
 .tank-hitbox {
