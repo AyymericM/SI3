@@ -25,6 +25,7 @@ src: url('../font/ARCADE_R.TTF')
   padding-top: 3.75rem;
   align-items: flex-start;
   left: 85%;
+  width: 10%;
 }
 
 .TrophyCash{
@@ -49,9 +50,12 @@ src: url('../font/ARCADE_R.TTF')
 /* 1VS1 / 1VSIA */
 
 .container2{
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: space-around;
+  width: 100%;
+  height: 10%;
+  top: 82%;
 }
 
 a{
@@ -63,22 +67,45 @@ a{
 
 .Duel{
   position: absolute;
-  top: 31.25rem;
-  left: 25rem;
+  display: flex;
+  justify-content: center;
+  height: 60%;
+  width: 15%;
+  left: 28.2%;
+  bottom: 220%;
+  border-radius: 7.5rem;
+  background-color: #E35132;
+  border:0.75rem solid white;
+  text-decoration: none;
+  font-size: 12px;
   transition: all 0.2s ease-in;
 }
 
 .Duel:hover{
   transform: scale(1.1);
 }
-
 /* 1VSIA */
 /* 1VSIA */
 
 .DuelIA{
   position: absolute;
-  top: 31.25rem;
-  right: 25rem;
+  right: 25%;
+  transition: all 0.2s ease-in;
+}
+
+.DuelIA{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 60%;
+  width: 15%;
+  right: 28.2%;
+  bottom: 220%;
+  border-radius: 7.5rem;
+  background-color: #E35132;
+  border:0.75rem solid white;
+  text-decoration: none;
+  font-size: 12px;
   transition: all 0.2s ease-in;
 }
 
