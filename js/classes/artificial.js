@@ -18,6 +18,9 @@ export default class Artificial extends Player {
             },2500)
             setTimeout(()=>{this.state.isMovingLeft = false},5000)
         },6000)
+        setInterval(()=>{
+            this.state.isShooting = true
+            setTimeout(()=>{
                 this.state.isShooting = false
             },1000)
         },3000)
