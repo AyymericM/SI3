@@ -1,0 +1,89 @@
+/* BACKGROUND */
+/* BACKGROUND */
+@font-face {
+font-family: 'ARCADE';
+src: url('../font/ARCADE_R.TTF')
+}
+*{
+  margin: auto 0;
+  color: white;
+  font-family: 'ARCADE';
+}
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.SelectMap{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 9.375rem;
+  font-size: 0.8125rem;
+}
+
+/* MAP IMG */
+/* MAP IMG */
+
+.container{
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3.75rem;
+}
+
+.map{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.map img{
+  display: flex;
+  height: 15.625rem;
+  width: 25.625rem;
+  padding: 1.875rem;
+  transition: all 0.2s ease-in;
+}
+
+.map img:hover{
+  transform: scale(1.1);
+}
+
+/* MAP TEXTE */
+/* MAP TEXTE */
+
+.map h1{
+  position: absolute;
+  top: 103%;
+  left: 11%;
+}
+
+.map:nth-child(2) h1{
+  position: absolute;
+  left: 44.5%;
+  top: 103%;
+
+}
+
+.map:last-of-type h1{
+  position: absolute;
+  left: 75%;
+  top: 103%;
+
+}
+
+/* RETURN BUTTON */
+/* RETURN BUTTON */
+
+h2{
+  position: absolute;
+  top: 9%;
+  left: 5%;
+  transition: all 0.2s ease-in;
+}
+
+  h2:hover{
+  transform: scale(1.1);
+}

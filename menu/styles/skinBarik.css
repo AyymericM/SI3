@@ -1,0 +1,82 @@
+@font-face {
+font-family: 'ARCADE';
+src: url('../font/ARCADE_R.TTF')
+}
+/* BACKGROUND */
+/* BACKGROUND */
+*{
+  margin: auto 0;
+  font-family:'ARCADE';
+  color: white;
+}
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.Skin{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 9.375rem;
+  font-size: 0.8125rem;
+}
+
+/* SKIN BARIK IMG */
+/* SKIN BARIK IMG */
+
+.container{
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3.75rem;
+}
+
+.Barik{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.Barik img{
+  display: flex;
+  height: 28.125rem;
+  transition: all 0.2s ease-in;
+}
+
+
+
+.Barik img:hover{
+  transform: scale(1.1);
+}
+
+/* SKIN BARIK TEXTE */
+/* SKIN BARIK TEXTE */
+
+.Barik h1{
+  position: absolute;
+  top: 100%;
+  left: 19.5%;
+}
+
+.Barik:last-of-type h1{
+  position: absolute;
+  left: 70%;
+  top: 100%;
+
+}
+
+/* RETURN BUTTON */
+/* RETURN BUTTON */
+
+h2{
+  position: absolute;
+  top: 9%;
+  left: 5%;
+  transition: all 0.2s ease-in;
+}
+
+h2:hover{
+  transform: scale(1.1);
+}
