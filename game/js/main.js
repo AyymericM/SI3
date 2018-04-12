@@ -23,19 +23,30 @@ document.getElementById('btnMute').addEventListener('click', function() {
   }
 })
 
-player1.init({
-  id: 1,
-  hero: 'tank'
-})
-player2.init({
-  id: 2,
-  hero: 'sniper'
-})
-// artificial.init({
-//   id: 'IA',
-//   hero: 'soldier'
-// })
-// artificial.launch()
+if (localStorage.getItem('gameData')) {
+  const gameData = JSON.parse(localStorage.getItem('gameData'))
+  game.state.map = gameData.map
+  if (gameData.mode == 1) {
+    player1.init({
+      id: 1,
+      hero: gameData.skin
+    })
+    player2.init({
+      id: 2,
+      hero: 'sniper'
+    })
+  } else {
+    player1.init({
+      id: 1,
+      hero: gameData.skin
+    })
+    artificial.init({
+      id: 'IA',
+      hero: 'soldier'
+    })
+    artificial.launch()
+  }
+}
 
 
 game.init()

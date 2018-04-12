@@ -1,7 +1,8 @@
-tankhtml, body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
+  overflow: hidden;
 }
 
 .perso {
@@ -19,7 +20,6 @@ tankhtml, body {
   position: relative;
   height: 100vh;
   width: 100vw;
-  background-image: url(../img/maps/Space.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -57,12 +57,10 @@ tankhtml, body {
 }
 
 .platform {
-  background-image: url('../img/sprites/ufo_base.png');
   z-index: 400;
 }
 
 .platformBody {
-  background-image: url('../img/sprites/ufo_forgrnd.png');
   z-index: 1200;
 }
 
