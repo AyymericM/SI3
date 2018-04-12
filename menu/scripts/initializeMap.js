@@ -1,5 +1,6 @@
 const maps = document.querySelectorAll('.map')
 
+// get buttons
 for (let i = 0; i < maps.length; i++) {
     maps[i].addEventListener('click', function(e) {
         e.preventDefault()
@@ -7,6 +8,7 @@ for (let i = 0; i < maps.length; i++) {
     })
 }
 
+// set map on localStorage
 function setStorage(data) {
     if (!localStorage.getItem('gameData')) {
         const newLoc = window.location.origin + '/epic-fight/menu/index.html'

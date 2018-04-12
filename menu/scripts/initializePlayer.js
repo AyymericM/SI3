@@ -1,5 +1,6 @@
 const players = document.querySelectorAll('.player')
 
+// get player selection buttons
 for (let i = 0; i < players.length; i++) {
     players[i].addEventListener('click', function(e) {
         e.preventDefault()
@@ -7,6 +8,7 @@ for (let i = 0; i < players.length; i++) {
     })
 }
 
+// set player on storage
 function setStorage(data, skinLoc) {
     if (!localStorage.getItem('gameData')) {
         const newLoc = window.location.origin + '/epic-fight/menu/index.html'
