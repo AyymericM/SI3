@@ -13,6 +13,19 @@ tankhtml, body {
   bottom: 0;
   left: 40%;
   z-index: 999;
+  /* border: 2px solid red; */
+}
+
+.tank-hitbox {
+  height: 200px;
+  width: 90px;
+  margin-left: 41%;
+  transform: translateX(-50%);
+}
+
+.flash-hitbox, .soldier-hitbox, .sniper-hitbox {
+  height: 200px;
+  width: 90px;
 }
 
 #root {
@@ -327,8 +340,4 @@ tankhtml, body {
   0%{background: url(../img/sprites/sniper/Dead/sniper_dead_0.png);background-size: contain;  background-repeat: no-repeat;}
   50%{background: url(../img/sprites/sniper/Dead/sniper_dead_1.png);background-size: contain;  background-repeat: no-repeat;}
   100%{background: url(../img/sprites/sniper/Dead/sniper_dead_2.png);background-size: contain;  background-repeat: no-repeat;}
-}
-
-#pIA{
-  width: 100px;
 }

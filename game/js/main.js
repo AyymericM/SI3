@@ -29,7 +29,7 @@ player1.init({
 })
 player2.init({
   id: 2,
-  hero: 'sniper'
+  hero: 'soldier'
 })
 // artificial.init({
 //   id: 'IA',
