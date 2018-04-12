@@ -33,12 +33,15 @@ export default class Player extends Game {
 
     spawnPlayer() {
         const player = document.createElement('div')
+        const hitbox = document.createElement('div')
         player.classList.add('perso')
         player.classList.add(`${this.state.name}-static`)
         player.setAttribute('id',`p${this.state.id}`)
         player.setAttribute('data-champ', this.state.champ.name)
         player.setAttribute('data-pv', this.state.champ.pv)
+        hitbox.classList.add(`${this.state.name}-hitbox`)
         root.appendChild(player)
+        player.appendChild(hitbox)
         this.setPlayerPos()
     }
 
@@ -219,11 +222,14 @@ export default class Player extends Game {
     }
 
     checkEnds(){
-        if (this.state.posX < 0) {
-            this.state.posX = 0
+        let hitbox = document.querySelector(`.${this.state.name}-hitbox`)
+        console.log(this.state.posX + hitbox.offsetLeft);
+        if (this.state.posX+hitbox.offsetLeft < 0) {
+            this.state.posX = -hitbox.offsetLeft
+            console.log(this.state.posX)
         }
-        if (this.state.posX>root.clientWidth-document.querySelector('.perso').offsetWidth) {
-            this.state.posX=root.clientWidth-document.querySelector('.perso').offsetWidth
+        if (this.state.posX+hitbox.offsetLeft>root.clientWidth-hitbox.offsetWidth) {
+            this.state.posX=root.clientWidth-hitbox.offsetWidth-hitbox.offsetLeft
         }
     }
 
@@ -294,7 +300,7 @@ export default class Player extends Game {
             && bullet.offsetTop < (player1.offsetTop + player1.offsetWidth)
             && (bullet.dataset.author == 2 || bullet.dataset.author == 'IA')) {
                 console.log(bullet.dataset.author);
-                
+
                 if (bullet.dataset.hit == 0) {
                     this.setDamage(player1, dmg)
                     document.getElementById(bullet.id).setAttribute('data-hit', 1)
