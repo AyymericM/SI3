@@ -215,7 +215,7 @@ export default class Player extends Game {
         element.style.transform = 'scaleX(1)'
     }
 
-    // check for 
+    // check for
     checkPlatformX(){
         let els = {
             hitbox: document.querySelector('.platformHitBox'),
@@ -240,7 +240,7 @@ export default class Player extends Game {
         }
     }
 
-    // 
+    //
     moveLeft() {
         let player = document.querySelector(`#p${this.state.id}`)
         let staticChar = document.querySelector(`.${this.state.name}-static`)
@@ -284,12 +284,8 @@ export default class Player extends Game {
         }
         player.classList.add(`${this.state.name}-static`)
     }
-<<<<<<< HEAD
-    
-=======
 
     // check colision between the player and the projectile
->>>>>>> f6004bc075badf710912e64da2b4673c8a18fe15
     checkColision() {
         // get players and bullets on the DOM
         for (let i = 0; i < this.state.bullets.length; i++) {
