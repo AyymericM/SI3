@@ -82,10 +82,7 @@ export default class Game {
     gameOver() {
         sound.gameOver()
         ui.displayGameOver()
-        this.gameOver = true
-        this.isJumping = false
-        this.isShooting = false
-        this.isMovingRight = false
-        this.isMovingLeft = false
+        this.state.gameOver = true
+        console.log(this.state.name + this.state.gameOver)
     }
 }

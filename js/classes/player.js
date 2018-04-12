@@ -278,9 +278,11 @@ export default class Player extends Game {
         for (let i = 0; i < this.state.bullets.length; i++) {
             let player1 = document.querySelector('#p1')
             let player2 = document.querySelector('#p2')
+            let artificial = document.querySelector('#pIA')
             let dmg = parseInt(this.state.bullets[i].dataset.dmg)
             let rightSideP1 = parseInt(player1.style.left) + parseInt(player1.offsetWidth)
             let rightSideP2 = parseInt(player2.style.left) + parseInt(player2.offsetWidth)
+            let rightSideIA = parseInt(artificial.style.left) + parseInt(artificial.offsetWidth)
             let bullet = this.state.bullets[i]
 
             if (parseInt(bullet.style.left) > parseInt(player1.style.left)
@@ -304,6 +306,18 @@ export default class Player extends Game {
                     document.getElementById(bullet.id).setAttribute('data-hit', 1)
                 }
             }
+
+            if (parseInt(bullet.style.left) > parseInt(artificial.style.left)
+            && parseInt(bullet.style.left) < rightSideIA
+            && bullet.offsetTop > artificial.offsetTop
+            && bullet.offsetTop < (artificial.offsetTop + artificial.offsetWidth)
+            && bullet.dataset.author == 1) {
+                if (bullet.dataset.hit == 0) {
+                    this.setDamage(artificial, dmg)
+                    document.getElementById(bullet.id).setAttribute('data-hit', 1)
+                }
+            }
+
         }
     }
 

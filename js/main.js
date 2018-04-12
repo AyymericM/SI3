@@ -55,24 +55,31 @@ Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
 
 window.addEventListener('keypress',(e)=>{press(e)})
 function press(e){
-  if (e.keyCode === keys[os()].press.JUMP1  /* z */ && !player1.state.inAir) {
-    player1.state.isJumping = true
+  if (!player2.state.gameOver) {
+    if (e.keyCode === keys[os()].press.JUMP1  /* z */ && !player1.state.inAir) {
+      player1.state.isJumping = true
+    }
+    if (e.keyCode === keys[os()].press.FIRE1  /* g */) {
+      player1.state.isShooting = true
+    }
+    if (e.keyCode === keys[os()].press.BALL1 /* h */&& magicBall.ball.ownedByP1) {
+      player1.state.usingBall = true
+    }
   }
-  if (e.keyCode === keys[os()].press.FIRE1  /* g */) {
-    player1.state.isShooting = true
+
+  if (!player1.state.gameOver) {
+    if (e.keyCode === keys[os()].press.JUMP2 /* : */ && !player2.state.inAir) {
+      player2.state.isJumping = true
+    }
+    if (e.keyCode === keys[os()].press.FIRE2 /* ! */) {
+      player2.state.isShooting = true
+    }
+
+    if (e.keyCode === keys[os()].press.BALL2 /* ; */&& magicBall.ball.ownedByP2) {
+      player2.state.usingBall = true
+    }
   }
-  if (e.keyCode === keys[os()].press.JUMP2 /* : */ && !player2.state.inAir) {
-    player2.state.isJumping = true
-  }
-  if (e.keyCode === keys[os()].press.FIRE2 /* ! */) {
-    player2.state.isShooting = true
-  }
-  if (e.keyCode === keys[os()].press.BALL1 /* h */&& magicBall.ball.ownedByP1) {
-    player1.state.usingBall = true
-  }
-  if (e.keyCode === keys[os()].press.BALL2 /* ; */&& magicBall.ball.ownedByP2) {
-    player2.state.usingBall = true
-  }
+
 }
 
 window.addEventListener('keydown',(e)=>{hold(e)})
