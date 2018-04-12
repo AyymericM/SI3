@@ -5,12 +5,14 @@ const powerUp = new Audio('./sounds/powerUp.mp3')
 const shoot = new Audio('./sounds/shoot.mp3')
 
 export default class Sound {
+    // sound variables
     constructor() {
         this.options= {
             muted: false
         }
     }
 
+    // mute music
     muteSound() {        
         this.options.muted = !this.options.muted
         if (this.options.muted === true) {
@@ -20,6 +22,7 @@ export default class Sound {
         }
     }
 
+    // start ambiant music
     playAmbiant() {        
         if (!this.options.muted) {
             ambiant.addEventListener('ended', function() {
@@ -30,11 +33,13 @@ export default class Sound {
         }
     }
     
+    // stop ambiant music
     stopAmbiant() {
         ambiant.removeEventListener('ended', () => {})
         ambiant.pause()
     }
     
+    // gameover music and stop ambiant
     gameOver() {
         if (!this.options.muted) {
             this.stopAmbiant()
@@ -42,6 +47,7 @@ export default class Sound {
         }
     }
     
+    // jump sound
     jump() {
         if (!this.options.muted) {
             jump.currentTime = 0
@@ -49,6 +55,7 @@ export default class Sound {
         }
     }
     
+    // power up sound
     powerUp() {
         if (!this.options.muted) {
             powerUp.currentTime = 0
@@ -56,6 +63,7 @@ export default class Sound {
         }
     }
     
+    // shooting sound
     shoot() {
         if (!this.options.muted) {
             shoot.currentTime = 0

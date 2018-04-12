@@ -6,6 +6,7 @@ const sound = new Sound()
 const ui = new Ui()
 
 export default class Game {
+    // game data and variables
     constructor() {
         this.state = {
             name: undefined,
@@ -50,6 +51,7 @@ export default class Game {
         }
     }
 
+    // game initialization
     init() {
         this.createPlatform()
         sound.playAmbiant()
@@ -57,6 +59,7 @@ export default class Game {
         root.setAttribute('style', `background-image: url(./img/maps/${this.state.map}.png);`)
     }
 
+    // platform creation
     createPlatform() {
         const platform = document.createElement('div')
         const platformBody = document.createElement('div')
@@ -71,18 +74,7 @@ export default class Game {
         root.appendChild(platformBody)
     }
 
-    selectChamp(champ) {
-        this.state.champ = ChampStats[champ]
-    }
-
-    selectMap(map) {
-        this.state.map = map
-    }
-
-    showSelectMenu() {
-        // TODO: Afficher le menu de départ
-    }
-
+    // trigger game over
     gameOver() {
         sound.gameOver()
         ui.displayGameOver()

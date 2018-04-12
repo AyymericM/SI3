@@ -4,7 +4,7 @@ import Game from './game.js'
 import MagicBall from './magicBall.js'
 import Ui from './ui.js'
 
-
+// classes instanciation
 const root = document.getElementById('root')
 const game = new Game()
 const sound = new Sound()
@@ -13,10 +13,12 @@ const ball = new MagicBall()
 const ui = new Ui()
 
 export default class Player extends Game {
+    // loading game functions and variables
     constructor(Game) {
         super(Game)
     }
 
+    // player initialization
     init(conf) {
         this.state.posX = parseInt(window.innerWidth / 4)
         this.state.posY = 0
@@ -25,12 +27,14 @@ export default class Player extends Game {
         this.state.champ = ChampStats[conf.hero]
         this.spawnPlayer()
 
+        // player collision detection (constant refresh)
         setInterval(() => {
             this.checkColision()
         }, 10)
         ui.displayInfos(conf.id)
     }
 
+    // spawn the player on the map
     spawnPlayer() {
         const player = document.createElement('div')
         const hitbox = document.createElement('div')
@@ -45,11 +49,13 @@ export default class Player extends Game {
         this.setPlayerPos()
     }
 
+    // set the player position
     setPlayerPos(player = document.querySelector(`#p${this.state.id}`)) {
         player.style.bottom = this.state.posY + 'px'
         player.style.left = this.state.posX + 'px'
     }
 
+    // create a new projectile
     getNewBullet() {
         const newBullet = document.createElement('div')
         if (this.state.bulletNumber%7==0 && this.state.bulletNumber!=0) {
@@ -77,16 +83,13 @@ export default class Player extends Game {
         return document.querySelector(`#b${this.state.bulletNumber}`)
     }
 
-    getAccuracy() {
-        return (Math.floor(Math.random() * 10) * this.state.champ.atAccuracy) - 5
-    }
-
+    // set projectile movements
     setBulletMovement(element) {
         let posXBullet = parseInt(element.offsetLeft)
         let posYBullet = parseInt(element.offsetTop)
         let bdir = parseInt(element.dataset.dir)
-        let accuracy = this.getAccuracy()
 
+        // projectile position refresh
         let timer = setInterval(() => {
             if (bdir === 1) {
                 posXBullet += 10
@@ -94,6 +97,7 @@ export default class Player extends Game {
                 posXBullet -= 10
             }
 
+            // check for projectile out of screen
             if (posXBullet > window.innerWidth - element.offsetWidth || posXBullet < 0) {
 
                 let index = this.state.bullets.indexOf(element);
@@ -109,6 +113,7 @@ export default class Player extends Game {
         }, 10)
     }
 
+    // shooting action
     shoot(player) {
         if (this.state.canShoot) {
             let player = document.querySelector(`#p${this.state.id}`)
@@ -135,6 +140,7 @@ export default class Player extends Game {
         }
     }
 
+    // check Y-axis for the platform and her hitboxes
     checkPlatformY(){
         let els = {
             hitbox: document.querySelector('.platformHitBox'),
@@ -152,6 +158,7 @@ export default class Player extends Game {
         }
     }
 
+    // set player in air
     jumpAscend(){
         this.state.inAir = true
         this.state.jump = setInterval(()=>{
@@ -208,6 +215,7 @@ export default class Player extends Game {
         element.style.transform = 'scaleX(1)'
     }
 
+    // check for 
     checkPlatformX(){
         let els = {
             hitbox: document.querySelector('.platformHitBox'),
@@ -221,6 +229,7 @@ export default class Player extends Game {
         }
     }
 
+    // check for screen edge colision
     checkEnds(){
         let hitbox = document.querySelector(`.${this.state.name}-hitbox`)
         if (this.state.posX+hitbox.offsetLeft < 0) {
@@ -231,6 +240,7 @@ export default class Player extends Game {
         }
     }
 
+    // 
     moveLeft() {
         let player = document.querySelector(`#p${this.state.id}`)
         let staticChar = document.querySelector(`.${this.state.name}-static`)
@@ -247,6 +257,7 @@ export default class Player extends Game {
         this.setPlayerPos()
     }
 
+    // move the player to the right
     moveRight(){
         let player = document.querySelector(`#p${this.state.id}`)
         let staticChar = document.querySelector(`.${this.state.name}-static`)
@@ -264,6 +275,7 @@ export default class Player extends Game {
 
     }
 
+    // stop the player
     static(){
         let player = document.querySelector(`#p${this.state.id}`)
         let movingChar = document.querySelector(`.${this.state.name}-move`)
@@ -273,7 +285,9 @@ export default class Player extends Game {
         player.classList.add(`${this.state.name}-static`)
     }
 
+    // check colision between the player and the projectile
     checkColision() {
+        // get players and bullets on the DOM
         for (let i = 0; i < this.state.bullets.length; i++) {
             let player1 = document.querySelector('#p1')
             let player2 = document.querySelector('#p2')
@@ -289,7 +303,7 @@ export default class Player extends Game {
                rightSideIA = parseInt(artificial.style.left) + parseInt(artificial.offsetWidth)
             }
 
-
+            // check for collsions by coordinates
             let bullet = this.state.bullets[i]
 
             if (parseInt(bullet.style.left) > parseInt(player1.style.left)
@@ -332,6 +346,7 @@ export default class Player extends Game {
         }
     }
 
+    // set damage to player
     setDamage(el, dmg) {
         let newPV = parseInt(el.dataset.pv)
         newPV -= dmg
@@ -345,6 +360,7 @@ export default class Player extends Game {
         }
     }
 
+    // use the bonus
     useMagicBall(){
         let player = document.querySelector(`#p${this.state.id}`)
         let otherPlayer
@@ -359,6 +375,8 @@ export default class Player extends Game {
         let ball = document.querySelector('.magicBall')
         if (ball != null) {
           let eventRand = Math.floor(Math.random()*3)
+          sound.powerUp()
+          // determine which bonus to use
           if (eventRand === 2) {
               /***** SWITCH DES PV ****/
               let switchImg = document.querySelector('#switch')
@@ -396,6 +414,7 @@ export default class Player extends Game {
 
     }
 
+    // remove the bonus when touched
     removeBall(){
         let ball = document.querySelector('.magicBall')
         if (ball != null) {
