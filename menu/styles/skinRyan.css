@@ -1,0 +1,80 @@
+@font-face {
+font-family: 'ARCADE';
+src: url('../font/ARCADE_R.TTF')
+}
+/* BACKGROUND */
+/* BACKGROUND */
+*{
+  margin: auto 0;
+  font-family:'ARCADE';
+  color: white;
+}
+.background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.Skin{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 9.375rem;
+  font-size: 0.8125rem;
+}
+
+/* SKIN RYAN IMG */
+/* SKIN RYAN IMG */
+
+.container{
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3.75rem;
+}
+
+.Ryan{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.Ryan img{
+  display: flex;
+  height: 25.125rem;
+  transition: all 0.2s ease-in;
+}
+
+.Ryan img:hover{
+  transform: scale(1.1);
+}
+
+/* SKIN RYAN TEXTE */
+/* SKIN RYAN TEXTE */
+
+.Ryan h1{
+  position: absolute;
+  top: 105%;
+  left: 17.8%;
+}
+
+.Ryan:last-of-type h1{
+  position: absolute;
+  left: 67%;
+  top: 105%;
+
+}
+
+/* RETURN BUTTON */
+/* RETURN BUTTON */
+
+h2{
+  position: absolute;
+  top: 9%;
+  left: 5%;
+  transition: all 0.2s ease-in;
+  }
+
+  h2:hover{
+  transform: scale(1.1);
+  }

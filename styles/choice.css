@@ -1,0 +1,9 @@
+:root{
+  --firstColor: green; /*Couleur du header */
+  --firstFont: Arial; /* Police du menu header et des titres importants*/
+  --colorButton: purple; /*Couleur des boutons*/
+  --secondFont: Times;
+  --secondColor :grey;
+  --firstColorFont:white;
+  --secondeColorFont:black;
+}
