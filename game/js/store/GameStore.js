@@ -1,3 +1,5 @@
+//All keyBinds to make it easier for main.js
+
 const keys = {
     mac: {
         press: {
@@ -55,7 +57,7 @@ const keys = {
     }
 }
 
-
+// Check userAgent in case of different keybinds
 function os() {
     if (navigator.userAgent.toString().includes('Macintosh')) {
         return 'mac'

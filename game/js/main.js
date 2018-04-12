@@ -2,6 +2,8 @@ import { Player, Game, MagicBall, Sound, Ui, Artificial } from './classes/index.
 import { keys, os } from './store/GameStore.js'
 // Player movement and shooting
 
+
+//CReate all objects
 const player1 = new Player()
 const player2 = new Player()
 const game = new Game()
@@ -10,6 +12,8 @@ const artificial = new Artificial()
 const sound = new Sound()
 const ui = new Ui()
 
+
+//Mute music, switch images
 document.getElementById('btnMute').addEventListener('click', function() {
   sound.muteSound()
   if (sound.options.muted) {
@@ -23,6 +27,8 @@ document.getElementById('btnMute').addEventListener('click', function() {
   }
 })
 
+
+//Get stored value to initialize characters
 if (localStorage.getItem('gameData')) {
   const gameData = JSON.parse(localStorage.getItem('gameData'))
   game.state.map = gameData.map
@@ -48,6 +54,7 @@ if (localStorage.getItem('gameData')) {
   }
 }
 
+// get random player for player 2
 function getRandomPlayer() {
   const rand = Math.floor(Math.random() * 3)
   switch (rand) {
@@ -66,10 +73,13 @@ function getRandomPlayer() {
   }
 }
 
+//initialize ui, ball
 game.init()
 magicBall.init()
 ui.init()
 
+
+//get elements from DOM
 const player1DOM = document.querySelector('#p1')
 const player2DOM = document.querySelector('#p2')
 const artificialDOM = document.querySelector('#pIA')
@@ -82,7 +92,7 @@ Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
 
 
 **********/
-
+// quick fix
 if (player2DOM == null) {
   player2.state.gameOver = true
 }
@@ -92,10 +102,10 @@ if (artificialDOM == null) {
 }
 
 
-
+//Listen to keypress
 window.addEventListener('keypress',(e)=>{press(e)})
 function press(e){
-  if (!player2.state.gameOver || !artificial.state.gameOver) {
+  if (!player2.state.gameOver || !artificial.state.gameOver) { // check if game over
     if (e.keyCode === keys[os()].press.JUMP1  /* z */ && !player1.state.inAir) {
       player1.state.isJumping = true
     }
@@ -107,7 +117,7 @@ function press(e){
     }
   }
 
-  if (!player1.state.gameOver && player2DOM != null) {
+  if (!player1.state.gameOver && player2DOM != null) { //check if game over and if p2 exists
     if (e.keyCode === keys[os()].press.JUMP2 /* : */ && !player2.state.inAir) {
       player2.state.isJumping = true
     }
@@ -122,7 +132,7 @@ function press(e){
 
 }
 
-window.addEventListener('keydown',(e)=>{hold(e)})
+window.addEventListener('keydown',(e)=>{hold(e)}) //Moving
 function hold(e){
   if (e.keyCode === keys[os()].down.RIGHT1 /* d */){
     player1.state.isMovingRight = true
@@ -131,10 +141,10 @@ function hold(e){
     player1.state.isMovingLeft = true
   }
   if (player2DOM != null) {
-    if (e.keyCode === keys[os()].down.RIGHT2 /* fleche gauche */){
+    if (e.keyCode === keys[os()].down.RIGHT2 /* m */){
       player2.state.isMovingRight = true
     }
-    if (e.keyCode === keys[os()].down.LEFT2 /* fleche droite */){
+    if (e.keyCode === keys[os()].down.LEFT2 /* k */){
       player2.state.isMovingLeft = true
     }
   }
@@ -152,26 +162,26 @@ function release(e){
   if (e.keyCode === keys[os()].up.JUMP1 /* z */) {
     player1.state.isJumping = false
   }
-  if (e.keyCode === keys[os()].up.FIRE1  /* g */) {
+  if (e.keyCode === keys[os()].up.FIRE1  /* e */) {
     player1.state.isShooting = false
   }
-  if (e.keyCode === keys[os()].up.BALL1 /* h */) {
+  if (e.keyCode === keys[os()].up.BALL1 /* a */) {
     player1.state.usingBall = false
   }
   if (player2DOM != null) {
-    if (e.keyCode === keys[os()].up.RIGHT2 /* fleche droite */){
+    if (e.keyCode === keys[os()].up.RIGHT2 /* m */){
       player2.state.isMovingRight = false
     }
-    if (e.keyCode === keys[os()].up.LEFT2 /* fleche gauche */){
+    if (e.keyCode === keys[os()].up.LEFT2 /* k */){
       player2.state.isMovingLeft = false
     }
-    if (e.keyCode === keys[os()].up.JUMP2  /* : */) {
+    if (e.keyCode === keys[os()].up.JUMP2  /* o */) {
       player2.state.isJumping = false
     }
-    if (e.keyCode === keys[os()].up.FIRE2  /* ! */) {
+    if (e.keyCode === keys[os()].up.FIRE2  /* i */) {
       player2.state.isShooting = false
     }
-    if (e.keyCode === keys[os()].up.BALL2 /* ; */) {
+    if (e.keyCode === keys[os()].up.BALL2 /* p */) {
       player2.state.usingBall = false
     }
   }
@@ -241,4 +251,4 @@ function gameLoop(){
 
   window.requestAnimationFrame(gameLoop)
 }
-window.requestAnimationFrame(gameLoop)
+window.requestAnimationFrame(gameLoop) // GOD

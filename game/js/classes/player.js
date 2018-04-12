@@ -272,7 +272,7 @@ export default class Player extends Game {
         }
         player.classList.add(`${this.state.name}-static`)
     }
-
+    
     checkColision() {
         for (let i = 0; i < this.state.bullets.length; i++) {
             let player1 = document.querySelector('#p1')

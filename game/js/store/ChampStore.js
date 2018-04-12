@@ -1,3 +1,5 @@
+// ALL CHAMPION STATS
+
 const ChampStats = {
     "tank": {
         name: "tank",
