@@ -1,13 +1,126 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>EpicFight</title>
-</head>
-<body>
-    <a href="./menu/">Play</a>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Epic Fight</title>
+    <meta name="description" content="Voici un petit descriptif de ma page" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div id="fullPage">
+      <header>
+        <img src="img/logo.png" alt="logo"/>
+        <nav>
+          <ul>
+            <li><a href="#" class="underline">Accueil</a></li>
+            <li><a href="about.html">A propos</a></li>
+          </ul>
+        </nav>
+        <a href="menu/index.html" class="playButton">Jouer</a>
+      </header>
+      <div class="game">
+        <a href="menu/index.html" class="gameImage"><img src="img/background.png" alt="écran de jeu" /></a>
+        <a href="menu/index.html" class="gamePlay"><img src="img/play.png" alt="écran de jeu" class="play"/></a>
+        <div class="socialNetworks">
+          <ul>
+            <li><a href="#"><img src="img/reseauxSociaux/logoFacebook.png" alt="icone reseaux" /></a></li>
+            <li><a href="#"><img src="img/reseauxSociaux/logoTwitter.png" alt="icone reseaux"/></a></li>
+            <li><a href="#"><img src="img/reseauxSociaux/logoInsta.png" alt="icone reseaux"/></a></li>
+            <li><a href="#"><img src="img/reseauxSociaux/logoGoogle.png" alt="icone reseaux"/></a></li>
+          </ul>
+        </div>
+        <a href="#fullPage2"><img src="img/scroll/scrollDown.png" alt="fleche vers le bas" class="scroll" /></a>
+      </div>
+    </div>
+    <div id="fullPage2">
+      <main>
+        <div class="newPlayer">
+          <p>Vous êtes nouveau/nouvelle sur le jeu ? </p>
+          <a href="about.html" class="playButton">Voir l'aide</a>
+        </div>
+        <div class="description">
+          <p>Description des personnages</p>
+          <div>
+            <img src="img/description/altere.png" alt="image personnage"/>
+            <p>Barik</p>
+            <p>
+              Barik est un personnage de type tank qui n’a pas énormément de vitesse mais il possède beaucoup de vie et de bon dégats.
+            </p>
+          </div>
+          <div>
+            <img src="img/description/shuriken.png" alt="image personnage"/>
+            <p>Sky</p>
+            <p>
+              Sky est un personnage qui est très rapide dans ses déplacements mais également dans ses attaques. Le gros défault de Sky est son manque de vie.
+            </p>
+          </div>
+          <div>
+            <img src="img/description/arme.png" alt="image personnage"/>
+            <p>Ryan</p>
+            <p>
+              Ryan est un soldat redoutable et très complet.
+            </p>
+          </div>
+          <div>
+            <img src="img/description/arc.png" alt="image personnage"/>
+            <p>Wolf</p>
+            <p>
+              Wolf est un sniper, elle possède une vie et une vittese moyenne mais à de gros dégats.
+            </p>
+          </div>
+        </div>
+      </main>
+      <a href="#fullPage3"><img src="img/scroll/scrollDown.png" alt="fleche vers le bas" class="scroll" /></a>
+    </div>
+    <div id="fullPage3">
+      <div class="articleSpace">
+        <p>Ils parlent de nous</p>
+        <p>"Le jeu officiel des réglements de compte !!"</p>
+        <div class="displayImgArticle">
+          <div>
+            <img src="img/article/portraitS.png" alt="image representatif" />
+            <p>Squeezie</p>
+          </div>
+          <div>
+            <img src="img/article/portraitW.png" alt="image representatif" />
+            <p>Wankil Studio</p>
+          </div>
+          <div>
+            <img src="img/article/portraitP.png" alt="image representatif" />
+            <p>Le Parisien</p>
+          </div>
+        </div>
+        <a href="#" class="playButton">Articles</a>
+      </div>
+      <footer>
+        <p>A ne pas manquer</p>
+        <div class="newSkin">
+          <a><img src="img/footer/newSkin.png" alt="skins"/></a>
+          <a>Découvrez les nouveaux skins !</a>
+        </div>
+        <div class="newDLC">
+          <a><img src="img/map/mapIsland.png" alt="dlc"/></a>
+          <a>Le prochain DLC !</a>
+        </div>
+        <div class="links">
+          <a href="about.html #fullPage2">Epic Fight</a>
+          <a href="about.html #fullPage4">Contact</a>
+        </div>
+        <div class="follow">
+          <p>Nous suivre</p>
+          <div class="socialNetworks">
+            <ul>
+              <li><a href="#"><img src="img/reseauxSociaux/logoFacebookw.png" alt="icone reseaux" /></a></li>
+              <li><a href="#"><img src="img/reseauxSociaux/logoTwitterw.png" alt="icone reseaux"/></a></li>
+              <li><a href="#"><img src="img/reseauxSociaux/logoInstaw.png" alt="icone reseaux"/></a></li>
+              <li><a href="#"><img src="img/reseauxSociaux/logoGooglew.png" alt="icone reseaux"/></a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <a href="#fullPage"><img src="img/scroll/scrollUp.png" alt="fleche vers le haut" class="scroll" /></a>
+    </div>
+    <script src="script/app.js"></script>
+  </body>
 </html>

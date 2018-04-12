@@ -53,11 +53,8 @@ export default class Game {
     init() {
         this.createPlatform()
         sound.playAmbiant()
-        console.log(`url(./img/maps/${this.state.map}.png);`);
         
-        root.setAttribute('style', `background-image: url(/game/img/maps/${this.state.map}.png);`)
-        console.log(root.style);
-        
+        root.setAttribute('style', `background-image: url(./img/maps/${this.state.map}.png);`)
     }
 
     createPlatform() {
@@ -67,8 +64,8 @@ export default class Game {
         platform.classList.add('platform')
         platformBody.classList.add('platformBody')
         hitbox.classList.add('platformHitBox')
-        platform.setAttribute('style', `background-image: url(/game/img/sprites/${this.state.map}_base.png);`)
-        platformBody.setAttribute('style', `background-image: url(/game/img/sprites/${this.state.map}_forgrnd.png);`)
+        platform.setAttribute('style', `background-image: url(./img/sprites/${this.state.map}_base.png);`)
+        platformBody.setAttribute('style', `background-image: url(./img/sprites/${this.state.map}_forgrnd.png);`)
         root.appendChild(platform)
         root.appendChild(hitbox)
         root.appendChild(platformBody)
@@ -90,6 +87,5 @@ export default class Game {
         sound.gameOver()
         ui.displayGameOver()
         this.state.gameOver = true
-        console.log(this.state.name + this.state.gameOver)
     }
 }
