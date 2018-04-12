@@ -98,12 +98,13 @@ export default class Player extends Game {
             }
 
             if (posXBullet > window.innerWidth - element.offsetWidth || posXBullet < 0) {
-                root.removeChild(element)
+
                 let index = this.state.bullets.indexOf(element);
                 if (index > -1) {
                     this.state.bullets.splice(index, 1);
                 }
                 clearInterval(timer)
+                root.removeChild(element)
             } else {
                 element.style.left = posXBullet + 'px'
                 element.style.top = (posYBullet - 10) + 'px'
@@ -281,42 +282,60 @@ export default class Player extends Game {
             let artificial = document.querySelector('#pIA')
             let dmg = parseInt(this.state.bullets[i].dataset.dmg)
             let rightSideP1 = parseInt(player1.style.left) + parseInt(player1.offsetWidth)
-            let rightSideP2 = parseInt(player2.style.left) + parseInt(player2.offsetWidth)
-            let rightSideIA = parseInt(artificial.style.left) + parseInt(artificial.offsetWidth)
+            let rightSideP2
+            let rightSideIA
+            if (player2 != null) {
+              rightSideP2 = parseInt(player2.style.left) + parseInt(player2.offsetWidth)
+            }
+            if (artificial != null) {
+               rightSideIA = parseInt(artificial.style.left) + parseInt(artificial.offsetWidth)
+            }
+
+
             let bullet = this.state.bullets[i]
 
             if (parseInt(bullet.style.left) > parseInt(player1.style.left)
             && parseInt(bullet.style.left) < rightSideP1
             && bullet.offsetTop > player1.offsetTop
             && bullet.offsetTop < (player1.offsetTop + player1.offsetWidth)
-            && bullet.dataset.author == 2) {
+            && (bullet.dataset.author == 2 || 'IA')) {
                 if (bullet.dataset.hit == 0) {
                     this.setDamage(player1, dmg)
                     document.getElementById(bullet.id).setAttribute('data-hit', 1)
                 }
             }
 
-            if (parseInt(bullet.style.left) > parseInt(player2.style.left)
-            && parseInt(bullet.style.left) < rightSideP2
-            && bullet.offsetTop > player2.offsetTop
-            && bullet.offsetTop < (player2.offsetTop + player2.offsetWidth)
-            && bullet.dataset.author == 1) {
-                if (bullet.dataset.hit == 0) {
-                    this.setDamage(player2, dmg)
-                    document.getElementById(bullet.id).setAttribute('data-hit', 1)
-                }
+            if (player2 != null) {
+              if (parseInt(bullet.style.left) > parseInt(player2.style.left)
+              && parseInt(bullet.style.left) < rightSideP2
+              && bullet.offsetTop > player2.offsetTop
+              && bullet.offsetTop < (player2.offsetTop + player2.offsetWidth)
+              && bullet.dataset.author == 1) {
+                  if (bullet.dataset.hit == 0) {
+                      this.setDamage(player2, dmg)
+                      document.getElementById(bullet.id).setAttribute('data-hit', 1)
+                  }
+              }
             }
 
-            if (parseInt(bullet.style.left) > parseInt(artificial.style.left)
-            && parseInt(bullet.style.left) < rightSideIA
-            && bullet.offsetTop > artificial.offsetTop
-            && bullet.offsetTop < (artificial.offsetTop + artificial.offsetWidth)
-            && bullet.dataset.author == 1) {
-                if (bullet.dataset.hit == 0) {
-                    this.setDamage(artificial, dmg)
-                    document.getElementById(bullet.id).setAttribute('data-hit', 1)
-                }
+            if (artificial != null) {
+              console.log('triggerd')
+              if (parseInt(bullet.style.left) > parseInt(artificial.style.left)
+              && parseInt(bullet.style.left) < rightSideIA
+              && bullet.offsetTop > artificial.offsetTop
+              && bullet.offsetTop < (artificial.offsetTop + artificial.offsetWidth)
+              && bullet.dataset.author == 1) {
+                  if (bullet.dataset.hit == 0) {
+
+                      this.setDamage(artificial, dmg)
+                      document.getElementById(bullet.id).setAttribute('data-hit', 1)
+                  }
+              }
             }
+
+
+
+
 
         }
     }
@@ -337,8 +356,10 @@ export default class Player extends Game {
     useMagicBall(){
         let player = document.querySelector(`#p${this.state.id}`)
         let otherPlayer
+        let artificial
         if (this.state.id === 1) {
             otherPlayer = document.querySelector(`#p2`)
+            artificial = document.querySelector('#pIA')
         }
         else {
             otherPlayer = document.querySelector(`#p1`)
@@ -349,8 +370,15 @@ export default class Player extends Game {
           if (eventRand === 0) {
               /***** SWITCH DES PV ****/
               let temp = player.dataset.pv
-              player.setAttribute('data-pv',otherPlayer.dataset.pv)
-              otherPlayer.setAttribute('data-pv',temp)
+              if (otherPlayer != null) {
+                player.setAttribute('data-pv',otherPlayer.dataset.pv)
+                otherPlayer.setAttribute('data-pv',temp)
+              }
+              else if (artificial != null) {
+                player.setAttribute('data-pv',artificial.dataset.pv)
+                artificial.setAttribute('data-pv',temp)
+              }
+
           }
           else if (eventRand === 1) {
             /***** JOUEUR A 100% PV ****/
