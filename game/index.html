@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content="Jeu de combat contre un ami ou une IA...que le meilleur gagne !" />
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/ui.css" />
     <title>EpicFight</title>
@@ -12,24 +13,33 @@
 <body>
     <div id="root">
         <div id="menu">
-            <div id="btnMute">Couper la musique</div>
+            <div id="btnMute"></div>
         </div>
         <div id="ui">
             <div class="uiContainer">
-                <div id="p1name" class="uiChampName"></div>
                 <div class="uiChampPv">
+
                     <div id="p1pv" class="uiChampPvBar"></div>
+                    <span id='p1pvleft' class="pv-left"></span>
                 </div>
+                <div id="p1name" class="uiChampName"></div>
                 <div class="uiChampAbility"></div>
+                <div id="p1face"></div>
             </div>
+            <div id="vs"></div>
             <div id="gameOver">GAME OVER</div>
             <div class="uiContainer">
-                <div id="p2name" class="uiChampName"></div>
                 <div class="uiChampPv">
                     <div id="p2pv" class="uiChampPvBar"></div>
+                    <span id='p2pvleft' class="pv-left"></span>
                 </div>
+                <div id="p2name" class="uiChampName"></div>
                 <div class="uiChampAbility"></div>
+                <div id="p2face"></div>
             </div>
+        </div>
+        <div id='switch'>
+
         </div>
     </div>
     <script src="./js/anime.min.js"></script>

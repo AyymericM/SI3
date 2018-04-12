@@ -13,9 +13,13 @@ const ui = new Ui()
 document.getElementById('btnMute').addEventListener('click', function() {
   sound.muteSound()
   if (sound.options.muted) {
-    this.innerText = "Activer la musique"
+    document.getElementById('btnMute').style.background = 'url(./img/ui/soundoff_icon.png)'
+    document.getElementById('btnMute').style.backgroundSize = 'contain'
+    document.getElementById('btnMute').style.backgroundRepeat = 'no-repeat'
   } else {
-    this.innerText = "Couper la musique"
+    document.getElementById('btnMute').style.background = 'url(./img/ui/soundon_icon.png)'
+    document.getElementById('btnMute').style.backgroundSize = 'contain'
+    document.getElementById('btnMute').style.backgroundRepeat = 'no-repeat'
   }
 })
 
@@ -23,15 +27,15 @@ player1.init({
   id: 1,
   hero: 'tank'
 })
-// player2.init({
-//   id: 2,
-//   hero: 'flash'
-// })
-artificial.init({
-  id: 'IA',
-  hero: 'soldier'
+player2.init({
+  id: 2,
+  hero: 'sniper'
 })
-artificial.launch()
+// artificial.init({
+//   id: 'IA',
+//   hero: 'soldier'
+// })
+// artificial.launch()
 
 
 game.init()
@@ -50,6 +54,14 @@ Joueur 2 : Gauche-Droite, saut avec ":", attaque avec "!"
 
 
 **********/
+
+if (player2DOM == null) {
+  player2.state.gameOver = true
+}
+
+if (artificialDOM == null) {
+  artificial.state.gameOver = true
+}
 
 
 

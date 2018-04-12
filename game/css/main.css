@@ -27,7 +27,6 @@ tankhtml, body {
 
 .bullet{
   position: absolute;
-  background: url(../img/sprites/fireball.gif);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -76,7 +75,9 @@ tankhtml, body {
 }
 
 .magicBall{
-  background: red;
+  background: url(../img/ui/coin.png);
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 50px;
   height: 50px;
   border-radius: 100px;
@@ -164,6 +165,40 @@ tankhtml, body {
 
 .sniper-dead{
   animation: sniperDead .5s forwards;
+}
+
+.tank-projectile {
+  animation: tankProjectile .5s infinite;
+}
+
+.flash-projectile {
+  animation: flashProjectile .5s infinite;
+}
+
+.soldier-projectile {
+  background: url(../img/sprites/soldier/Projectile/soldier_projectile.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sniper-projectile{
+  background: url(../img/sprites/sniper/Projectile/sniper_projectile.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@keyframes tankProjectile {
+  0%{background: url(../img/sprites/tank/Projectile/tank_projectile_0.png);background-size: contain;  background-repeat: no-repeat;}
+  25%{background: url(../img/sprites/tank/Projectile/tank_projectile_1.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/tank/Projectile/tank_projectile_2.png);background-size: contain;  background-repeat: no-repeat;}
+  75%{background: url(../img/sprites/tank/Projectile/tank_projectile_3.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/tank/Projectile/tank_projectile_0.png);background-size: contain;  background-repeat: no-repeat;}
+}
+
+@keyframes flashProjectile {
+  0%{background: url(../img/sprites/flash/Projectile/flash_projectile_0.png);background-size: contain;  background-repeat: no-repeat;}
+  50%{background: url(../img/sprites/flash/Projectile/flash_projectile_1.png);background-size: contain;  background-repeat: no-repeat;}
+  100%{background: url(../img/sprites/flash/Projectile/flash_projectile_0.png);background-size: contain;  background-repeat: no-repeat;}
 }
 
 @keyframes tankStatic {
@@ -295,5 +330,5 @@ tankhtml, body {
 }
 
 #pIA{
-  width: 100px; 
+  width: 100px;
 }

@@ -61,6 +61,7 @@ export default class Player extends Game {
         }
         else {
             newBullet.classList.add('bullet')
+            newBullet.classList.add(`${this.state.name}-projectile`)
         }
 
         newBullet.setAttribute('id',`b${this.state.bulletNumber}`)
@@ -367,8 +368,13 @@ export default class Player extends Game {
         let ball = document.querySelector('.magicBall')
         if (ball != null) {
           let eventRand = Math.floor(Math.random()*3)
-          if (eventRand === 0) {
+          if (eventRand === 2) {
               /***** SWITCH DES PV ****/
+              let switchImg = document.querySelector('#switch')
+              switchImg.classList.add('switch-anim')
+              setTimeout(()=>{
+                switchImg.classList.add('switch-anim-reverse')
+              },500)
               let temp = player.dataset.pv
               if (otherPlayer != null) {
                 player.setAttribute('data-pv',otherPlayer.dataset.pv)
@@ -387,7 +393,7 @@ export default class Player extends Game {
           }
           else {
             /**** JOUEUR A 20% PV *******/
-            this.setDamage(player,0.8*this.state.champ.pv)
+            this.setDamage(player,0.8*player.dataset.pv)
           }
 
           this.removeBall()
