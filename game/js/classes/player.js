@@ -17,20 +17,13 @@ export default class Player extends Game {
         super(Game)
     }
 
-    // TODO: Player stats and stuff (spawn ok)
     init(conf) {
         this.state.posX = parseInt(window.innerWidth / 4)
         this.state.posY = 0
         this.state.id = conf.id
         this.state.name = conf.hero
-        // DEV CODE: A SUPPRIMER ET REMPLACER PAR LE CODE COMMENTÉ QUAND L'UI SERA FAITE
         this.state.champ = ChampStats[conf.hero]
         this.spawnPlayer()
-        // if (this.state.champ !== undefined) {
-            //     this.spawnPlayer()
-            // } else {
-                //     game.showSelectMenu()
-                // }
 
         setInterval(() => {
             this.checkColision()
@@ -373,13 +366,17 @@ export default class Player extends Game {
                 switchImg.classList.add('switch-anim-reverse')
               },500)
               let temp = player.dataset.pv
+              let tempMax = player.dataset.champ
               if (otherPlayer != null) {
                 player.setAttribute('data-pv',otherPlayer.dataset.pv)
+                player.setAttribute('data-champ',otherPlayer.dataset.champ)
                 otherPlayer.setAttribute('data-pv',temp)
+                otherPlayer.setAttribute('data-champ',tempMax)
               }
               else if (artificial != null) {
                 player.setAttribute('data-pv',artificial.dataset.pv)
                 artificial.setAttribute('data-pv',temp)
+                artificial.setAttribute('data-champ',tempMax)
               }
 
           }
