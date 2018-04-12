@@ -23,6 +23,7 @@ export default class Ui {
         const p2face = document.querySelector('#p2face')
         const p1pvleft = document.querySelector('#p1pvleft')
         const p2pvleft = document.querySelector('#p2pvleft')
+        const playerover = document.querySelector('.p-over')
 
         p1face.style.background = `url(./img/ui/${p1.dataset.champ}_head.png)`
         p1face.style.backgroundSize = 'contain'
