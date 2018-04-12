@@ -125,20 +125,31 @@ function release(e){
   }
 }
 function gameLoop(){
-  let randomIA = Math.floor(Math.random()*10000)
-  if (randomIA < 200) {
-    artificial.shoot(artificialDOM)
-  }
-  if (randomIA > 9800) {
-    artificial.jump()
-  }
-  if (randomIA > 200 && randomIA<5000) {
-    artificial.moveLeft()
-  }
-  if (randomIA>5000 && randomIA<9800) {
+  // let randomIA = Math.floor(Math.random()*10000)
+  // if (randomIA < 200) {
+  //   artificial.shoot(artificialDOM)
+  // }
+  // if (randomIA > 9800) {
+  //   artificial.jump()
+  // }
+  // if (randomIA > 200 && randomIA<5000) {
+  //   artificial.moveLeft()
+  // }
+  // if (randomIA>5000 && randomIA<9800) {
+  //   artificial.moveRight()
+  // }
+  if (artificial.state.isMovingRight) {
     artificial.moveRight()
   }
-
+  if (artificial.state.isMovingLeft) {
+    artificial.moveLeft()
+  }
+  if (artificial.state.isShooting) {
+    artificial.shoot(artificialDOM)
+  }
+  if (artificial.state.isJumping) {
+    artificial.jump()
+  }
   if (player1.state.isMovingRight){
     player1.moveRight()
   }

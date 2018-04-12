@@ -10,6 +10,21 @@ export default class Artificial extends Player {
 
     launch() {
         setInterval(()=>{this.checkRealPlayer()},10)
+        setInterval(()=>{
+            this.state.isMovingRight = true
+            setTimeout(()=>{
+              this.state.isMovingRight = false
+              this.state.isMovingLeft = true
+            },2500)
+            setTimeout(()=>{this.state.isMovingLeft = false},5000)
+        },6000)
+                this.state.isShooting = false
+            },1000)
+        },3000)
+        setInterval(()=>{
+            this.state.isJumping = true
+            setTimeout(()=>{this.state.isJumping = false},10)
+        },5000)
     }
 
     checkRealPlayer(){
