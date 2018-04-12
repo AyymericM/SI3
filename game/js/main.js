@@ -33,7 +33,7 @@ if (localStorage.getItem('gameData')) {
     })
     player2.init({
       id: 2,
-      hero: 'sniper'
+      hero: getRandomPlayer()
     })
   } else {
     player1.init({
@@ -48,6 +48,23 @@ if (localStorage.getItem('gameData')) {
   }
 }
 
+function getRandomPlayer() {
+  const rand = Math.floor(Math.random() * 3)
+  switch (rand) {
+    case 0:
+      return 'sniper'
+      break;
+    case 1:
+      return 'tank'
+      break;
+    case 2:
+      return 'soldier'
+      break;
+    case 3:
+      return 'soldier'
+      break;
+  }
+}
 
 game.init()
 magicBall.init()
