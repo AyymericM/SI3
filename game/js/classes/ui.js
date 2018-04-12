@@ -4,13 +4,14 @@ const menu = document.getElementById('menu')
 const ui = document.getElementById('ui')
 
 export default class Ui {
-
+    // ui initialization
     init() {
         menu.style.visibility = 'visible'
         ui.style.visibility = 'visible'
         this.displayInfos()
     }
 
+    // game UI displays
     displayInfos() {
         const p1 = document.getElementById('p1')
         const p2 = document.getElementById('p2')
@@ -25,12 +26,12 @@ export default class Ui {
         const p2pvleft = document.querySelector('#p2pvleft')
         const playerover = document.querySelector('.p-over')
 
+        // game UI setting up
         p1face.style.background = `url(./img/ui/${p1.dataset.champ}_head.png)`
         p1face.style.backgroundSize = 'contain'
         p1face.style.backgroundRepeat = 'no-repeat'
 
-
-
+        // game UI constant refresh
         if (p2 != null) {
           p2face.style.background = `url(./img/ui/${p2.dataset.champ}_head.png)`
           p2face.style.backgroundSize = 'contain'
@@ -71,6 +72,7 @@ export default class Ui {
 
     }
 
+    // display game over screen
     displayGameOver() {
         const goverDOM = document.getElementById('gameOver')
         goverDOM.style.visibility = 'visible'
