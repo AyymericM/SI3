@@ -223,10 +223,8 @@ export default class Player extends Game {
 
     checkEnds(){
         let hitbox = document.querySelector(`.${this.state.name}-hitbox`)
-        console.log(this.state.posX + hitbox.offsetLeft);
         if (this.state.posX+hitbox.offsetLeft < 0) {
             this.state.posX = -hitbox.offsetLeft
-            console.log(this.state.posX)
         }
         if (this.state.posX+hitbox.offsetLeft>root.clientWidth-hitbox.offsetWidth) {
             this.state.posX=root.clientWidth-hitbox.offsetWidth-hitbox.offsetLeft
@@ -299,8 +297,6 @@ export default class Player extends Game {
             && bullet.offsetTop > player1.offsetTop
             && bullet.offsetTop < (player1.offsetTop + player1.offsetWidth)
             && (bullet.dataset.author == 2 || bullet.dataset.author == 'IA')) {
-                console.log(bullet.dataset.author);
-
                 if (bullet.dataset.hit == 0) {
                     this.setDamage(player1, dmg)
                     document.getElementById(bullet.id).setAttribute('data-hit', 1)
@@ -321,7 +317,6 @@ export default class Player extends Game {
             }
 
             if (artificial != null) {
-              console.log('triggerd')
               if (parseInt(bullet.style.left) > parseInt(artificial.style.left)
               && parseInt(bullet.style.left) < rightSideIA
               && bullet.offsetTop > artificial.offsetTop
@@ -405,7 +400,6 @@ export default class Player extends Game {
         let ball = document.querySelector('.magicBall')
         if (ball != null) {
           root.removeChild(ball)
-          console.log('removed ball');
           this.ball.ownedByP1 = false
           this.ball.ownedByP2 = false
         }

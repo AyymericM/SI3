@@ -1,0 +1,638 @@
+:root{
+  --firstColor: #34495e; /*Couleur du header */
+  --font: 'Avenir'; /* Police du menu header et des titres importants*/
+  --fontTitle:'Avenir_strong';
+  --colorButton: #e74c3c; /*Couleur des boutons*/
+  --secondColor :#ecf0f1;
+  --firstColorFont:white;
+  --secondeColorFont:black;
+}
+
+@font-face {
+font-family: 'Avenir';
+src: url('../fonts/AvenirLTStd-Roman.otf')
+}
+@font-face {
+font-family: 'Avenir_strong';
+src: url('../fonts/AvenirLTStd-Medium.otf')
+}
+
+*{
+  margin: auto 0;
+}
+
+
+#fullPage{
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+#fullPage2{
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+#fullPage3{
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+#fullPage4{
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+
+header{
+  width: 100%;
+  height: 16.25rem;
+  background-color: var(--firstColor);
+  overflow: visible;
+}
+
+/*-------------------Menu header------------*/
+
+header img{
+  position: absolute;
+  top: 1.2rem;
+  left: 9.375rem;
+  width: 7%;
+}
+
+nav ul{
+  display: flex;
+  position: absolute;
+  top: 1.875rem;
+  right: 20%;
+  justify-content: space-around;
+
+}
+
+nav ul li{
+  list-style: none;
+  padding: 0 1.9rem;
+  -webkit-transition: 0.5s ease;
+  margin-top: 10px;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: var(--firstColorFont);
+  font-family: var(--fontTitle);
+  font-size: 1.2em;
+  width: 40px;
+  padding-bottom: 10px;
+}
+
+
+nav ul li a:last-of-type:hover{
+  border-bottom: 3px solid var(--firstColorFont);
+}
+
+.underline{
+  border-bottom: 3px solid var(--firstColorFont);
+}
+
+.playButton{
+  position: absolute;
+  top:1.5rem;
+  right: 10%;
+  cursor: pointer;
+  background-color: var(--colorButton);
+  border-radius: 2.25rem;
+  font-size: 1.2em;
+  text-decoration: none;
+  font-family: var(--fontTitle);
+  color: var(--firstColorFont);
+  padding: 0.9375rem 1.875rem;
+
+}
+
+.playButton:hover{
+  transform: scale(1.10);
+  transition: 0.2s;
+}
+
+.playButton:active{
+  transform: scale(0.98);
+}
+
+/*-----------------------HEADER-SECONDE PAGE HTML------------------------------*/
+
+.headerSentence{
+  padding-top: 100px;
+  font-family: var(--fontTitle);
+  color:var(--firstColorFont);
+  text-align:center;
+}
+
+.headerSentence h1{
+  font-size: 1.8em;
+  width: 29.5%;
+  margin: 0 auto 20px auto;
+}
+
+.headerSentence p{
+  font-size: 1.3em;
+}
+/*-----------------------------------------------------------*/
+
+/*------------------- INDEX - Espace jeu -------------------------*/
+
+.game{
+  width: 100%;
+  height: 80rem;
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--secondColor);
+}
+
+.gameImage{
+  position: absolute;
+  top: 8rem;
+  left: 0;
+  margin: 1.875rem 20%;
+  width: 60%;
+}
+
+.gameImage img{
+  width: 100%;
+}
+
+.gamePlay{
+  position: absolute;
+  top: 322px;
+  left:27%;
+}
+.play {
+  width:61%;
+}
+.play:hover{
+  width:61%;
+  transform: scale(1.10);
+  transition: 0.2s;
+}
+/*-------------------------------------------------------*/
+
+/*--------------------Liste réseaux sociaux---------------*/
+
+
+.socialNetworks {
+  position: absolute;
+  top: 710px;
+  right:20%;
+  width: 60%;
+  margin:auto;
+
+}
+
+.socialNetworks ul li{
+  display: inline-block;
+  width: 2.5%;
+  margin: auto 0.5%;
+  padding: 0;
+  float: right;
+}
+
+.socialNetworks ul li img{
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.socialNetworks ul li img:hover{
+  border:1px solid black;
+}
+.socialNetworks ul li:first-of-type{
+padding-right: 0;
+margin:0 0 0 0.5%;
+}
+/*----------------------------------------------------*/
+
+/*-------------------Espace nouveaux joueurs------------*/
+
+main .newPlayer{
+  background-color:var(--firstColor);
+  width: 60%;
+  padding: 2rem 20%;
+
+}
+main .newPlayer p{
+  color: var(--firstColorFont);
+  font-family: var(--font);
+  font-size: 1.4em;
+  display: inline-block;
+  margin:1rem 0;
+}
+main .newPlayer a{
+  color: var(--firstColorFont);
+  float: right;
+  margin-right:8rem;
+  text-decoration: none;
+  position: inherit;
+}
+/*---------------------------------------------------*/
+
+/*------------------- Description -------------------*/
+.description{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 20%;
+}
+
+.description p{
+  font-size: 2em;
+  padding: 30px 0 0 0;
+  margin-bottom: 13px;
+  color: var(--secondeColorFont);
+  font-family: var(--font);
+}
+
+.description div{
+  position: relative;
+  height: 150px;
+}
+
+.description div img{
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 15%;
+}
+
+.description div p:first-of-type{
+  position: absolute;
+  top:25px;
+  left:20%;
+  font-size: 1.9em;
+  padding: 0;
+  color: var(--secondeColorFont);
+  font-family: var(--font);
+}
+
+.description div p:last-of-type{
+  position: absolute;
+  top: 50px;
+  left:20%;
+  font-size: 1.5em;
+  margin-top:25px;
+  padding: 0;
+  color: var(--secondeColorFont);
+  font-family: var(--font);
+
+}
+/*-------------------------------------------------*/
+
+/*--------------------Contact--------------------*/
+.articleSpace{
+width: 60%;
+padding: 30px 20%;
+text-align: center;
+background-color: var(--secondColor);
+height: 470px;
+}
+
+.articleSpace p:first-of-type{
+  font-size: 3em;
+  margin-bottom: 10px;
+  width: 100%;
+  color: var(--secondColorFont);
+  font-family: var(--font);
+  margin-bottom: 0;
+}
+
+.articleSpace p:last-of-type{
+  font-size: 1.6em;
+  width: 100%;
+  color: var(--secondColorFont);
+  font-family: var(--font);
+  margin-bottom: 20px;
+
+}
+
+.displayImgArticle {
+display: flex;
+justify-content:space-around;
+margin:0;
+padding: 0;
+height: 300px;
+}
+
+.displayImgArticle div img{
+    width: 100%;
+}
+
+.articleSpace a{
+  width:11%;
+  font-family: var(--fontTitle);
+  margin: auto;
+  position: inherit;
+  display: block;
+}
+
+/*-------------------------------------------------*/
+
+footer{
+  position: relative;
+  width: 60%;
+  padding: 15px 20% 0 20%;
+  background-color: var(--firstColor);
+  height: 80rem;
+
+}
+
+footer p{
+  color: var(--firstColorFont);
+  font-family: var(--fontTitle);
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+
+/*-----------------------------------------*/
+.newSkin{
+  padding: 0 20%;
+  position: absolute;
+  top: 55px;
+  left: 0;
+}
+.newSkin img{
+  width: 100%;
+}
+.newSkin a{
+  font-size: 1.2em;
+  width: 30%;
+  cursor: pointer;
+  font-family: var(--font);
+  color: var(--firstColorFont);
+  display:block;
+
+}
+.newSkin a:last-child{
+  text-align: center;
+  margin-left: 1%;
+  width: 30%;
+  margin: 0;
+}
+.newSkin a:last-child:hover{
+  color: var(--colorButton);
+}
+
+/*---------------------------------------------*/
+.newDLC{
+  position: absolute;
+  top: 55px;
+  left: 40%;
+
+}
+
+
+.newDLC a{
+  font-size: 1.2em;
+  width: 30%;
+  cursor: pointer;
+  font-family: var(--font);
+  color: var(--firstColorFont);
+  display:block;
+  position: center;
+}
+.newDLC img{
+  width:100%;
+}
+.newDLC a:last-child{
+  margin:0;
+  width: 30%;
+  text-align: center;
+}
+
+.newDLC a:last-child:hover{
+  color: var(--colorButton);
+}
+/*-------------------------------------------*/
+
+.links{
+  display: flex;
+  position: absolute;
+  top: 45px;
+  left:67.5%;
+  flex-direction: column;
+  width: 7%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.links a{
+  font-size: 1.4em;
+  font-family: var(--font);
+  color: var(--firstColorFont);
+  margin: 2px auto;
+  cursor: pointer;
+  text-decoration: none;
+}
+.links a:hover{
+  color: var(--colorButton);
+}
+/*-----------------------------------------*/
+
+.follow{
+  position: absolute;
+  top: 110px;
+  left: 55%;
+  width: 32%;
+  text-align: center;
+  margin-top: 30px;
+  height: 400px;
+}
+
+.follow p {
+  font-size: 1.5em;
+  font-family: var(--fontTitle);
+  color: var(--firstColorFont);
+  margin-bottom: 10px;
+}
+
+.follow .socialNetworks {
+  top:40px;
+  right: 20%;
+  width: 60%;
+  margin: 0 auto 20px auto;
+
+}
+.follow .socialNetworks ul{
+  margin-right: 17%;
+}
+.follow .socialNetworks ul li{
+  display: inline-block;
+  width: 20%;
+  margin: auto 5px;
+  padding: 0;
+}
+
+.follow .socialNetworks ul li img{
+  overflow: hidden;
+  width: 100%;
+}
+
+.follow .socialNetworks ul li img:hover{
+  border:1px solid black;
+}
+.follow .socialNetworks ul li:first-of-type{
+padding-right: 0;
+margin:0 0 0 5px;
+}
+
+/*----------------------------------------*/
+
+/*------------SECONDE PAGE HTML------------*/
+.container{
+  width: 60%;
+  padding: 0 20%;
+}
+
+.h2{
+  font-size: 2em;
+  font-family: var(--fontTitle);
+  color:var(--secondeColorFont);
+  margin:100px auto 40px auto;
+}
+
+.introduction p{
+  font-size: 1.7em;
+  font-family: var(--font);
+  color:var(--secondeColorFont);
+  text-align: justify;
+}
+
+.introduction p:last-of-type{
+  font-size: 1.7em;
+ font-family: var(--font);
+  color:var(--secondeColorFont);
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
+.p{
+  font-size: 1.5em;
+  font-family: var(--font);
+  color:var(--secondeColorFont);
+  text-align: justify;
+}
+.p:last-of-type{
+  margin-bottom:20px;
+}
+.title{
+  font-size: 1.8em;
+  font-family: var(--font);
+  color:var(--secondeColorFont);
+  margin:50px auto 20px auto;
+
+}
+
+.imgMap{
+  text-align: center;
+}
+
+.imgMap img{
+  display: inline-block;
+  width: 32%;
+  margin-top: 55px;
+}
+
+.imgMap img:nth-child(2){
+  padding:  0 1%;
+}
+
+/*------------Présentation Equipe -----------*/
+.imgEquipe .title{
+  margin-bottom: 40px;
+}
+
+
+.imgEquipe div{
+  display: inline-block;
+  width: 21%;
+  margin: 25px 6%;
+  text-align: center;
+}
+
+.imgEquipe img{
+  width: 100%;
+}
+
+.imgEquipe div p{
+  width: 225px;
+  font-size: 1.2em;
+  font-family: var(--font);
+  color:var(--secondeColorFont);
+
+
+}
+
+.imgEquipe div p:first-of-type {
+  margin-top: 15px;
+  font-size: 1.4em;
+  font-family: var(--fontTitle);
+  color:var(--secondeColorFont);
+}
+/*----------------------------------------*/
+.lastDiv{
+  margin: 200px auto;
+}
+
+.lastDiv .title{
+  margin-bottom: 30px;
+}
+/*-----------------------------------------*/
+
+/*------------------Menu---------------*/
+.menu{
+  position: fixed;
+  top:320px;
+  left: 5%;
+  width: 11%;
+  border-right: 1px solid var(--firstColor);
+}
+
+.menu p{
+  font-family: var(--fontTitle);
+  color: var(--firstColor);
+  font-size: 2.3em;
+  margin-bottom: 10px;
+}
+
+.menu ul{
+  list-style: none;
+  padding-left: 13%;
+}
+
+.menu li{
+  height:31px;
+}
+.menu a{
+  font-family: var(--font);
+  text-decoration: none;
+  font-size: 1.4em;
+  color: var(--secondColorFont);
+}
+
+.menu li:hover{
+  border-right: 2.5px solid var(--firstColor);
+}
+
+
+
+/*---------------------------------------*/
+.scroll{
+  position: absolute;
+  bottom:30px;
+  right: 50px;
+  width: 3%;
+}

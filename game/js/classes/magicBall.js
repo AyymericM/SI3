@@ -35,7 +35,6 @@ export default class MagicBall extends Game{
       if (els.ball != null) {
           if (els.ball.offsetLeft > els.player1.offsetLeft && els.ball.offsetLeft < (els.player1.offsetLeft + els.player1.offsetHeight) && els.ball.offsetTop > els.player1.offsetTop && els.ball.offsetTop < (els.player1.offsetTop + els.player1.offsetHeight)) {
               clearInterval(this.ball.moving)
-              console.log(els.ball.style.transition)
 
               els.ball.style.transition = `all 0.5s ease-in-out`
 
